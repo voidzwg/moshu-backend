@@ -1,6 +1,7 @@
 from django.http import JsonResponse
 import re
 
+DEFAULT_AVATAR = "111"  # 默认头像地址
 
 def check_email(email):
     if email == "":

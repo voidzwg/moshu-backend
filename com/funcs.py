@@ -1,5 +1,6 @@
 from django.http import JsonResponse
 import re
+from group_manage.models import Members
 
 DEFAULT_AVATAR = "111"  # 默认头像文件名
 AVATAR_HOME = "../static/avatars/"  # 头像文件存放地址
@@ -57,5 +58,25 @@ def space_serialize(user):
         'profile': user.profile
     }
     data.append(p_tmp)
+    return JsonResponse(data, safe=False)
+
+
+def group_serialize(group_list):
+    data = []
+    for group in group_list:
+        members = Members.objects.filter(gid=group)
+        uname = ''
+        for member in members:
+            if member.field_role == 2:
+                uname = member.uid.username
+        if uname == '':
+            return JsonResponse({'errno': 3, 'msg': "团队没有创建者"})
+        json = {
+            'username': uname,
+            'gid': group.id,
+            'name': group.name,
+            'unum': group.unum
+        }
+        data.append(json)
     return JsonResponse(data, safe=False)
 

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'login',
     'team_manage',
     'space',
+    'group_manage',
 ]
 
 MIDDLEWARE = [

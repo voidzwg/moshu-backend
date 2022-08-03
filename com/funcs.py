@@ -70,7 +70,7 @@ def group_serialize(group_list):
             if member.field_role == 2:
                 uname = member.uid.username
         if uname == '':
-            return JsonResponse({'errno': 3, 'msg': "团队没有创建者"})
+            print("团队没有创建者")
         json = {
             'username': uname,
             'gid': group.id,

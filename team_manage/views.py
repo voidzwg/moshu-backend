@@ -9,14 +9,24 @@ def get_member(request):
             return JsonResponse({'errno': 1002, 'msg': "参数为空，请检查参数名是否为\'gid\'"})
         try:
             members = Members.objects.filter(gid=gid)
-            users = []
+            data = []
             for i in members:
-                users.append(i.uid)
-            users = serializers.serialize('json',users)
+                user = i.uid
+                p_tmp = {
+                    'id': user.id,
+                    'username':user.username,
+                    'role':i.field_role,
+                    'avatar':user.avatar,
+                    'name':user.name,
+                    'email':user.email,
+                    'gnum':user.gnum,
+                    'profile':user.profile,
+                }
+                data.append(p_tmp)
         except Exception as e:
             print(e)
             return JsonResponse({'errno': 1003, 'msg': "未知错误"})
-        return JsonResponse(users,safe=False)
+        return JsonResponse(data,safe=False)
     else:
         return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
 

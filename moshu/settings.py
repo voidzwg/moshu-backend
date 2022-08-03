@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -81,7 +82,7 @@ DATABASES = {
         'PORT': '3306',  # 数据库连接端口，一般默认为3306
         'NAME': 'moshu',  # 已经存在的数据库名称
         'USER': 'root',  # 用户名
-        'PASSWORD': 'li.20020909',  # 用户密码
+        'PASSWORD': '88888888',  # 用户密码
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
         }

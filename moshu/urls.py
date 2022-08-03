@@ -22,4 +22,5 @@ urlpatterns = [
     path('team_manage/', include('team_manage.urls')),
     path('space/', include('space.urls')),
     path('group_manage/', include('group_manage.urls'))
+    path('project_manage/', include('project_manage.urls')),
 ]

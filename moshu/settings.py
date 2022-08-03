@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'team_manage',
     'space',
     'group_manage',
+    'project_manage',
 ]
 
 MIDDLEWARE = [
@@ -123,7 +124,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)

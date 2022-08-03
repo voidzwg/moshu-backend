@@ -5,5 +5,7 @@ urlpatterns = [
     path('get_member/', get_member),
     path('appoint/',appoint),
     path('delete/',delete),
-    path('revoke/',revoke)
+    path('revoke/',revoke),
+    path('get_user/',get_user),
+    path('invite/',invite),
 ]

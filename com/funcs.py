@@ -1,7 +1,9 @@
 from django.http import JsonResponse
 import re
 
-DEFAULT_AVATAR = "111"  # 默认头像地址
+DEFAULT_AVATAR = "111"  # 默认头像文件名
+AVATAR_HOME = "../static/avatars/"  # 头像文件存放地址
+
 
 def check_email(email):
     if email == "":
@@ -34,4 +36,26 @@ def check_password(password):
     if check_alpha or check_digit or check_len:
         return False
     return True
+
+
+def space_serialize(user):
+    data = []
+    path = AVATAR_HOME + user.avatar
+    try:
+        avatar = open(path, 'r', encoding='UTF-8').read()
+        print(avatar)
+    except OSError as reason:
+        print('读取文件出错了T_T')
+        print('出错原因是%s' % str(reason))
+        avatar = -1
+    p_tmp = {
+        'username': user.username,
+        'name': user.name,
+        'avatar': avatar,
+        'email': user.email,
+        'gnum': user.gnum,
+        'profile': user.profile
+    }
+    data.append(p_tmp)
+    return JsonResponse(data, safe=False)
 

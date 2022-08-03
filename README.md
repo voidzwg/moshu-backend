@@ -28,6 +28,12 @@
 
 撤销管理员： http://127.0.0.1:8000/team_manage/revoke/
 
+### 邀请页面
+
+获取所有成员： http://127.0.0.1:8000/team_manage/get_user/
+
+邀请该成员进入该团队: http://127.0.0.1:8000/team_manage/invite/
+
 ### 管理项目页面
 
 获取团队的所有项目： http://127.0.0.1:8000/project_manage/get_project/

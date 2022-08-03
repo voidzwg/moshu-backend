@@ -3,6 +3,7 @@ from django.views.decorators.csrf import csrf_exempt
 from com.funcs import *
 from .models import *
 
+
 # Author: zwg
 # Create your views here.
 @csrf_exempt  # 跨域设置
@@ -13,7 +14,11 @@ def login(request):
 
         if username is None or password is None:
             return JsonResponse({'errno': 2, 'msg': "请输入用户名和密码"})
-        pass
+        try:
+            user = Users.objects.get(username=username)
+        except:
+            return JsonResponse({'errno': 2, 'msg': "用户不存在"})
+        return JsonResponse({'errno': 0, 'msg': "登录成功", 'uid': user.id})
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
 
 
@@ -36,6 +41,8 @@ def register(request):
             return JsonResponse({'errno': 3, 'msg': "请输入邮箱"})
         if not check_email(email):
             return JsonResponse({'errno': 3, 'msg': "邮箱格式错误"})
-        pass
+        new_user = Users(username=username, field_password=password_1, avatar=DEFAULT_AVATAR, email=email, gnum=0)
+        new_user.save()
+        return JsonResponse({'errno': 0, 'msg': "注册成功！"})
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
 

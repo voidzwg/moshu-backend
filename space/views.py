@@ -48,13 +48,13 @@ def update_password(request):
         except:
             return JsonResponse({'errno': 2, 'msg': "用户不存在"})
         password = request.POST.get('password')
-        if password is not user.field_password:
+        if password != user.field_password:
             return JsonResponse({'errno': 3, 'msg': "密码错误"})
         password_1 = request.POST.get('password_1')
         password_2 = request.POST.get('password_2')
         if not check_password(password_1):
             return JsonResponse({'errno': 4, 'msg': "密码格式错误"})
-        if password_2 is not password_1:
+        if password_2 != password_1:
             return JsonResponse({'errno': 4, 'msg': "密码不一致"})
         user.field_password = password_1
         user.save()

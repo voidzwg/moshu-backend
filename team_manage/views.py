@@ -116,7 +116,7 @@ def get_user(request):
             member = Members.objects.filter(uid=user)
             team = []
             for i in member:
-                team.append(i.gid.name)
+                team.append(i.gid.id)
             p_tmp = {
                 'id': user.id,
                 'username': user.username,

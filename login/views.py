@@ -3,8 +3,6 @@ from django.views.decorators.csrf import csrf_exempt
 from com.funcs import *
 from .models import *
 
-user = Users.objects.all()
-print(user)
 # Author: zwg
 # Create your views here.
 @csrf_exempt  # 跨域设置

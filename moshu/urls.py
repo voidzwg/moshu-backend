@@ -21,4 +21,5 @@ urlpatterns = [
     path('login/', include('login.urls')),
     path('team_manage/', include('team_manage.urls')),
     path('space/', include('space.urls')),
+    path('project_manage/', include('project_manage.urls')),
 ]

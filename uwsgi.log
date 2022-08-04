@@ -790,3 +790,95 @@ spawned uWSGI worker 8 (pid: 6771, cores: 4)
 [pid: 6758|app: 0|req: 3/3] 20.239.76.64 () {44 vars in 787 bytes} [Thu Aug  4 23:45:47 2022] POST /api/login/login/ => generated 58 bytes in 55 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 1)
 [pid: 6758|app: 0|req: 4/4] 20.239.76.64 () {44 vars in 785 bytes} [Thu Aug  4 23:45:50 2022] POST /api/space/get_info/ => generated 113 bytes in 55 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 2)
 [pid: 6758|app: 0|req: 5/5] 20.239.76.64 () {44 vars in 793 bytes} [Thu Aug  4 23:45:56 2022] POST /api/space/update_info/ => generated 53 bytes in 56 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 0)
+*** Starting uWSGI 2.0.20 (64bit) on [Thu Aug  4 23:49:20 2022] ***
+compiled with version: 4.8.5 20150623 (Red Hat 4.8.5-44) on 08 May 2022 15:04:04
+os: Linux-3.10.0-1160.62.1.el7.x86_64 #1 SMP Tue Apr 5 16:57:59 UTC 2022
+nodename: VM-20-15-centos
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 2
+current working directory: /home/moshu/moshu-backend
+detected binary path: /root/.virtualenvs/django/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /home/moshu/moshu-backend
+your processes number limit is 15070
+your memory page size is 4096 bytes
+detected max file descriptor number: 100002
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to TCP address 127.0.0.1:8080 fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.8.4 (default, May  8 2022, 22:35:28)  [GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]
+PEP 405 virtualenv detected: /root/.virtualenvs/django
+Set PythonHome to /root/.virtualenvs/django
+Python main interpreter initialized at 0x1dab8c0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 3150396 bytes (3076 KB) for 32 cores
+*** Operational MODE: preforking+threaded ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x1dab8c0 pid: 8147 (default app)
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 8147)
+spawned uWSGI worker 1 (pid: 8153, cores: 4)
+spawned uWSGI worker 2 (pid: 8154, cores: 4)
+spawned uWSGI worker 3 (pid: 8155, cores: 4)
+spawned uWSGI worker 4 (pid: 8156, cores: 4)
+spawned uWSGI worker 5 (pid: 8157, cores: 4)
+spawned uWSGI worker 6 (pid: 8158, cores: 4)
+spawned uWSGI worker 7 (pid: 8159, cores: 4)
+spawned uWSGI worker 8 (pid: 8160, cores: 4)
+*** Starting uWSGI 2.0.20 (64bit) on [Thu Aug  4 23:50:04 2022] ***
+compiled with version: 4.8.5 20150623 (Red Hat 4.8.5-44) on 08 May 2022 15:04:04
+os: Linux-3.10.0-1160.62.1.el7.x86_64 #1 SMP Tue Apr 5 16:57:59 UTC 2022
+nodename: VM-20-15-centos
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 2
+current working directory: /home/moshu/moshu-backend
+detected binary path: /root/.virtualenvs/django/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /home/moshu/moshu-backend
+your processes number limit is 15070
+your memory page size is 4096 bytes
+detected max file descriptor number: 100002
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to TCP address 127.0.0.1:8080 fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.8.4 (default, May  8 2022, 22:35:28)  [GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]
+PEP 405 virtualenv detected: /root/.virtualenvs/django
+Set PythonHome to /root/.virtualenvs/django
+Python main interpreter initialized at 0x1c708c0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 3150396 bytes (3076 KB) for 32 cores
+*** Operational MODE: preforking+threaded ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x1c708c0 pid: 8530 (default app)
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 8530)
+spawned uWSGI worker 1 (pid: 8541, cores: 4)
+spawned uWSGI worker 2 (pid: 8542, cores: 4)
+spawned uWSGI worker 3 (pid: 8543, cores: 4)
+spawned uWSGI worker 4 (pid: 8544, cores: 4)
+spawned uWSGI worker 5 (pid: 8552, cores: 4)
+spawned uWSGI worker 6 (pid: 8556, cores: 4)
+spawned uWSGI worker 7 (pid: 8562, cores: 4)
+spawned uWSGI worker 8 (pid: 8563, cores: 4)
+[pid: 8562|app: 0|req: 1/1] 20.239.76.64 () {44 vars in 787 bytes} [Thu Aug  4 23:50:30 2022] POST /api/login/login/ => generated 58 bytes in 76 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 0)
+[pid: 8562|app: 0|req: 2/2] 114.233.109.222 () {46 vars in 844 bytes} [Thu Aug  4 23:55:46 2022] POST /api/login/register/ => generated 59 bytes in 169 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 2)

@@ -50,6 +50,11 @@
 
 结束项目：http://127.0.0.1:8000/api/project_manage/close/
 
+保存文件：http://127.0.0.1:8000/api/project_manage/save_document/  参数： pid name file
+
+获取文件： http://127.0.0.1:8000/api/project_manage/get_document/  参数：pid         请求方式：GET
+
+打开文件： http://127.0.0.1:8000/api/project_manage/open_document/  参数： id
 ### 团队管理页面
 
 新建团队：http://127.0.0.1:8000/api/group_manage/create_group/

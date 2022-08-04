@@ -41,18 +41,10 @@ def check_password(password):
 
 def space_serialize(user):
     data = []
-    path = AVATAR_HOME + user.avatar
-    try:
-        avatar = open(path, 'r', encoding='UTF-8').read()
-        print(avatar)
-    except OSError as reason:
-        print('读取文件出错了T_T')
-        print('出错原因是%s' % str(reason))
-        avatar = -1
     p_tmp = {
         'username': user.username,
         'name': user.name,
-        'avatar': avatar,
+        'avatar': str(user.avatar),
         'email': user.email,
         'gnum': user.gnum,
         'profile': user.profile

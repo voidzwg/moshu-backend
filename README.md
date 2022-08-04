@@ -46,6 +46,8 @@
 
 移动项目至回收站：http://127.0.0.1:8000/api/project_manage/to_bin/
 
+将项目移出回收站：http://127.0.0.1:8000/api/project_manage/out_bin/
+
 删除项目：http://127.0.0.1:8000/api/project_manage/delete/
 
 结束项目：http://127.0.0.1:8000/api/project_manage/close/

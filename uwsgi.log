@@ -511,3 +511,96 @@ spawned uWSGI worker 8 (pid: 20823, cores: 4)
 [pid: 20823|app: 0|req: 109/144] 120.219.101.254 () {40 vars in 683 bytes} [Thu Aug  4 22:42:05 2022] GET /api/team_manage/get_user/ => generated 2425 bytes in 1856 msecs (HTTP/1.1 200) 7 headers in 214 bytes (1 switches on core 3)
 [pid: 20823|app: 0|req: 110/145] 120.219.101.254 () {46 vars in 838 bytes} [Thu Aug  4 22:42:26 2022] POST /api/team_manage/get_member/ => generated 163 bytes in 136 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 2)
 [pid: 20823|app: 0|req: 111/146] 180.101.245.253 () {46 vars in 906 bytes} [Thu Aug  4 22:43:31 2022] GET /api/team_manage/appoint/ => generated 62 bytes in 0 msecs (HTTP/1.1 200) 7 headers in 212 bytes (1 switches on core 1)
+*** Starting uWSGI 2.0.20 (64bit) on [Thu Aug  4 22:48:46 2022] ***
+compiled with version: 4.8.5 20150623 (Red Hat 4.8.5-44) on 08 May 2022 15:04:04
+os: Linux-3.10.0-1160.62.1.el7.x86_64 #1 SMP Tue Apr 5 16:57:59 UTC 2022
+nodename: VM-20-15-centos
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 2
+current working directory: /home/moshu/moshu-backend
+detected binary path: /root/.virtualenvs/django/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /home/moshu/moshu-backend
+your processes number limit is 15070
+your memory page size is 4096 bytes
+detected max file descriptor number: 100001
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to TCP address 127.0.0.1:8080 fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.8.4 (default, May  8 2022, 22:35:28)  [GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]
+PEP 405 virtualenv detected: /root/.virtualenvs/django
+Set PythonHome to /root/.virtualenvs/django
+Python main interpreter initialized at 0x2785410
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 3150396 bytes (3076 KB) for 32 cores
+*** Operational MODE: preforking+threaded ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x2785410 pid: 25686 (default app)
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 25686)
+spawned uWSGI worker 1 (pid: 25688, cores: 4)
+spawned uWSGI worker 2 (pid: 25692, cores: 4)
+spawned uWSGI worker 3 (pid: 25693, cores: 4)
+spawned uWSGI worker 4 (pid: 25697, cores: 4)
+spawned uWSGI worker 5 (pid: 25701, cores: 4)
+spawned uWSGI worker 6 (pid: 25702, cores: 4)
+spawned uWSGI worker 7 (pid: 25706, cores: 4)
+spawned uWSGI worker 8 (pid: 25710, cores: 4)
+[pid: 25710|app: 0|req: 1/1] 20.239.76.64 () {44 vars in 787 bytes} [Thu Aug  4 22:49:41 2022] POST /api/login/login/ => generated 58 bytes in 67 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 0)
+[pid: 25710|app: 0|req: 2/2] 220.196.160.76 () {46 vars in 886 bytes} [Thu Aug  4 22:53:02 2022] GET /api/team_manage/revoke/ => generated 62 bytes in 1 msecs (HTTP/1.1 200) 7 headers in 212 bytes (1 switches on core 1)
+[pid: 25710|app: 0|req: 3/3] 112.32.201.250 () {48 vars in 1068 bytes} [Thu Aug  4 22:58:09 2022] POST /api/login/login/ => generated 53 bytes in 94 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 2)
+*** Starting uWSGI 2.0.20 (64bit) on [Thu Aug  4 23:04:36 2022] ***
+compiled with version: 4.8.5 20150623 (Red Hat 4.8.5-44) on 08 May 2022 15:04:04
+os: Linux-3.10.0-1160.62.1.el7.x86_64 #1 SMP Tue Apr 5 16:57:59 UTC 2022
+nodename: VM-20-15-centos
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 2
+current working directory: /home/moshu/moshu-backend
+detected binary path: /root/.virtualenvs/django/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /home/moshu/moshu-backend
+your processes number limit is 15070
+your memory page size is 4096 bytes
+detected max file descriptor number: 100001
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to TCP address 127.0.0.1:8080 fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.8.4 (default, May  8 2022, 22:35:28)  [GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]
+PEP 405 virtualenv detected: /root/.virtualenvs/django
+Set PythonHome to /root/.virtualenvs/django
+Python main interpreter initialized at 0x1d593a0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 3150396 bytes (3076 KB) for 32 cores
+*** Operational MODE: preforking+threaded ***
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x1d593a0 pid: 28865 (default app)
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 28865)
+spawned uWSGI worker 1 (pid: 28871, cores: 4)
+spawned uWSGI worker 2 (pid: 28872, cores: 4)
+spawned uWSGI worker 3 (pid: 28873, cores: 4)
+spawned uWSGI worker 4 (pid: 28874, cores: 4)
+spawned uWSGI worker 5 (pid: 28875, cores: 4)
+spawned uWSGI worker 6 (pid: 28876, cores: 4)
+spawned uWSGI worker 7 (pid: 28877, cores: 4)
+spawned uWSGI worker 8 (pid: 28878, cores: 4)

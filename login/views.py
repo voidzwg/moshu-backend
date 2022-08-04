@@ -18,7 +18,9 @@ def login(request):
             user = Users.objects.get(username=username)
         except:
             return JsonResponse({'errno': 2, 'msg': "用户不存在"})
-        return JsonResponse({'errno': 0, 'msg': "登录成功", 'uid': user.id})
+        if password == user.field_password:
+            return JsonResponse({'errno': 0, 'msg': "登录成功", 'uid': user.id})
+        return JsonResponse({'errno': 2, 'msg': "密码不正确"})
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
 
 
@@ -34,7 +36,7 @@ def register(request):
             return JsonResponse({'errno': 2, 'msg': "密码格式错误"})
         if password_2 is None:
             return JsonResponse({'errno': 2, 'msg': "请确认密码"})
-        if password_2 is not password_1:
+        if password_2 != password_1:
             return JsonResponse({'errno': 2, 'msg': "两次输入的密码不一致"})
         email = request.POST.get('email')
         if email is None:

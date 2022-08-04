@@ -48,3 +48,13 @@
 
 结束项目：http://127.0.0.1:8000/project_manage/close/
 
+### 团队管理页面
+
+新建团队：http://127.0.0.1:8000/group_manage/create_group/
+
+获取创建团队信息：http://127.0.0.1:8000/group_manage/get_created_group/
+
+获取管理团队信息：http://127.0.0.1:8000/group_manage/get_managed_group/
+
+获取参与团队信息：http://127.0.0.1:8000/group_manage/get_participated_group/
+

@@ -70,7 +70,7 @@ def get_group(request):
             user = Users.objects.get(id=uid)
         except:
             return JsonResponse({'errno': 2, 'msg': "用户不存在"})
-        members = Members.objects.get(uid=user)
+        members = Members.objects.filter(uid=user)
         data = []
         for member in members:
             json = {

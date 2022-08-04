@@ -12,11 +12,7 @@ def store(request):
         pid = request.POST.get('pid')
         data = request.POST.get('data')
         name = request.POST.get('name')
-        try:
-            project = Projects.objects.get(id=pid)
-        except:
-            return JsonResponse({'errno': 2, 'msg': "项目不存在"})
-        prototype = Prototype(pid=project, data=data, name=name)
+        prototype = Prototype(pid=pid, data=data, name=name)
         prototype.save()
         return JsonResponse({'errno': 0, 'msg': "创建成功"})
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})

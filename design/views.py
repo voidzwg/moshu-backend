@@ -65,7 +65,7 @@ def get_design(request):
     if request.method == 'POST':
         pid = request.POST.get('pid')
         prototype_list = Prototype.objects.filter(pid=pid)
-        prototype_serialize(prototype_list)
+        return prototype_serialize(prototype_list)
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
 
 
@@ -77,6 +77,6 @@ def get_one_design(request):
             prototype = Prototype.objects.get(picid=picid)
         except:
             return JsonResponse({'errno': 2, 'msg': "原型设计不存在"})
-        prototype_serialize([prototype])
+        return prototype_serialize([prototype])
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
 

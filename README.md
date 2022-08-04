@@ -18,6 +18,8 @@
 
 获取已加入团队名称：http://127.0.0.1:8000/api/space/get_group/
 
+头像上传： http://127.0.0.1:8000/api/space/set_avatar/
+
 ### 管理团队页面
 
 获取成员信息： http://127.0.0.1:8000/api/team_manage/get_member/

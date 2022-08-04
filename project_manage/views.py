@@ -9,11 +9,27 @@ def get_project(request):
             return JsonResponse({'errno': 1002, 'msg': "参数为空，请检查参数名是否为\'gid\'"})
         try:
             projects = Projects.objects.filter(gid=gid)
-            projects= serializers.serialize('json', projects)
+            data = []
+            for p in projects:
+                tmp = {
+                    'id':p.id,
+                    'name':p.name,
+                    'available':p.available,
+                    'status':p.status,
+                    'gid':p.gid.id,
+                    'uid':p.uid.id,
+                    'starttime':p.starttime,
+                    'endtime':p.endtime,
+                    'prototype':p.prototype,
+                    'uml':p.uml,
+                    'document':p.document,
+                    'profile':p.profile,
+                }
+                data.append(tmp)
         except Exception as e:
             print(e)
             return JsonResponse({'errno': 1003, 'msg': "未知错误"})
-        return JsonResponse(projects, safe=False)
+        return JsonResponse(data, safe=False)
     else:
         return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
 

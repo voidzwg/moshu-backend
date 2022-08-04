@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'space',
     'group_manage',
     'project_manage',
+    'design',
 ]
 
 MIDDLEWARE = [

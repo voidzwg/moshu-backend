@@ -58,3 +58,5 @@
 
 获取参与团队信息：http://127.0.0.1:8000/group_manage/get_participated_group/
 
+解散团队： http://127.0.0.1:8000/group_manage/dismiss/
+

@@ -72,3 +72,27 @@ def get_participated_group(request):
         return group_serialize(group_list)
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
 
+def dismiss(request):
+    if request.method == 'POST':
+        uid = request.POST.get('uid')
+        gid = request.POST.get('gid')
+        if uid is None or gid is None:
+            return JsonResponse({'errno': 1002, 'msg': "uid或gid为空，请检查参数名是否为\'gid\',\'uid\'"})
+        try:
+            member = Members.objects.get(gid=gid, uid=uid)
+        except Exception as e:
+            print(e)
+            return JsonResponse({'errno': 1003, 'msg': "不存在或未知错误"})
+        if member.field_role != 2:
+            return JsonResponse({'errno': 1004, 'msg': "不是创建者，不能解散团队！"})
+        else:
+            try:
+                group = Groups.objects.get(id=gid)
+            except Exception as e:
+                print(e)
+                return JsonResponse({'errno': 1003, 'msg': "不存在或未知错误"})
+            else:
+                group.delete()
+                return JsonResponse({'errno': 0, 'msg': "解散成功"})
+    else:
+        return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})

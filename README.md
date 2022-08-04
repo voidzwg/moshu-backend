@@ -66,5 +66,11 @@
 
 存储设计图数据：http://127.0.0.1:8000/api/design/store/
 
+重命名设计图：http://127.0.0.1:8000/api/design/rename/
+
+创建设计图：http://127.0.0.1:8000/api/design/create/
+
+删除设计图：http://127.0.0.1:8000/api/design/delete/
+
 获取设计图数据：http://127.0.0.1:8000/api/design/get_design/
 

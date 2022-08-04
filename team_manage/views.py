@@ -17,7 +17,7 @@ def get_member(request):
                     'id': user.id,
                     'username': user.username,
                     'role': i.field_role,
-                    'avatar': user.avatar,
+                    'avatar': str(user.avatar),
                     'name': user.name,
                     'email': user.email,
                     'gnum': user.gnum,
@@ -27,7 +27,7 @@ def get_member(request):
         except Exception as e:
             print(e)
             return JsonResponse({'errno': 1003, 'msg': "未知错误"})
-        return JsonResponse(data, safe=False)
+        return JsonResponse(data,safe=False)
     else:
         return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
 
@@ -120,7 +120,7 @@ def get_user(request):
             p_tmp = {
                 'id': user.id,
                 'username': user.username,
-                'avatar': user.avatar,
+                'avatar': str(user.avatar),
                 'name': user.name,
                 'email': user.email,
                 'gnum': user.gnum,

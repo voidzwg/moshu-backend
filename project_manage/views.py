@@ -266,21 +266,31 @@ def delete(request):
 
 
 @csrf_exempt
-def get_design(request):
+def get_documents(request):
     if request.method == 'POST':
         pid = request.POST.get('pid')
-        prototype_list = Prototype.objects.filter(pid=pid)
-       # return prototype_serialize(prototype_list)
+        documents = Document.objects.filter(pid=pid)
+        data = []
+        for i in documents:
+            tmp = {
+                'id':i.id,
+                'name':i.name,
+                'pid':i.pid,
+            }
+            data.append(tmp)
+        return JsonResponse(data,safe=False)
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
 
 
 @csrf_exempt
-def get_one_design(request):
+def open_document(request):
     if request.method == 'POST':
-        picid = request.POST.get('picid')
+        id = request.POST.get('id')
+
         try:
-            prototype = Prototype.objects.get(id=picid)
+            document = Document.objects.get(id=id)
         except:
-            return JsonResponse({'errno': 2, 'msg': "原型设计不存在"})
+            return JsonResponse({'errno': 2, 'msg': "文件不存在"})
+        return JsonResponse({'errno': 0, 'data': document.data})
       #  return prototype_serialize([prototype])
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})

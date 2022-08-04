@@ -1,9 +1,10 @@
 from django.core import serializers
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-
 from .models import *
 
+
+@csrf_exempt
 def get_project(request):
     if request.method == 'GET':
         gid = request.GET.get('gid')
@@ -33,6 +34,7 @@ def get_project(request):
         return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
 
 
+@csrf_exempt
 def create(request):
     if request.method == 'POST':
         gid = request.POST.get('gid')
@@ -58,6 +60,7 @@ def create(request):
         return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
 
 
+@csrf_exempt
 def rename(request):
     if request.method == 'POST':
         id = request.POST.get('id')
@@ -80,6 +83,8 @@ def rename(request):
     else:
         return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
 
+
+@csrf_exempt
 def to_bin(request):
     if request.method == 'POST':
         id = request.POST.get('id')
@@ -101,6 +106,8 @@ def to_bin(request):
     else:
         return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
 
+
+@csrf_exempt
 def out_bin(request):
     if request.method == 'POST':
         id = request.POST.get('id')
@@ -123,6 +130,7 @@ def out_bin(request):
         return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
 
 
+@csrf_exempt
 def delete(request):
     if request.method == 'POST':
         id = request.POST.get('id')
@@ -143,6 +151,8 @@ def delete(request):
     else:
         return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
 
+
+@csrf_exempt
 def close(request):
     if request.method == 'POST':
         id = request.POST.get('id')
@@ -164,14 +174,16 @@ def close(request):
     else:
         return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
 
+
+@csrf_exempt
 def save_document(request):
     if request.method == 'POST':
         pid = request.POST.get('pid')
         name = request.POST.get('name')
-        url = request.FILES.get('file')
+        file = request.FILES.get('file')
         try:
-            newDocument = Document(pid=pid,name=name,url=url)
-            newDocument.save()
+            new_document = Document(pid=pid, name=name, data=file)
+            new_document.save()
         except Exception as e:
             print(e)
             return JsonResponse({'errno': 1002, 'msg': "未知错误"})
@@ -179,6 +191,8 @@ def save_document(request):
     else:
         return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
 
+
+@csrf_exempt
 def get_document(request):
     if request.method == 'GET':
         pid = request.GET.get('pid')
@@ -187,30 +201,33 @@ def get_document(request):
         docs = Document.objects.filter(pid=pid)
         data = []
         for d in docs:
-            tmp={
-                'id':d.id,
-                'name':d.name,
+            tmp = {
+                'id': d.id,
+                'name': d.name,
             }
             data.append(tmp)
         return JsonResponse(data,safe=False)
     else:
         return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
 
-def open_document(request):
-    if request.method == 'POST':
-        id = request.POST.get('id')
-        if id is None:
-            return JsonResponse({'errno': 1002, 'msg': "参数为空"})
-        try:
-            doc = Document.objects.get(id=id)
-        except Exception as e:
-            print(e)
-            return JsonResponse({'errno': 1003, 'msg': "文件不存在"})
-        return JsonResponse({'errno': 0, 'url': str(doc.url)})
-    else:
-        return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
 
-def store(request):
+# def open_document(request):
+#     if request.method == 'POST':
+#         id = request.POST.get('id')
+#         if id is None:
+#             return JsonResponse({'errno': 1002, 'msg': "参数为空"})
+#         try:
+#             doc = Document.objects.get(id=id)
+#         except Exception as e:
+#             print(e)
+#             return JsonResponse({'errno': 1003, 'msg': "文件不存在"})
+#         return JsonResponse({'errno': 0, 'url': str(doc.url)})
+#     else:
+#         return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
+
+
+@csrf_exempt
+def store_document(request):
     if request.method == 'POST':
         id = request.POST.get('id')
         data = request.POST.get('data')
@@ -226,22 +243,7 @@ def store(request):
 
 
 @csrf_exempt
-def rename(request):
-    if request.method == 'POST':
-        picid = request.POST.get('picid')
-        name = request.POST.get('name')
-        try:
-            prototype = request.POST.get(id=picid)
-        except:
-            return JsonResponse({'errno': 2, 'msg': "原型设计不存在"})
-        prototype.name = name
-        prototype.save()
-        return JsonResponse({'errno': 0, 'msg': "修改成功"})
-    return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
-
-
-@csrf_exempt
-def create(request):
+def create_document(request):
     if request.method == 'POST':
         pid = request.POST.get('pid')
         name = request.POST.get('name')
@@ -249,19 +251,6 @@ def create(request):
         document = Document(pid=pid, name=name, data=data)
         document.save()
         return JsonResponse({'errno': 0, 'msg': "创建成功"})
-    return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
-
-
-@csrf_exempt
-def delete(request):
-    if request.method == 'POST':
-        picid = request.POST.get('picid')
-        try:
-            prototype = request.POST.get(id=picid)
-        except:
-            return JsonResponse({'errno': 2, 'msg': "原型设计不存在"})
-        prototype.delete()
-        return JsonResponse({'errno': 0, 'msg': "删除成功"})
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
 
 
@@ -292,5 +281,19 @@ def open_document(request):
         except:
             return JsonResponse({'errno': 2, 'msg': "文件不存在"})
         return JsonResponse({'errno': 0, 'data': document.data})
-      #  return prototype_serialize([prototype])
+        #  return prototype_serialize([prototype])
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
+
+
+@csrf_exempt
+def delete_document(request):
+    if request.method == 'POST':
+        id = request.POST.get('id')
+        try:
+            doc = Document.objects.get(id=id)
+        except:
+            return JsonResponse({'errno': 2, 'msg': "文件不存在"})
+        doc.delete()
+        return JsonResponse({'errno': 0, 'msg': "删除成功"})
+    return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
+

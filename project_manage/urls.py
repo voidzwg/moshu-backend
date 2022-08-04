@@ -11,9 +11,9 @@ urlpatterns = [
     path('close/', close),
     path('save_document/', save_document),
     path('get_document/', get_document),
-    path('open_document/', open_document),
-    path('create/',create),
-    path('store/',store),
+    path('create_document/', create_document),
+    path('store_document/', store_document),
     path('get_documents/', get_documents),
-    path('open_document/',open_document),
+    path('open_document/', open_document),
+    path('delete_document/', delete_document),
 ]

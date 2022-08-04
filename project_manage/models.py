@@ -18,6 +18,7 @@ class Groups(models.Model):
         managed = False
         db_table = '_groups'
 
+
 class Document(models.Model):
     pid = models.IntegerField()
     data = models.TextField()

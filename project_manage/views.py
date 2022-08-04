@@ -20,9 +20,6 @@ def get_project(request):
                     'uid':p.uid.id,
                     'starttime':p.starttime,
                     'endtime':p.endtime,
-                    'prototype':p.prototype,
-                    'uml':p.uml,
-                    'document':p.document,
                     'profile':p.profile,
                 }
                 data.append(tmp)
@@ -140,5 +137,14 @@ def close(request):
             return JsonResponse({'errno': 1004, 'msg': "未知错误"})
         else:
             return JsonResponse({'errno': 0, 'msg': "项目结束成功"})
+    else:
+        return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
+
+def save_document(request):
+    if request.method == 'POST':
+        pid = request.POST.get('pid')
+        name = request.POST.get('name')
+        url = request.FILES.get('file')
+
     else:
         return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})

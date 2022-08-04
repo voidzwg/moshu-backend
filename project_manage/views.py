@@ -154,3 +154,20 @@ def save_document(request):
         return JsonResponse({'errno': 0, 'msg': "保存成功"})
     else:
         return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
+
+def get_document(request):
+    if request.method == 'GET':
+        pid = request.GET.get('pid')
+        if pid is None:
+            return JsonResponse({'errno': 1002, 'msg': "参数为空"})
+        docs = Document.objects.filter(pid=pid)
+        data = []
+        for d in docs:
+            tmp={
+                'id':d.id,
+                'name':d.name,
+            }
+            data.append(tmp)
+        return JsonResponse(data,safe=False)
+    else:
+        return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})

@@ -60,5 +60,11 @@
 
 获取参与团队信息：http://127.0.0.1:8000/api/group_manage/get_participated_group/
 
-解散团队： http://127.0.0.1:8000/group_manage/dismiss/
+解散团队： http://127.0.0.1:8000/api/group_manage/dismiss/
+
+### 原型设计页面
+
+存储设计图数据：http://127.0.0.1:8000/api/design/store/
+
+获取设计图数据：http://127.0.0.1:8000/api/design/get_design/
 

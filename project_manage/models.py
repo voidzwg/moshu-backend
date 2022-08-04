@@ -20,7 +20,7 @@ class Groups(models.Model):
 
 class Document(models.Model):
     pid = models.IntegerField()
-    url = models.FileField(max_length=255,upload_to='static/documents')
+    data = models.TextField()
     name = models.CharField(max_length=100)
 
     class Meta:

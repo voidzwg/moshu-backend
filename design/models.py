@@ -55,7 +55,7 @@ class Projects(models.Model):
 
 class Prototype(models.Model):
     pid = models.IntegerField()
-    data = models.TextField(max_length=255)
+    data = models.TextField()
     name = models.CharField(max_length=100)
 
     class Meta:

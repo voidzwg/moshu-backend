@@ -72,9 +72,11 @@ def get_design(request):
 @csrf_exempt
 def get_one_design(request):
     if request.method == 'POST':
-        pid = request.POST.get('pid')
         picid = request.POST.get('picid')
-        prototype_list = Prototype.objects.filter(pid=pid, picid=picid)
-        prototype_serialize(prototype_list)
+        try:
+            prototype = Prototype.objects.get(picid=picid)
+        except:
+            return JsonResponse({'errno': 2, 'msg': "原型设计不存在"})
+        prototype_serialize([prototype])
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
 

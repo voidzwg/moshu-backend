@@ -72,3 +72,15 @@ def group_serialize(group_list):
         data.append(json)
     return JsonResponse(data, safe=False)
 
+
+def prototype_serialize(prototype_list):
+    data = []
+    for prototype in prototype_list:
+        json = {
+            'picid': prototype.id,
+            'data': prototype.data,
+            'name': prototype.name
+        }
+        data.append(json)
+    return JsonResponse(data, safe=False)
+

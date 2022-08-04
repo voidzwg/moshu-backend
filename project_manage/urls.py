@@ -6,6 +6,7 @@ urlpatterns = [
     path('create/', create),
     path('rename/', rename),
     path('to_bin/', to_bin),
+    path('out_bin/', out_bin),
     path('delete/', delete),
     path('close/', close),
     path('save_document/', save_document),

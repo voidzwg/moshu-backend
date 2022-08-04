@@ -32,6 +32,9 @@ def register(request):
         password_2 = request.POST.get('password_2')
         if username is None or password_1 is None:
             return JsonResponse({'errno': 2, 'msg': "请输入用户名和密码"})
+        test_user = Users.objects.filter(username=username)
+        if test_user is not None:
+            return JsonResponse({'errno': 2, 'msg': "用户名已被占用"})
         if not check_password(password_1):
             return JsonResponse({'errno': 2, 'msg': "密码格式错误"})
         if password_2 is None:

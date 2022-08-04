@@ -80,3 +80,23 @@ def get_group(request):
         return JsonResponse(data, safe=False)
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
 
+def set_avatar(request):
+    if request.method == 'POST':
+        uid = request.POST.get('uid')
+        avatar = request.FILES.get('avatar')
+        if uid is None or avatar is None:
+            return JsonResponse({'errno': 1002, 'msg': "参数为空"})
+        try:
+            user = Users.objects.get(id=uid)
+        except Exception as e:
+            print(e)
+            return JsonResponse({'errno': 1003, 'msg': "用户不存在"})
+        try:
+            user.avatar = avatar
+            user.save()
+        except Exception as e:
+            return JsonResponse({'errno': 1004, 'msg': "未知错误"})
+        else:
+            return JsonResponse({'errno': 0, 'msg': "上传成功"})
+    else:
+        return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})

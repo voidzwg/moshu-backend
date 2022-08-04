@@ -32,22 +32,23 @@ def register(request):
         password_2 = request.POST.get('password_2')
         if username is None or password_1 is None:
             return JsonResponse({'errno': 2, 'msg': "请输入用户名和密码"})
-        test_user = Users.objects.filter(username=username)
-        if not test_user:
-            return JsonResponse({'errno': 2, 'msg': "用户名已被占用"})
-        if not check_password(password_1):
-            return JsonResponse({'errno': 2, 'msg': "密码格式错误"})
-        if password_2 is None:
-            return JsonResponse({'errno': 2, 'msg': "请确认密码"})
-        if password_2 != password_1:
-            return JsonResponse({'errno': 2, 'msg': "两次输入的密码不一致"})
-        email = request.POST.get('email')
-        if email is None:
-            return JsonResponse({'errno': 3, 'msg': "请输入邮箱"})
-        if not check_email(email):
-            return JsonResponse({'errno': 3, 'msg': "邮箱格式错误"})
-        new_user = Users(username=username, field_password=password_1, avatar=DEFAULT_AVATAR, email=email, gnum=0)
-        new_user.save()
-        return JsonResponse({'errno': 0, 'msg': "注册成功！"})
+        try:
+            test_user = Users.objects.get(username=username)
+        except:
+            if not check_password(password_1):
+                return JsonResponse({'errno': 2, 'msg': "密码格式错误"})
+            if password_2 is None:
+                return JsonResponse({'errno': 2, 'msg': "请确认密码"})
+            if password_2 != password_1:
+                return JsonResponse({'errno': 2, 'msg': "两次输入的密码不一致"})
+            email = request.POST.get('email')
+            if email is None:
+                return JsonResponse({'errno': 3, 'msg': "请输入邮箱"})
+            if not check_email(email):
+                return JsonResponse({'errno': 3, 'msg': "邮箱格式错误"})
+            new_user = Users(username=username, field_password=password_1, avatar=DEFAULT_AVATAR, email=email, gnum=0)
+            new_user.save()
+            return JsonResponse({'errno': 0, 'msg': "注册成功！"})
+        return JsonResponse({'errno': 2, 'msg': "用户名已被占用"})
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
 

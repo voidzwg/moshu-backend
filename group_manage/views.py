@@ -72,6 +72,7 @@ def get_participated_group(request):
         return group_serialize(group_list)
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
 
+
 def dismiss(request):
     if request.method == 'POST':
         uid = request.POST.get('uid')

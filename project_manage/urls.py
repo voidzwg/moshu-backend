@@ -8,4 +8,5 @@ urlpatterns = [
     path('to_bin/', to_bin),
     path('delete/', delete),
     path('close/', close),
+    path('save_document/', save_document),
 ]

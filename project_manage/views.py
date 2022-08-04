@@ -145,6 +145,12 @@ def save_document(request):
         pid = request.POST.get('pid')
         name = request.POST.get('name')
         url = request.FILES.get('file')
-
+        try:
+            newDocument = Document(pid=pid,name=name,url=url)
+            newDocument.save()
+        except Exception as e:
+            print(e)
+            return JsonResponse({'errno': 1002, 'msg': "未知错误"})
+        return JsonResponse({'errno': 0, 'msg': "保存成功"})
     else:
         return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})

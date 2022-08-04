@@ -74,7 +74,7 @@ def get_one_design(request):
     if request.method == 'POST':
         picid = request.POST.get('picid')
         try:
-            prototype = Prototype.objects.get(picid=picid)
+            prototype = Prototype.objects.get(id=picid)
         except:
             return JsonResponse({'errno': 2, 'msg': "原型设计不存在"})
         return prototype_serialize([prototype])

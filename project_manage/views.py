@@ -99,6 +99,28 @@ def to_bin(request):
     else:
         return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
 
+def out_bin(request):
+    if request.method == 'POST':
+        id = request.POST.get('id')
+        if id is None:
+            return JsonResponse({'errno': 1002, 'msg': "参数为空"})
+        try:
+            project = Projects.objects.get(id=id)
+        except Exception as e:
+            print(e)
+            return JsonResponse({'errno': 1003, 'msg': "不存在该项目"})
+        try:
+            project.available=0
+            project.save()
+        except Exception as e:
+            print(e)
+            return JsonResponse({'errno': 1004, 'msg': "未知错误"})
+        else:
+            return JsonResponse({'errno': 0, 'msg': "已移出回收站"})
+    else:
+        return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
+
+
 def delete(request):
     if request.method == 'POST':
         id = request.POST.get('id')

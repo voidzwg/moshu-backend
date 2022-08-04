@@ -23,4 +23,5 @@ urlpatterns = [
     path('api/space/', include('space.urls')),
     path('api/group_manage/', include('group_manage.urls')),
     path('api/project_manage/', include('project_manage.urls')),
+    path('api/design/', include('design.urls')),
 ]

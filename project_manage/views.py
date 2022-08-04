@@ -171,3 +171,17 @@ def get_document(request):
         return JsonResponse(data,safe=False)
     else:
         return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
+
+def open_document(request):
+    if request.method == 'POST':
+        id = request.POST.get('id')
+        if id is None:
+            return JsonResponse({'errno': 1002, 'msg': "参数为空"})
+        try:
+            doc = Document.objects.get(id=id)
+        except Exception as e:
+            print(e)
+            return JsonResponse({'errno': 1003, 'msg': "文件不存在"})
+        return JsonResponse({'errno': 0, 'url': str(doc.url)})
+    else:
+        return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})

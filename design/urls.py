@@ -6,5 +6,6 @@ urlpatterns = [
     path('create/', create),
     path('rename/', rename),
     path('delete/', delete),
-    path('get_design/', get_design)
+    path('get_design/', get_design),
+    path('get_one_design/', get_one_design)
 ]

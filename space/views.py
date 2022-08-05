@@ -39,6 +39,12 @@ def update_info(request):
             user.profile = profile
             user.save()
             return JsonResponse({'errno': 0, 'msg': "修改成功！"})
+        if user.username == username:
+            user.name = name
+            user.email = email
+            user.profile = profile
+            user.save()
+            return JsonResponse({'errno': 0, 'msg': "修改成功！"})
         return JsonResponse({'errno': 2, 'msg': "用户名已被占用"})
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
 

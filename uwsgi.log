@@ -2023,3 +2023,460 @@ spawned uWSGI worker 8 (pid: 21983, cores: 4)
 [pid: 21979|app: 0|req: 66/72] 125.82.81.181 () {46 vars in 855 bytes} [Fri Aug  5 15:18:02 2022] POST /api/group_manage/get_managed_group/ => generated 2 bytes in 47 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 2)
 [pid: 21979|app: 0|req: 66/73] 125.82.81.181 () {46 vars in 865 bytes} [Fri Aug  5 15:18:02 2022] POST /api/group_manage/get_participated_group/ => generated 2 bytes in 51 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 0)
 [pid: 21979|app: 0|req: 67/74] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 15:18:07 2022] POST /api/space/get_info/ => generated 156 bytes in 45 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 1)
+*** Starting uWSGI 2.0.20 (64bit) on [Fri Aug  5 15:26:08 2022] ***
+compiled with version: 4.8.5 20150623 (Red Hat 4.8.5-44) on 08 May 2022 15:04:04
+os: Linux-3.10.0-1160.62.1.el7.x86_64 #1 SMP Tue Apr 5 16:57:59 UTC 2022
+nodename: VM-20-15-centos
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 2
+current working directory: /home/moshu/moshu-backend
+detected binary path: /root/.virtualenvs/django/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /home/moshu/moshu-backend
+your processes number limit is 15070
+your memory page size is 4096 bytes
+detected max file descriptor number: 100002
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+probably another instance of uWSGI is running on the same address (127.0.0.1:8080).
+bind(): Address already in use [core/socket.c line 769]
+*** Starting uWSGI 2.0.20 (64bit) on [Fri Aug  5 15:36:42 2022] ***
+compiled with version: 4.8.5 20150623 (Red Hat 4.8.5-44) on 08 May 2022 15:04:04
+os: Linux-3.10.0-1160.62.1.el7.x86_64 #1 SMP Tue Apr 5 16:57:59 UTC 2022
+nodename: VM-20-15-centos
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 2
+current working directory: /home/moshu/moshu-backend
+detected binary path: /root/.virtualenvs/django/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /home/moshu/moshu-backend
+your processes number limit is 15070
+your memory page size is 4096 bytes
+detected max file descriptor number: 100002
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to TCP address 127.0.0.1:8080 fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.8.4 (default, May  8 2022, 22:35:28)  [GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]
+PEP 405 virtualenv detected: /root/.virtualenvs/django
+Set PythonHome to /root/.virtualenvs/django
+Python main interpreter initialized at 0x28788a0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 3150396 bytes (3076 KB) for 32 cores
+*** Operational MODE: preforking+threaded ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x28788a0 pid: 28690 (default app)
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 28690)
+spawned uWSGI worker 1 (pid: 28700, cores: 4)
+spawned uWSGI worker 2 (pid: 28701, cores: 4)
+spawned uWSGI worker 3 (pid: 28702, cores: 4)
+spawned uWSGI worker 4 (pid: 28703, cores: 4)
+spawned uWSGI worker 5 (pid: 28704, cores: 4)
+spawned uWSGI worker 6 (pid: 28705, cores: 4)
+spawned uWSGI worker 7 (pid: 28706, cores: 4)
+spawned uWSGI worker 8 (pid: 28707, cores: 4)
+[pid: 28704|app: 0|req: 1/1] 27.9.196.58 () {46 vars in 808 bytes} [Fri Aug  5 15:36:43 2022] POST /api/login/login/ => generated 57 bytes in 118 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 0)
+[pid: 28704|app: 0|req: 2/2] 27.9.196.58 () {46 vars in 808 bytes} [Fri Aug  5 15:36:59 2022] POST /api/login/login/ => generated 57 bytes in 50 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 1)
+[pid: 28704|app: 0|req: 3/3] 27.9.196.58 () {46 vars in 812 bytes} [Fri Aug  5 15:37:00 2022] POST /api/space/get_info/ => generated 133 bytes in 185 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 2)
+[pid: 28704|app: 0|req: 4/4] 27.9.196.58 () {46 vars in 812 bytes} [Fri Aug  5 15:37:06 2022] POST /api/space/get_info/ => generated 133 bytes in 50 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 3)
+[pid: 28704|app: 0|req: 5/5] 106.39.42.238 () {46 vars in 861 bytes} [Fri Aug  5 15:37:17 2022] POST /api/login/login/ => generated 58 bytes in 51 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 0)
+[pid: 28704|app: 0|req: 6/6] 106.39.42.238 () {46 vars in 865 bytes} [Fri Aug  5 15:37:18 2022] POST /api/space/get_info/ => generated 101 bytes in 70 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 1)
+[pid: 28705|app: 0|req: 2/7] 106.39.42.238 () {46 vars in 907 bytes} [Fri Aug  5 15:37:19 2022] POST /api/group_manage/get_participated_group/ => generated 2 bytes in 72 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 0)
+[pid: 28705|app: 0|req: 2/8] 106.39.42.238 () {46 vars in 897 bytes} [Fri Aug  5 15:37:19 2022] POST /api/group_manage/get_created_group/ => generated 59 bytes in 85 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 1)
+[pid: 28704|app: 0|req: 7/9] 106.39.42.238 () {46 vars in 897 bytes} [Fri Aug  5 15:37:19 2022] POST /api/group_manage/get_managed_group/ => generated 2 bytes in 90 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 2)
+[pid: 28704|app: 0|req: 8/10] 106.39.42.238 () {46 vars in 865 bytes} [Fri Aug  5 15:37:21 2022] POST /api/space/get_info/ => generated 101 bytes in 50 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 3)
+[pid: 28704|app: 0|req: 9/11] 106.39.42.238 () {46 vars in 865 bytes} [Fri Aug  5 15:38:50 2022] POST /api/space/get_info/ => generated 101 bytes in 45 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 0)
+[pid: 28704|app: 0|req: 10/12] 106.39.42.238 () {46 vars in 865 bytes} [Fri Aug  5 15:39:07 2022] POST /api/space/get_info/ => generated 101 bytes in 48 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 1)
+[pid: 28704|app: 0|req: 11/13] 106.39.42.238 () {46 vars in 865 bytes} [Fri Aug  5 15:39:12 2022] POST /api/space/get_info/ => generated 101 bytes in 57 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 2)
+[pid: 28705|app: 0|req: 3/14] 106.39.42.238 () {46 vars in 907 bytes} [Fri Aug  5 15:39:13 2022] POST /api/group_manage/get_participated_group/ => generated 2 bytes in 57 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 2)
+[pid: 28704|app: 0|req: 12/15] 106.39.42.238 () {46 vars in 897 bytes} [Fri Aug  5 15:39:13 2022] POST /api/group_manage/get_created_group/ => generated 59 bytes in 72 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 3)
+[pid: 28706|app: 0|req: 1/16] 106.39.42.238 () {46 vars in 897 bytes} [Fri Aug  5 15:39:13 2022] POST /api/group_manage/get_managed_group/ => generated 2 bytes in 73 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 0)
+[pid: 28706|app: 0|req: 2/17] 106.39.42.238 () {46 vars in 865 bytes} [Fri Aug  5 15:39:45 2022] POST /api/space/get_info/ => generated 101 bytes in 61 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 2)
+[pid: 28706|app: 0|req: 3/18] 27.9.196.58 () {46 vars in 811 bytes} [Fri Aug  5 15:45:20 2022] POST /api/space/get_info/ => generated 133 bytes in 62 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 3)
+[pid: 28706|app: 0|req: 4/19] 125.82.81.181 () {46 vars in 819 bytes} [Fri Aug  5 15:45:59 2022] POST /api/login/login/ => generated 57 bytes in 131 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 1)
+[pid: 28705|app: 0|req: 4/20] 125.82.81.181 () {46 vars in 855 bytes} [Fri Aug  5 15:46:00 2022] POST /api/group_manage/get_created_group/ => generated 58 bytes in 88 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 3)
+团队没有创建者
+[pid: 28703|app: 0|req: 1/21] 125.82.81.181 () {46 vars in 865 bytes} [Fri Aug  5 15:46:00 2022] POST /api/group_manage/get_participated_group/ => generated 144 bytes in 104 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 0)
+[pid: 28700|app: 0|req: 1/22] 125.82.81.181 () {46 vars in 855 bytes} [Fri Aug  5 15:46:00 2022] POST /api/group_manage/get_managed_group/ => generated 2 bytes in 116 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 0)
+[pid: 28706|app: 0|req: 5/23] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 15:46:02 2022] POST /api/space/get_info/ => generated 133 bytes in 48 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 0)
+[pid: 28704|app: 0|req: 13/24] 125.82.81.181 () {46 vars in 839 bytes} [Fri Aug  5 15:46:02 2022] POST /api/team_manage/get_member/ => generated 958 bytes in 83 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 0)
+[pid: 28700|app: 0|req: 2/25] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 15:46:27 2022] POST /api/space/get_info/ => generated 133 bytes in 55 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 3)
+[pid: 28704|app: 0|req: 14/26] 125.82.81.181 () {42 vars in 745 bytes} [Fri Aug  5 15:46:27 2022] GET /api/project_manage/get_project/?gid=1 => generated 1206 bytes in 137 msecs (HTTP/1.1 200) 9 headers in 306 bytes (1 switches on core 1)
+[pid: 28704|app: 0|req: 16/27] 125.82.81.181 () {46 vars in 855 bytes} [Fri Aug  5 15:46:31 2022] POST /api/group_manage/get_managed_group/ => generated 2 bytes in 50 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 3)
+[pid: 28704|app: 0|req: 16/28] 125.82.81.181 () {46 vars in 855 bytes} [Fri Aug  5 15:46:31 2022] POST /api/group_manage/get_created_group/ => generated 58 bytes in 67 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 2)
+团队没有创建者
+[pid: 28707|app: 0|req: 1/29] 125.82.81.181 () {46 vars in 865 bytes} [Fri Aug  5 15:46:31 2022] POST /api/group_manage/get_participated_group/ => generated 144 bytes in 100 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 0)
+[pid: 28706|app: 0|req: 6/30] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 15:46:32 2022] POST /api/space/get_info/ => generated 133 bytes in 43 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 2)
+[pid: 28703|app: 0|req: 2/31] 125.82.81.181 () {46 vars in 839 bytes} [Fri Aug  5 15:46:32 2022] POST /api/team_manage/get_member/ => generated 958 bytes in 83 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 3)
+[pid: 28701|app: 0|req: 1/32] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 15:51:30 2022] POST /api/space/get_info/ => generated 133 bytes in 110 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 0)
+[pid: 28706|app: 0|req: 7/33] 125.82.81.181 () {42 vars in 745 bytes} [Fri Aug  5 15:51:30 2022] GET /api/project_manage/get_project/?gid=1 => generated 1206 bytes in 210 msecs (HTTP/1.1 200) 9 headers in 306 bytes (1 switches on core 3)
+[pid: 28706|app: 0|req: 8/34] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 15:53:26 2022] POST /api/space/get_info/ => generated 133 bytes in 77 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 1)
+[pid: 28704|app: 0|req: 17/35] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 15:53:29 2022] POST /api/space/get_info/ => generated 133 bytes in 84 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 0)
+[pid: 28704|app: 0|req: 18/36] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 15:53:29 2022] POST /api/space/get_info/ => generated 133 bytes in 68 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 1)
+[pid: 28704|app: 0|req: 19/37] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 15:54:35 2022] POST /api/space/get_info/ => generated 133 bytes in 128 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 3)
+[pid: 28704|app: 0|req: 20/38] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 15:54:44 2022] POST /api/space/get_info/ => generated 133 bytes in 60 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 2)
+[pid: 28704|app: 0|req: 21/39] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 15:54:49 2022] POST /api/space/get_info/ => generated 133 bytes in 101 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 0)
+[pid: 28704|app: 0|req: 22/40] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 15:54:52 2022] POST /api/space/get_info/ => generated 133 bytes in 45 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 1)
+[pid: 28704|app: 0|req: 23/41] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 15:54:53 2022] POST /api/space/get_info/ => generated 133 bytes in 47 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 3)
+[pid: 28706|app: 0|req: 9/42] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 15:54:54 2022] POST /api/space/get_info/ => generated 133 bytes in 44 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 0)
+[pid: 28704|app: 0|req: 24/43] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 15:54:54 2022] POST /api/space/get_info/ => generated 133 bytes in 47 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 2)
+[pid: 28706|app: 0|req: 10/44] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 15:54:55 2022] POST /api/space/get_info/ => generated 133 bytes in 51 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 2)
+[pid: 28706|app: 0|req: 11/45] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 15:54:55 2022] POST /api/space/get_info/ => generated 133 bytes in 47 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 3)
+[pid: 28706|app: 0|req: 12/46] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 15:54:55 2022] POST /api/space/get_info/ => generated 133 bytes in 45 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 1)
+[pid: 28704|app: 0|req: 25/47] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 15:54:56 2022] POST /api/space/get_info/ => generated 133 bytes in 44 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 0)
+[pid: 28704|app: 0|req: 26/48] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 15:54:56 2022] POST /api/space/get_info/ => generated 133 bytes in 48 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 1)
+[pid: 28704|app: 0|req: 27/49] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 15:54:57 2022] POST /api/space/get_info/ => generated 133 bytes in 43 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 3)
+[pid: 28700|app: 0|req: 3/50] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 15:54:57 2022] POST /api/space/get_info/ => generated 133 bytes in 45 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 1)
+[pid: 28700|app: 0|req: 4/51] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 15:54:58 2022] POST /api/space/get_info/ => generated 133 bytes in 49 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 2)
+[pid: 28704|app: 0|req: 28/52] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 15:54:58 2022] POST /api/space/get_info/ => generated 133 bytes in 56 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 2)
+[pid: 28704|app: 0|req: 29/53] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 15:54:59 2022] POST /api/space/get_info/ => generated 133 bytes in 51 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 0)
+[pid: 28704|app: 0|req: 30/54] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 15:54:59 2022] POST /api/space/get_info/ => generated 133 bytes in 42 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 1)
+[pid: 28704|app: 0|req: 31/55] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 15:55:00 2022] POST /api/space/get_info/ => generated 133 bytes in 45 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 3)
+[pid: 28704|app: 0|req: 32/56] 106.39.42.238 () {46 vars in 897 bytes} [Fri Aug  5 15:55:27 2022] POST /api/group_manage/get_managed_group/ => generated 2 bytes in 50 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 2)
+[pid: 28700|app: 0|req: 5/57] 106.39.42.238 () {46 vars in 907 bytes} [Fri Aug  5 15:55:27 2022] POST /api/group_manage/get_participated_group/ => generated 2 bytes in 51 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 0)
+[pid: 28703|app: 0|req: 3/58] 106.39.42.238 () {46 vars in 897 bytes} [Fri Aug  5 15:55:27 2022] POST /api/group_manage/get_created_group/ => generated 59 bytes in 64 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 2)
+[pid: 28704|app: 0|req: 33/59] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 15:55:27 2022] POST /api/space/get_info/ => generated 133 bytes in 48 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 0)
+[pid: 28704|app: 0|req: 34/60] 106.39.42.238 () {46 vars in 865 bytes} [Fri Aug  5 15:55:29 2022] POST /api/space/get_info/ => generated 101 bytes in 44 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 1)
+[pid: 28701|app: 0|req: 2/61] 106.39.42.238 () {46 vars in 881 bytes} [Fri Aug  5 15:55:29 2022] POST /api/team_manage/get_member/ => generated 122 bytes in 59 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 3)
+[pid: 28704|app: 0|req: 37/62] 125.82.81.181 () {46 vars in 855 bytes} [Fri Aug  5 15:55:30 2022] POST /api/group_manage/get_created_group/ => generated 58 bytes in 67 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 3)
+[pid: 28704|app: 0|req: 37/63] 125.82.81.181 () {46 vars in 855 bytes} [Fri Aug  5 15:55:30 2022] POST /api/group_manage/get_managed_group/ => generated 2 bytes in 50 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 2)
+团队没有创建者
+[pid: 28704|app: 0|req: 37/64] 125.82.81.181 () {46 vars in 865 bytes} [Fri Aug  5 15:55:30 2022] POST /api/group_manage/get_participated_group/ => generated 144 bytes in 69 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 0)
+[pid: 28704|app: 0|req: 38/65] 106.39.42.238 () {46 vars in 865 bytes} [Fri Aug  5 15:55:30 2022] POST /api/space/get_info/ => generated 101 bytes in 45 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 1)
+[pid: 28704|app: 0|req: 39/66] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 15:55:31 2022] POST /api/space/get_info/ => generated 133 bytes in 42 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 3)
+[pid: 28706|app: 0|req: 14/67] 106.39.42.238 () {46 vars in 897 bytes} [Fri Aug  5 15:55:33 2022] POST /api/group_manage/get_managed_group/ => generated 2 bytes in 49 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 0)
+[pid: 28706|app: 0|req: 14/68] 106.39.42.238 () {46 vars in 907 bytes} [Fri Aug  5 15:55:33 2022] POST /api/group_manage/get_participated_group/ => generated 2 bytes in 47 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 2)
+[pid: 28704|app: 0|req: 40/69] 106.39.42.238 () {46 vars in 897 bytes} [Fri Aug  5 15:55:33 2022] POST /api/group_manage/get_created_group/ => generated 59 bytes in 62 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 2)
+[pid: 28706|app: 0|req: 16/70] 125.82.81.181 () {46 vars in 855 bytes} [Fri Aug  5 15:55:33 2022] POST /api/group_manage/get_managed_group/ => generated 2 bytes in 46 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 1)
+[pid: 28706|app: 0|req: 16/71] 125.82.81.181 () {46 vars in 855 bytes} [Fri Aug  5 15:55:33 2022] POST /api/group_manage/get_created_group/ => generated 58 bytes in 64 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 3)
+团队没有创建者
+[pid: 28707|app: 0|req: 2/72] 125.82.81.181 () {46 vars in 865 bytes} [Fri Aug  5 15:55:33 2022] POST /api/group_manage/get_participated_group/ => generated 144 bytes in 74 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 3)
+[pid: 28707|app: 0|req: 3/73] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 15:55:34 2022] POST /api/space/get_info/ => generated 133 bytes in 52 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 2)
+[pid: 28704|app: 0|req: 41/74] 125.82.81.181 () {46 vars in 839 bytes} [Fri Aug  5 15:55:34 2022] POST /api/team_manage/get_member/ => generated 958 bytes in 71 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 0)
+[pid: 28704|app: 0|req: 42/75] 106.39.42.238 () {46 vars in 865 bytes} [Fri Aug  5 15:55:35 2022] POST /api/space/get_info/ => generated 101 bytes in 42 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 1)
+[pid: 28704|app: 0|req: 43/76] 125.82.81.181 () {42 vars in 745 bytes} [Fri Aug  5 15:56:28 2022] GET /api/project_manage/get_project/?gid=1 => generated 1206 bytes in 114 msecs (HTTP/1.1 200) 9 headers in 306 bytes (1 switches on core 3)
+[pid: 28706|app: 0|req: 17/77] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 15:56:28 2022] POST /api/space/get_info/ => generated 133 bytes in 131 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 0)
+[pid: 28704|app: 0|req: 44/78] 125.82.81.181 () {46 vars in 897 bytes} [Fri Aug  5 15:58:45 2022] POST /api/space/get_info/ => generated 177 bytes in 58 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 2)
+[pid: 28706|app: 0|req: 18/79] 125.82.81.181 () {46 vars in 897 bytes} [Fri Aug  5 15:58:48 2022] POST /api/space/get_info/ => generated 177 bytes in 154 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 2)
+[pid: 28706|app: 0|req: 19/80] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 15:58:51 2022] POST /api/space/get_info/ => generated 133 bytes in 48 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 1)
+[pid: 28706|app: 0|req: 20/81] 125.82.81.181 () {46 vars in 829 bytes} [Fri Aug  5 15:59:09 2022] POST /api/design/get_design/ => generated 2 bytes in 53 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 3)
+[pid: 28704|app: 0|req: 45/82] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 15:59:09 2022] POST /api/space/get_info/ => generated 133 bytes in 42 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 0)
+[pid: 28704|app: 0|req: 46/83] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 15:59:10 2022] POST /api/space/get_info/ => generated 133 bytes in 88 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 1)
+[pid: 28704|app: 0|req: 47/84] 125.82.81.181 () {46 vars in 829 bytes} [Fri Aug  5 15:59:11 2022] POST /api/design/get_design/ => generated 2 bytes in 46 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 3)
+[pid: 28702|app: 0|req: 1/85] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 15:59:11 2022] POST /api/space/get_info/ => generated 133 bytes in 67 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 0)
+[pid: 28704|app: 0|req: 48/86] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 15:59:13 2022] POST /api/design/create/ => generated 61 bytes in 48 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 2)
+[pid: 28704|app: 0|req: 49/87] 125.82.81.181 () {46 vars in 837 bytes} [Fri Aug  5 15:59:15 2022] POST /api/design/get_one_design/ => generated 43 bytes in 51 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 0)
+[pid: 28704|app: 0|req: 50/88] 125.82.81.181 () {46 vars in 829 bytes} [Fri Aug  5 15:59:34 2022] POST /api/design/get_design/ => generated 43 bytes in 47 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 1)
+[pid: 28700|app: 0|req: 6/89] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 15:59:34 2022] POST /api/space/get_info/ => generated 133 bytes in 50 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 3)
+[pid: 28704|app: 0|req: 52/90] 125.82.81.181 () {46 vars in 829 bytes} [Fri Aug  5 15:59:34 2022] POST /api/design/get_design/ => generated 43 bytes in 44 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 3)
+[pid: 28704|app: 0|req: 52/91] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 15:59:34 2022] POST /api/space/get_info/ => generated 133 bytes in 44 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 2)
+[pid: 28704|app: 0|req: 53/92] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 15:59:35 2022] POST /api/space/get_info/ => generated 133 bytes in 42 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 0)
+[pid: 28704|app: 0|req: 55/93] 125.82.81.181 () {46 vars in 851 bytes} [Fri Aug  5 15:59:36 2022] POST /api/project_manage/get_documents/ => generated 2 bytes in 46 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 1)
+[pid: 28704|app: 0|req: 55/94] 125.82.81.181 () {46 vars in 851 bytes} [Fri Aug  5 15:59:36 2022] POST /api/project_manage/get_documents/ => generated 2 bytes in 45 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 3)
+[pid: 28704|app: 0|req: 56/95] 125.82.81.181 () {46 vars in 857 bytes} [Fri Aug  5 15:59:49 2022] POST /api/project_manage/create_document/ => generated 47 bytes in 45 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 2)
+[pid: 28704|app: 0|req: 57/96] 125.82.81.181 () {46 vars in 851 bytes} [Fri Aug  5 15:59:49 2022] POST /api/project_manage/get_documents/ => generated 41 bytes in 41 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 0)
+[pid: 28704|app: 0|req: 58/97] 125.82.81.181 () {46 vars in 819 bytes} [Fri Aug  5 16:00:55 2022] POST /api/login/login/ => generated 57 bytes in 53 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 1)
+[pid: 28704|app: 0|req: 59/98] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 16:00:55 2022] POST /api/space/get_info/ => generated 133 bytes in 44 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 3)
+[pid: 28704|app: 0|req: 60/99] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 16:00:57 2022] POST /api/space/get_info/ => generated 133 bytes in 47 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 2)
+[pid: 28704|app: 0|req: 61/100] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 16:00:58 2022] POST /api/space/get_info/ => generated 133 bytes in 42 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 0)
+[pid: 28704|app: 0|req: 62/101] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 16:00:59 2022] POST /api/space/get_info/ => generated 133 bytes in 45 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 1)
+[pid: 28704|app: 0|req: 63/102] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 16:01:00 2022] POST /api/space/get_info/ => generated 133 bytes in 46 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 3)
+[pid: 28704|app: 0|req: 66/103] 125.82.81.181 () {46 vars in 855 bytes} [Fri Aug  5 16:01:02 2022] POST /api/group_manage/get_created_group/ => generated 58 bytes in 67 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 2)
+[pid: 28704|app: 0|req: 66/104] 125.82.81.181 () {46 vars in 855 bytes} [Fri Aug  5 16:01:02 2022] POST /api/group_manage/get_managed_group/ => generated 2 bytes in 46 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 0)
+团队没有创建者
+[pid: 28704|app: 0|req: 66/105] 125.82.81.181 () {46 vars in 865 bytes} [Fri Aug  5 16:01:02 2022] POST /api/group_manage/get_participated_group/ => generated 144 bytes in 69 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 1)
+[pid: 28704|app: 0|req: 67/106] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 16:01:06 2022] POST /api/space/get_info/ => generated 133 bytes in 46 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 3)
+[pid: 28704|app: 0|req: 68/107] 125.82.81.181 () {46 vars in 831 bytes} [Fri Aug  5 16:01:28 2022] POST /api/space/update_info/ => generated 53 bytes in 54 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 2)
+[pid: 28704|app: 0|req: 69/108] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 16:01:31 2022] POST /api/space/get_info/ => generated 133 bytes in 96 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 0)
+*** Starting uWSGI 2.0.20 (64bit) on [Fri Aug  5 16:01:38 2022] ***
+compiled with version: 4.8.5 20150623 (Red Hat 4.8.5-44) on 08 May 2022 15:04:04
+os: Linux-3.10.0-1160.62.1.el7.x86_64 #1 SMP Tue Apr 5 16:57:59 UTC 2022
+nodename: VM-20-15-centos
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 2
+current working directory: /home/moshu/moshu-backend
+detected binary path: /root/.virtualenvs/django/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /home/moshu/moshu-backend
+your processes number limit is 15070
+your memory page size is 4096 bytes
+detected max file descriptor number: 100002
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to TCP address 127.0.0.1:8080 fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.8.4 (default, May  8 2022, 22:35:28)  [GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]
+PEP 405 virtualenv detected: /root/.virtualenvs/django
+Set PythonHome to /root/.virtualenvs/django
+Python main interpreter initialized at 0xd248a0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 3150396 bytes (3076 KB) for 32 cores
+*** Operational MODE: preforking+threaded ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0xd248a0 pid: 1161 (default app)
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 1161)
+spawned uWSGI worker 1 (pid: 1167, cores: 4)
+spawned uWSGI worker 2 (pid: 1168, cores: 4)
+spawned uWSGI worker 3 (pid: 1169, cores: 4)
+spawned uWSGI worker 4 (pid: 1170, cores: 4)
+spawned uWSGI worker 5 (pid: 1171, cores: 4)
+spawned uWSGI worker 6 (pid: 1172, cores: 4)
+spawned uWSGI worker 7 (pid: 1174, cores: 4)
+spawned uWSGI worker 8 (pid: 1175, cores: 4)
+[pid: 1171|app: 0|req: 1/1] 125.82.81.181 () {46 vars in 861 bytes} [Fri Aug  5 16:02:50 2022] POST /api/project_manage/create_document/ => generated 47 bytes in 151 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 0)
+[pid: 1167|app: 0|req: 1/2] 125.82.81.181 () {46 vars in 851 bytes} [Fri Aug  5 16:02:50 2022] POST /api/project_manage/get_documents/ => generated 81 bytes in 110 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 0)
+[pid: 1167|app: 0|req: 2/3] 125.82.81.181 () {46 vars in 851 bytes} [Fri Aug  5 16:02:52 2022] POST /api/project_manage/open_document/ => generated 3612 bytes in 46 msecs (HTTP/1.1 200) 9 headers in 306 bytes (1 switches on core 3)
+[pid: 1167|app: 0|req: 3/4] 125.82.81.181 () {46 vars in 851 bytes} [Fri Aug  5 16:03:00 2022] POST /api/project_manage/get_documents/ => generated 81 bytes in 52 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 1)
+[pid: 1167|app: 0|req: 4/5] 125.82.81.181 () {46 vars in 851 bytes} [Fri Aug  5 16:03:00 2022] POST /api/project_manage/get_documents/ => generated 81 bytes in 49 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 2)
+[pid: 1167|app: 0|req: 5/6] 125.82.81.181 () {46 vars in 851 bytes} [Fri Aug  5 16:03:12 2022] POST /api/project_manage/open_document/ => generated 35 bytes in 42 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 0)
+[pid: 1167|app: 0|req: 6/7] 125.82.81.181 () {46 vars in 851 bytes} [Fri Aug  5 16:03:15 2022] POST /api/project_manage/open_document/ => generated 3612 bytes in 57 msecs (HTTP/1.1 200) 9 headers in 306 bytes (1 switches on core 3)
+[pid: 1167|app: 0|req: 8/8] 125.82.81.181 () {46 vars in 851 bytes} [Fri Aug  5 16:03:52 2022] POST /api/project_manage/get_documents/ => generated 81 bytes in 42 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 1)
+[pid: 1167|app: 0|req: 8/9] 125.82.81.181 () {46 vars in 851 bytes} [Fri Aug  5 16:03:52 2022] POST /api/project_manage/get_documents/ => generated 81 bytes in 57 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 2)
+*** Starting uWSGI 2.0.20 (64bit) on [Fri Aug  5 16:03:53 2022] ***
+compiled with version: 4.8.5 20150623 (Red Hat 4.8.5-44) on 08 May 2022 15:04:04
+os: Linux-3.10.0-1160.62.1.el7.x86_64 #1 SMP Tue Apr 5 16:57:59 UTC 2022
+nodename: VM-20-15-centos
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 2
+current working directory: /home/moshu/moshu-backend
+detected binary path: /root/.virtualenvs/django/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /home/moshu/moshu-backend
+your processes number limit is 15070
+your memory page size is 4096 bytes
+detected max file descriptor number: 100002
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to TCP address 127.0.0.1:8080 fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.8.4 (default, May  8 2022, 22:35:28)  [GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]
+PEP 405 virtualenv detected: /root/.virtualenvs/django
+Set PythonHome to /root/.virtualenvs/django
+Python main interpreter initialized at 0x180e8a0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 3150396 bytes (3076 KB) for 32 cores
+*** Operational MODE: preforking+threaded ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x180e8a0 pid: 1655 (default app)
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 1655)
+spawned uWSGI worker 1 (pid: 1662, cores: 4)
+spawned uWSGI worker 2 (pid: 1666, cores: 4)
+spawned uWSGI worker 3 (pid: 1667, cores: 4)
+spawned uWSGI worker 4 (pid: 1671, cores: 4)
+spawned uWSGI worker 5 (pid: 1675, cores: 4)
+spawned uWSGI worker 6 (pid: 1676, cores: 4)
+spawned uWSGI worker 7 (pid: 1680, cores: 4)
+spawned uWSGI worker 8 (pid: 1684, cores: 4)
+[pid: 1684|app: 0|req: 1/1] 125.82.81.181 () {46 vars in 851 bytes} [Fri Aug  5 16:03:53 2022] POST /api/project_manage/open_document/ => generated 35 bytes in 78 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 0)
+[pid: 1684|app: 0|req: 2/2] 125.82.81.181 () {46 vars in 855 bytes} [Fri Aug  5 16:04:01 2022] POST /api/project_manage/store_document/ => generated 47 bytes in 55 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 1)
+[pid: 1684|app: 0|req: 3/3] 125.82.81.181 () {46 vars in 855 bytes} [Fri Aug  5 16:04:12 2022] POST /api/project_manage/delete_document/ => generated 47 bytes in 56 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 3)
+[pid: 1684|app: 0|req: 4/4] 125.82.81.181 () {46 vars in 851 bytes} [Fri Aug  5 16:04:12 2022] POST /api/project_manage/get_documents/ => generated 40 bytes in 49 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 2)
+[pid: 1684|app: 0|req: 6/5] 106.39.42.238 () {46 vars in 897 bytes} [Fri Aug  5 16:04:57 2022] POST /api/group_manage/get_managed_group/ => generated 2 bytes in 49 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 0)
+[pid: 1684|app: 0|req: 6/6] 106.39.42.238 () {46 vars in 897 bytes} [Fri Aug  5 16:04:57 2022] POST /api/group_manage/get_created_group/ => generated 59 bytes in 73 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 1)
+[pid: 1666|app: 0|req: 1/7] 106.39.42.238 () {46 vars in 907 bytes} [Fri Aug  5 16:04:57 2022] POST /api/group_manage/get_participated_group/ => generated 2 bytes in 74 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 0)
+[pid: 1684|app: 0|req: 7/8] 106.39.42.238 () {46 vars in 881 bytes} [Fri Aug  5 16:04:58 2022] POST /api/team_manage/get_member/ => generated 122 bytes in 63 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 3)
+[pid: 1662|app: 0|req: 1/9] 106.39.42.238 () {46 vars in 865 bytes} [Fri Aug  5 16:04:58 2022] POST /api/space/get_info/ => generated 101 bytes in 72 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 0)
+[pid: 1684|app: 0|req: 9/10] 106.39.42.238 () {42 vars in 789 bytes} [Fri Aug  5 16:05:01 2022] GET /api/project_manage/get_project/?gid=12 => generated 2 bytes in 45 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 2)
+[pid: 1684|app: 0|req: 9/11] 106.39.42.238 () {46 vars in 865 bytes} [Fri Aug  5 16:05:01 2022] POST /api/space/get_info/ => generated 101 bytes in 52 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 0)
+[pid: 1684|app: 0|req: 10/12] 106.39.42.238 () {46 vars in 953 bytes} [Fri Aug  5 16:05:05 2022] POST /api/project_manage/create/ => generated 47 bytes in 59 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 1)
+[pid: 1684|app: 0|req: 11/13] 106.39.42.238 () {42 vars in 789 bytes} [Fri Aug  5 16:05:05 2022] GET /api/project_manage/get_project/?gid=12 => generated 150 bytes in 51 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 3)
+[pid: 1684|app: 0|req: 12/14] 106.39.42.238 () {46 vars in 865 bytes} [Fri Aug  5 16:05:08 2022] POST /api/space/get_info/ => generated 101 bytes in 44 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 2)
+[pid: 1684|app: 0|req: 13/15] 106.39.42.238 () {46 vars in 893 bytes} [Fri Aug  5 16:05:09 2022] POST /api/project_manage/get_documents/ => generated 2 bytes in 42 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 0)
+[pid: 1680|app: 0|req: 1/16] 106.39.42.238 () {46 vars in 893 bytes} [Fri Aug  5 16:05:09 2022] POST /api/project_manage/get_documents/ => generated 2 bytes in 62 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 0)
+[pid: 1684|app: 0|req: 14/17] 106.39.42.238 () {46 vars in 899 bytes} [Fri Aug  5 16:05:14 2022] POST /api/project_manage/create_document/ => generated 47 bytes in 65 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 1)
+[pid: 1684|app: 0|req: 15/18] 106.39.42.238 () {46 vars in 893 bytes} [Fri Aug  5 16:05:14 2022] POST /api/project_manage/get_documents/ => generated 39 bytes in 44 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 3)
+[pid: 1684|app: 0|req: 16/19] 125.82.81.181 () {46 vars in 819 bytes} [Fri Aug  5 16:05:18 2022] POST /api/login/login/ => generated 57 bytes in 45 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 2)
+[pid: 1680|app: 0|req: 2/20] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 16:05:20 2022] POST /api/space/get_info/ => generated 189 bytes in 53 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 3)
+[pid: 1680|app: 0|req: 3/21] 106.39.42.238 () {46 vars in 899 bytes} [Fri Aug  5 16:05:21 2022] POST /api/project_manage/create_document/ => generated 47 bytes in 46 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 1)
+[pid: 1680|app: 0|req: 4/22] 106.39.42.238 () {46 vars in 893 bytes} [Fri Aug  5 16:05:21 2022] POST /api/project_manage/get_documents/ => generated 79 bytes in 49 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 2)
+[pid: 1680|app: 0|req: 5/23] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 16:05:22 2022] POST /api/space/get_info/ => generated 189 bytes in 45 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 0)
+[pid: 1680|app: 0|req: 6/24] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 16:05:23 2022] POST /api/space/get_info/ => generated 189 bytes in 45 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 3)
+[pid: 1680|app: 0|req: 9/25] 125.82.81.181 () {46 vars in 855 bytes} [Fri Aug  5 16:05:24 2022] POST /api/group_manage/get_created_group/ => generated 72 bytes in 76 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 1)
+[pid: 1680|app: 0|req: 9/26] 125.82.81.181 () {46 vars in 855 bytes} [Fri Aug  5 16:05:24 2022] POST /api/group_manage/get_managed_group/ => generated 2 bytes in 48 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 2)
+[pid: 1680|app: 0|req: 9/27] 125.82.81.181 () {46 vars in 865 bytes} [Fri Aug  5 16:05:24 2022] POST /api/group_manage/get_participated_group/ => generated 2 bytes in 53 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 0)
+[pid: 1680|app: 0|req: 10/28] 125.82.81.181 () {46 vars in 839 bytes} [Fri Aug  5 16:05:28 2022] POST /api/team_manage/get_member/ => generated 209 bytes in 51 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 3)
+[pid: 1671|app: 0|req: 1/29] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 16:05:28 2022] POST /api/space/get_info/ => generated 189 bytes in 66 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 0)
+[pid: 1671|app: 0|req: 2/30] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 16:05:32 2022] POST /api/space/get_info/ => generated 189 bytes in 50 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 2)
+[pid: 1680|app: 0|req: 11/31] 125.82.81.181 () {42 vars in 747 bytes} [Fri Aug  5 16:05:32 2022] GET /api/project_manage/get_project/?gid=19 => generated 158 bytes in 55 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 1)
+[pid: 1680|app: 0|req: 12/32] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 16:05:33 2022] POST /api/space/get_info/ => generated 189 bytes in 45 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 2)
+[pid: 1684|app: 0|req: 17/33] 106.39.42.238 () {46 vars in 899 bytes} [Fri Aug  5 16:05:33 2022] POST /api/project_manage/create_document/ => generated 47 bytes in 45 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 0)
+[pid: 1684|app: 0|req: 18/34] 106.39.42.238 () {46 vars in 893 bytes} [Fri Aug  5 16:05:33 2022] POST /api/project_manage/get_documents/ => generated 119 bytes in 45 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 1)
+[pid: 1684|app: 0|req: 20/35] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 16:05:34 2022] POST /api/space/get_info/ => generated 189 bytes in 42 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 2)
+[pid: 1684|app: 0|req: 20/36] 125.82.81.181 () {46 vars in 829 bytes} [Fri Aug  5 16:05:34 2022] POST /api/design/get_design/ => generated 2 bytes in 48 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 3)
+[pid: 1684|app: 0|req: 21/37] 125.82.81.181 () {46 vars in 823 bytes} [Fri Aug  5 16:05:35 2022] POST /api/space/get_info/ => generated 189 bytes in 45 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 0)
+[pid: 1684|app: 0|req: 22/38] 125.82.81.181 () {46 vars in 861 bytes} [Fri Aug  5 16:06:06 2022] POST /api/project_manage/create_document/ => generated 47 bytes in 49 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 1)
+[pid: 1680|app: 0|req: 13/39] 125.82.81.181 () {46 vars in 851 bytes} [Fri Aug  5 16:06:06 2022] POST /api/project_manage/get_documents/ => generated 77 bytes in 48 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 0)
+[pid: 1684|app: 0|req: 23/40] 106.39.42.238 () {46 vars in 893 bytes} [Fri Aug  5 16:06:14 2022] POST /api/project_manage/open_document/ => generated 36 bytes in 49 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 2)
+[pid: 1680|app: 0|req: 14/41] 106.39.42.238 () {46 vars in 893 bytes} [Fri Aug  5 16:06:14 2022] POST /api/project_manage/open_document/ => generated 36 bytes in 50 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 3)
+[pid: 1684|app: 0|req: 24/42] 106.39.42.238 () {46 vars in 893 bytes} [Fri Aug  5 16:06:15 2022] POST /api/project_manage/open_document/ => generated 33 bytes in 46 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 3)
+[pid: 1680|app: 0|req: 15/43] 106.39.42.238 () {46 vars in 893 bytes} [Fri Aug  5 16:06:15 2022] POST /api/project_manage/open_document/ => generated 33 bytes in 125 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 1)
+[pid: 1680|app: 0|req: 16/44] 125.82.81.181 () {46 vars in 857 bytes} [Fri Aug  5 16:06:18 2022] POST /api/project_manage/create_document/ => generated 47 bytes in 48 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 2)
+[pid: 1684|app: 0|req: 25/45] 125.82.81.181 () {46 vars in 851 bytes} [Fri Aug  5 16:06:18 2022] POST /api/project_manage/get_documents/ => generated 114 bytes in 41 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 0)
+[pid: 1684|app: 0|req: 26/46] 106.39.42.238 () {46 vars in 893 bytes} [Fri Aug  5 16:06:22 2022] POST /api/project_manage/open_document/ => generated 36 bytes in 45 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 1)
+[pid: 1684|app: 0|req: 27/47] 106.39.42.238 () {46 vars in 893 bytes} [Fri Aug  5 16:06:22 2022] POST /api/project_manage/open_document/ => generated 36 bytes in 45 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 2)
+[pid: 1684|app: 0|req: 28/48] 106.39.42.238 () {46 vars in 893 bytes} [Fri Aug  5 16:06:23 2022] POST /api/project_manage/open_document/ => generated 36 bytes in 45 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 3)
+[pid: 1684|app: 0|req: 29/49] 106.39.42.238 () {46 vars in 893 bytes} [Fri Aug  5 16:06:24 2022] POST /api/project_manage/open_document/ => generated 36 bytes in 48 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 0)
+*** Starting uWSGI 2.0.20 (64bit) on [Fri Aug  5 16:06:24 2022] ***
+compiled with version: 4.8.5 20150623 (Red Hat 4.8.5-44) on 08 May 2022 15:04:04
+os: Linux-3.10.0-1160.62.1.el7.x86_64 #1 SMP Tue Apr 5 16:57:59 UTC 2022
+nodename: VM-20-15-centos
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 2
+current working directory: /home/moshu/moshu-backend
+detected binary path: /root/.virtualenvs/django/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /home/moshu/moshu-backend
+your processes number limit is 15070
+your memory page size is 4096 bytes
+detected max file descriptor number: 100002
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to TCP address 127.0.0.1:8080 fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.8.4 (default, May  8 2022, 22:35:28)  [GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]
+PEP 405 virtualenv detected: /root/.virtualenvs/django
+Set PythonHome to /root/.virtualenvs/django
+Python main interpreter initialized at 0x154b8a0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 3150396 bytes (3076 KB) for 32 cores
+*** Operational MODE: preforking+threaded ***
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x154b8a0 pid: 2450 (default app)
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 2450)
+spawned uWSGI worker 1 (pid: 2458, cores: 4)
+spawned uWSGI worker 2 (pid: 2459, cores: 4)
+spawned uWSGI worker 3 (pid: 2460, cores: 4)
+spawned uWSGI worker 4 (pid: 2461, cores: 4)
+spawned uWSGI worker 5 (pid: 2462, cores: 4)
+spawned uWSGI worker 6 (pid: 2463, cores: 4)
+spawned uWSGI worker 7 (pid: 2464, cores: 4)
+spawned uWSGI worker 8 (pid: 2465, cores: 4)
+[pid: 2459|app: 0|req: 1/1] 106.39.42.238 () {46 vars in 893 bytes} [Fri Aug  5 16:06:25 2022] POST /api/project_manage/open_document/ => generated 33 bytes in 94 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 0)
+[pid: 2460|app: 0|req: 1/2] 106.39.42.238 () {46 vars in 893 bytes} [Fri Aug  5 16:06:25 2022] POST /api/project_manage/open_document/ => generated 33 bytes in 89 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 0)
+[pid: 2460|app: 0|req: 2/3] 106.39.42.238 () {46 vars in 897 bytes} [Fri Aug  5 16:06:31 2022] POST /api/project_manage/store_document/ => generated 47 bytes in 78 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 3)
+[pid: 2460|app: 0|req: 3/4] 27.9.196.58 () {46 vars in 819 bytes} [Fri Aug  5 16:06:47 2022] POST /api/login/login/ => generated 57 bytes in 1160 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 1)
+[pid: 2460|app: 0|req: 4/5] 106.39.42.238 () {46 vars in 871 bytes} [Fri Aug  5 16:06:48 2022] POST /api/space/get_info/ => generated 156 bytes in 46 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 2)
+[pid: 2463|app: 0|req: 1/6] 106.39.42.238 () {46 vars in 903 bytes} [Fri Aug  5 16:06:49 2022] POST /api/group_manage/get_managed_group/ => generated 2 bytes in 81 msecs (HTTP/1.1 200) 9 headers in 302 bytes (1 switches on core 0)
+[pid: 2461|app: 0|req: 1/7] 106.39.42.238 () {46 vars in 913 bytes} [Fri Aug  5 16:06:49 2022] POST /api/group_manage/get_participated_group/ => generated 2 bytes in 84 msecs (HTTP/1.1 200) 9 headers in 302 bytes (1 switches on core 0)
+[pid: 2459|app: 0|req: 2/8] 106.39.42.238 () {46 vars in 903 bytes} [Fri Aug  5 16:06:49 2022] POST /api/group_manage/get_created_group/ => generated 67 bytes in 1291 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 2)
+[pid: 2459|app: 0|req: 3/9] 27.9.196.58 () {46 vars in 817 bytes} [Fri Aug  5 16:06:51 2022] POST /api/space/get_info/ => generated 133 bytes in 90 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 3)
+[pid: 2463|app: 0|req: 3/10] 27.9.196.58 () {46 vars in 849 bytes} [Fri Aug  5 16:07:00 2022] POST /api/group_manage/get_managed_group/ => generated 2 bytes in 56 msecs (HTTP/1.1 200) 9 headers in 302 bytes (1 switches on core 1)
+[pid: 2459|app: 0|req: 4/11] 27.9.196.58 () {46 vars in 849 bytes} [Fri Aug  5 16:07:00 2022] POST /api/group_manage/get_created_group/ => generated 58 bytes in 70 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 1)
+团队没有创建者
+[pid: 2463|app: 0|req: 4/12] 27.9.196.58 () {46 vars in 817 bytes} [Fri Aug  5 16:07:01 2022] POST /api/space/get_info/ => generated 133 bytes in 50 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 3)
+[pid: 2463|app: 0|req: 4/13] 27.9.196.58 () {46 vars in 859 bytes} [Fri Aug  5 16:07:00 2022] POST /api/group_manage/get_participated_group/ => generated 144 bytes in 733 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 2)
+[pid: 2460|app: 0|req: 5/14] 27.9.196.58 () {46 vars in 849 bytes} [Fri Aug  5 16:07:04 2022] POST /api/group_manage/get_managed_group/ => generated 2 bytes in 55 msecs (HTTP/1.1 200) 9 headers in 302 bytes (1 switches on core 0)
+团队没有创建者
+[pid: 2458|app: 0|req: 1/15] 27.9.196.58 () {46 vars in 849 bytes} [Fri Aug  5 16:07:04 2022] POST /api/group_manage/get_created_group/ => generated 58 bytes in 87 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 0)
+[pid: 2464|app: 0|req: 1/16] 27.9.196.58 () {46 vars in 859 bytes} [Fri Aug  5 16:07:04 2022] POST /api/group_manage/get_participated_group/ => generated 144 bytes in 101 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 0)
+[pid: 2464|app: 0|req: 2/17] 27.9.196.58 () {46 vars in 817 bytes} [Fri Aug  5 16:07:04 2022] POST /api/space/get_info/ => generated 133 bytes in 54 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 3)
+[pid: 2464|app: 0|req: 3/18] 125.82.81.181 () {46 vars in 831 bytes} [Fri Aug  5 16:07:06 2022] POST /api/login/login/ => generated 57 bytes in 46 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 2)
+[pid: 2464|app: 0|req: 4/19] 125.82.81.181 () {46 vars in 829 bytes} [Fri Aug  5 16:07:07 2022] POST /api/space/get_info/ => generated 189 bytes in 50 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 1)
+[pid: 2460|app: 0|req: 6/20] 125.82.81.181 () {46 vars in 861 bytes} [Fri Aug  5 16:07:14 2022] POST /api/group_manage/get_managed_group/ => generated 2 bytes in 48 msecs (HTTP/1.1 200) 9 headers in 302 bytes (1 switches on core 3)
+[pid: 2462|app: 0|req: 1/21] 125.82.81.181 () {46 vars in 871 bytes} [Fri Aug  5 16:07:14 2022] POST /api/group_manage/get_participated_group/ => generated 2 bytes in 72 msecs (HTTP/1.1 200) 9 headers in 302 bytes (1 switches on core 0)
+[pid: 2461|app: 0|req: 2/22] 125.82.81.181 () {46 vars in 861 bytes} [Fri Aug  5 16:07:14 2022] POST /api/group_manage/get_created_group/ => generated 72 bytes in 276 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 1)
+[pid: 2460|app: 0|req: 7/23] 27.9.196.58 () {46 vars in 819 bytes} [Fri Aug  5 16:07:18 2022] POST /api/login/login/ => generated 57 bytes in 42 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 1)
+[pid: 2460|app: 0|req: 8/24] 27.9.196.58 () {46 vars in 817 bytes} [Fri Aug  5 16:07:19 2022] POST /api/space/get_info/ => generated 133 bytes in 45 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 2)
+[pid: 2462|app: 0|req: 2/25] 125.82.81.181 () {46 vars in 829 bytes} [Fri Aug  5 16:07:22 2022] POST /api/space/get_info/ => generated 189 bytes in 53 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 3)
+[pid: 2462|app: 0|req: 4/26] 27.9.196.58 () {46 vars in 849 bytes} [Fri Aug  5 16:07:23 2022] POST /api/group_manage/get_managed_group/ => generated 2 bytes in 55 msecs (HTTP/1.1 200) 9 headers in 302 bytes (1 switches on core 1)
+[pid: 2462|app: 0|req: 4/27] 27.9.196.58 () {46 vars in 849 bytes} [Fri Aug  5 16:07:23 2022] POST /api/group_manage/get_created_group/ => generated 58 bytes in 66 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 2)
+团队没有创建者
+[pid: 2458|app: 0|req: 2/28] 27.9.196.58 () {46 vars in 859 bytes} [Fri Aug  5 16:07:23 2022] POST /api/group_manage/get_participated_group/ => generated 144 bytes in 83 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 1)
+[pid: 2458|app: 0|req: 4/29] 27.9.196.58 () {46 vars in 818 bytes} [Fri Aug  5 16:07:24 2022] POST /api/space/get_info/ => generated 133 bytes in 47 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 3)
+[pid: 2458|app: 0|req: 4/30] 27.9.196.58 () {46 vars in 834 bytes} [Fri Aug  5 16:07:24 2022] POST /api/team_manage/get_member/ => generated 958 bytes in 76 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 2)
+[pid: 2465|app: 0|req: 1/31] 106.39.42.238 () {46 vars in 873 bytes} [Fri Aug  5 16:07:24 2022] POST /api/login/login/ => generated 58 bytes in 67 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 0)
+[pid: 2465|app: 0|req: 2/32] 27.9.196.58 () {40 vars in 679 bytes} [Fri Aug  5 16:07:25 2022] GET /api/team_manage/get_user/ => generated 4416 bytes in 356 msecs (HTTP/1.1 200) 7 headers in 214 bytes (1 switches on core 3)
+[pid: 2465|app: 0|req: 4/33] 27.9.196.58 () {46 vars in 818 bytes} [Fri Aug  5 16:07:29 2022] POST /api/space/get_info/ => generated 133 bytes in 48 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 1)
+[pid: 2465|app: 0|req: 4/34] 27.9.196.58 () {46 vars in 834 bytes} [Fri Aug  5 16:07:29 2022] POST /api/team_manage/get_member/ => generated 958 bytes in 81 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 2)
+[pid: 2465|app: 0|req: 6/35] 106.39.42.238 () {46 vars in 903 bytes} [Fri Aug  5 16:07:30 2022] POST /api/group_manage/get_managed_group/ => generated 2 bytes in 49 msecs (HTTP/1.1 200) 9 headers in 302 bytes (1 switches on core 3)
+[pid: 2463|app: 0|req: 5/36] 106.39.42.238 () {46 vars in 913 bytes} [Fri Aug  5 16:07:30 2022] POST /api/group_manage/get_participated_group/ => generated 2 bytes in 54 msecs (HTTP/1.1 200) 9 headers in 302 bytes (1 switches on core 0)
+[pid: 2465|app: 0|req: 6/37] 106.39.42.238 () {46 vars in 903 bytes} [Fri Aug  5 16:07:30 2022] POST /api/group_manage/get_created_group/ => generated 59 bytes in 65 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 0)
+[pid: 2465|app: 0|req: 8/38] 27.9.196.58 () {46 vars in 820 bytes} [Fri Aug  5 16:07:30 2022] POST /api/space/get_info/ => generated 133 bytes in 45 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 2)
+[pid: 2465|app: 0|req: 8/39] 27.9.196.58 () {40 vars in 707 bytes} [Fri Aug  5 16:07:30 2022] GET /api/project_manage/get_project/?gid=1 => generated 1206 bytes in 122 msecs (HTTP/1.1 200) 7 headers in 214 bytes (1 switches on core 1)
+[pid: 2465|app: 0|req: 9/40] 27.9.196.58 () {46 vars in 816 bytes} [Fri Aug  5 16:07:32 2022] POST /api/space/get_info/ => generated 133 bytes in 47 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 3)
+[pid: 2463|app: 0|req: 7/41] 27.9.196.58 () {46 vars in 843 bytes} [Fri Aug  5 16:07:33 2022] POST /api/project_manage/get_documents/ => generated 79 bytes in 248 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 3)
+[pid: 2463|app: 0|req: 7/42] 27.9.196.58 () {46 vars in 843 bytes} [Fri Aug  5 16:07:33 2022] POST /api/project_manage/get_documents/ => generated 79 bytes in 661 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 1)
+[pid: 2463|app: 0|req: 8/43] 106.39.42.238 () {46 vars in 895 bytes} [Fri Aug  5 16:07:36 2022] POST /api/group_manage/create_group/ => generated 47 bytes in 55 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 2)
+[pid: 2465|app: 0|req: 10/44] 106.39.42.238 () {46 vars in 903 bytes} [Fri Aug  5 16:07:36 2022] POST /api/group_manage/get_created_group/ => generated 119 bytes in 96 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 0)
+[pid: 2465|app: 0|req: 11/45] 125.82.81.181 () {46 vars in 831 bytes} [Fri Aug  5 16:07:37 2022] POST /api/login/login/ => generated 57 bytes in 45 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 2)
+[pid: 2465|app: 0|req: 13/46] 106.39.42.238 () {46 vars in 872 bytes} [Fri Aug  5 16:07:37 2022] POST /api/space/get_info/ => generated 101 bytes in 43 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 1)
+[pid: 2465|app: 0|req: 13/47] 106.39.42.238 () {46 vars in 888 bytes} [Fri Aug  5 16:07:37 2022] POST /api/team_manage/get_member/ => generated 122 bytes in 46 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 3)
+[pid: 2459|app: 0|req: 5/48] 125.82.81.181 () {46 vars in 871 bytes} [Fri Aug  5 16:07:38 2022] POST /api/group_manage/get_participated_group/ => generated 2 bytes in 46 msecs (HTTP/1.1 200) 9 headers in 302 bytes (1 switches on core 0)
+[pid: 2465|app: 0|req: 14/49] 125.82.81.181 () {46 vars in 861 bytes} [Fri Aug  5 16:07:38 2022] POST /api/group_manage/get_managed_group/ => generated 2 bytes in 50 msecs (HTTP/1.1 200) 9 headers in 302 bytes (1 switches on core 0)
+[pid: 2464|app: 0|req: 5/50] 125.82.81.181 () {46 vars in 861 bytes} [Fri Aug  5 16:07:38 2022] POST /api/group_manage/get_created_group/ => generated 72 bytes in 59 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 0)
+[pid: 2464|app: 0|req: 7/51] 125.82.81.181 () {46 vars in 830 bytes} [Fri Aug  5 16:07:39 2022] POST /api/space/get_info/ => generated 189 bytes in 43 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 3)
+[pid: 2464|app: 0|req: 7/52] 125.82.81.181 () {46 vars in 846 bytes} [Fri Aug  5 16:07:39 2022] POST /api/team_manage/get_member/ => generated 209 bytes in 53 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 2)
+[pid: 2458|app: 0|req: 5/53] 125.82.81.181 () {46 vars in 832 bytes} [Fri Aug  5 16:07:41 2022] POST /api/space/get_info/ => generated 189 bytes in 46 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 0)
+[pid: 2464|app: 0|req: 8/54] 125.82.81.181 () {40 vars in 721 bytes} [Fri Aug  5 16:07:41 2022] GET /api/project_manage/get_project/?gid=19 => generated 158 bytes in 58 msecs (HTTP/1.1 200) 7 headers in 213 bytes (1 switches on core 1)
+[pid: 2459|app: 0|req: 6/55] 125.82.81.181 () {46 vars in 828 bytes} [Fri Aug  5 16:07:42 2022] POST /api/space/get_info/ => generated 189 bytes in 45 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 2)
+[pid: 2465|app: 0|req: 17/56] 106.39.42.238 () {40 vars in 733 bytes} [Fri Aug  5 16:07:42 2022] GET /api/team_manage/get_user/ => generated 4420 bytes in 322 msecs (HTTP/1.1 200) 7 headers in 214 bytes (1 switches on core 2)
+[pid: 2465|app: 0|req: 17/57] 125.82.81.181 () {46 vars in 855 bytes} [Fri Aug  5 16:07:43 2022] POST /api/project_manage/get_documents/ => generated 37 bytes in 45 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 1)
+[pid: 2465|app: 0|req: 17/58] 125.82.81.181 () {46 vars in 855 bytes} [Fri Aug  5 16:07:43 2022] POST /api/project_manage/get_documents/ => generated 37 bytes in 41 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 3)
+[pid: 2465|app: 0|req: 18/59] 27.9.196.58 () {46 vars in 849 bytes} [Fri Aug  5 16:07:44 2022] POST /api/project_manage/create_document/ => generated 47 bytes in 659 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 0)
+[pid: 2459|app: 0|req: 7/60] 27.9.196.58 () {46 vars in 843 bytes} [Fri Aug  5 16:07:44 2022] POST /api/project_manage/get_documents/ => generated 114 bytes in 47 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 3)
+[pid: 2459|app: 0|req: 8/61] 106.39.42.238 () {46 vars in 879 bytes} [Fri Aug  5 16:07:45 2022] POST /api/team_manage/invite/ => generated 47 bytes in 63 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 1)
+[pid: 2465|app: 0|req: 19/62] 106.39.42.238 () {46 vars in 872 bytes} [Fri Aug  5 16:07:48 2022] POST /api/space/get_info/ => generated 101 bytes in 42 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 2)
+[pid: 2461|app: 0|req: 3/63] 106.39.42.238 () {46 vars in 888 bytes} [Fri Aug  5 16:07:48 2022] POST /api/team_manage/get_member/ => generated 319 bytes in 64 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 2)
+[pid: 2465|app: 0|req: 20/64] 27.9.196.58 () {46 vars in 843 bytes} [Fri Aug  5 16:07:51 2022] POST /api/project_manage/open_document/ => generated 49 bytes in 47 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 1)
+[pid: 2465|app: 0|req: 21/65] 27.9.196.58 () {46 vars in 843 bytes} [Fri Aug  5 16:07:52 2022] POST /api/project_manage/open_document/ => generated 49 bytes in 42 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 3)
+[pid: 2461|app: 0|req: 4/66] 125.82.81.181 () {46 vars in 865 bytes} [Fri Aug  5 16:08:14 2022] POST /api/project_manage/create_document/ => generated 47 bytes in 53 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 3)
+[pid: 2458|app: 0|req: 6/67] 125.82.81.181 () {46 vars in 855 bytes} [Fri Aug  5 16:08:14 2022] POST /api/project_manage/get_documents/ => generated 78 bytes in 48 msecs (HTTP/1.1 200) 9 headers in 303 bytes (1 switches on core 1)
+[pid: 2458|app: 0|req: 7/68] 106.39.42.238 () {46 vars in 871 bytes} [Fri Aug  5 16:08:19 2022] POST /api/space/get_info/ => generated 101 bytes in 46 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 3)
+[pid: 2461|app: 0|req: 5/69] 106.39.42.238 () {46 vars in 913 bytes} [Fri Aug  5 16:08:20 2022] POST /api/group_manage/get_participated_group/ => generated 2 bytes in 48 msecs (HTTP/1.1 200) 9 headers in 302 bytes (1 switches on core 0)
+[pid: 2462|app: 0|req: 5/70] 106.39.42.238 () {46 vars in 903 bytes} [Fri Aug  5 16:08:20 2022] POST /api/group_manage/get_managed_group/ => generated 2 bytes in 54 msecs (HTTP/1.1 200) 9 headers in 302 bytes (1 switches on core 0)
+[pid: 2458|app: 0|req: 8/71] 106.39.42.238 () {46 vars in 903 bytes} [Fri Aug  5 16:08:20 2022] POST /api/group_manage/get_created_group/ => generated 119 bytes in 77 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 2)
+[pid: 2462|app: 0|req: 7/72] 27.9.196.58 () {46 vars in 843 bytes} [Fri Aug  5 16:08:22 2022] POST /api/project_manage/get_documents/ => generated 114 bytes in 49 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 3)
+[pid: 2462|app: 0|req: 7/73] 27.9.196.58 () {46 vars in 843 bytes} [Fri Aug  5 16:08:22 2022] POST /api/project_manage/get_documents/ => generated 114 bytes in 45 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 1)
+[pid: 2462|app: 0|req: 8/74] 106.39.42.238 () {46 vars in 893 bytes} [Fri Aug  5 16:08:52 2022] POST /api/project_manage/get_documents/ => generated 119 bytes in 44 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 2)
+[pid: 2464|app: 0|req: 9/75] 106.39.42.238 () {46 vars in 893 bytes} [Fri Aug  5 16:08:52 2022] POST /api/project_manage/get_documents/ => generated 119 bytes in 44 msecs (HTTP/1.1 200) 9 headers in 305 bytes (1 switches on core 0)
+[pid: 2464|app: 0|req: 10/76] 106.39.42.238 () {46 vars in 893 bytes} [Fri Aug  5 16:08:56 2022] POST /api/project_manage/open_document/ => generated 36 bytes in 47 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 3)
+[pid: 2464|app: 0|req: 11/77] 106.39.42.238 () {46 vars in 893 bytes} [Fri Aug  5 16:09:02 2022] POST /api/project_manage/open_document/ => generated 36 bytes in 43 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 2)
+[pid: 2464|app: 0|req: 12/78] 106.39.42.238 () {46 vars in 893 bytes} [Fri Aug  5 16:09:02 2022] POST /api/project_manage/open_document/ => generated 36 bytes in 45 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 1)
+[pid: 2465|app: 0|req: 22/79] 106.39.42.238 () {46 vars in 893 bytes} [Fri Aug  5 16:09:02 2022] POST /api/project_manage/open_document/ => generated 36 bytes in 41 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 0)
+[pid: 2465|app: 0|req: 23/80] 106.39.42.238 () {46 vars in 893 bytes} [Fri Aug  5 16:09:04 2022] POST /api/project_manage/open_document/ => generated 36 bytes in 48 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 2)
+[pid: 2465|app: 0|req: 24/81] 106.39.42.238 () {46 vars in 893 bytes} [Fri Aug  5 16:09:04 2022] POST /api/project_manage/open_document/ => generated 36 bytes in 51 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 1)
+[pid: 2465|app: 0|req: 25/82] 106.39.42.238 () {46 vars in 897 bytes} [Fri Aug  5 16:09:13 2022] POST /api/project_manage/delete_document/ => generated 47 bytes in 51 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 3)
+[pid: 2464|app: 0|req: 13/83] 106.39.42.238 () {46 vars in 893 bytes} [Fri Aug  5 16:09:13 2022] POST /api/project_manage/get_documents/ => generated 80 bytes in 45 msecs (HTTP/1.1 200) 9 headers in 304 bytes (1 switches on core 0)

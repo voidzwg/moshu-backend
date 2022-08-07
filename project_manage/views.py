@@ -40,7 +40,7 @@ def create(request):
         gid = request.POST.get('gid')
         uid = request.POST.get('uid')
         name = request.POST.get('name')
-        if gid is None or uid is None or name is None:
+        if gid == '' or uid == '' or name == '':
             return JsonResponse({'errno': 1002, 'msg': "参数为空"})
         try:
             gid = Groups.objects.get(id=gid)

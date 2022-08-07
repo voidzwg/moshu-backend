@@ -120,7 +120,9 @@ def search_users(request):
 
         users = Users.objects.all()
         users = users.exclude(id__in=uid_list)
-        username_list = email_list = name_list = []
+        username_list = []
+        email_list = []
+        name_list = []
         for user in users:
             username_list.append(user.username)
             name_list.append(user.name)

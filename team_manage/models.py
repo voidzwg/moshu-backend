@@ -85,3 +85,12 @@ class Users(models.Model):
     class Meta:
         managed = False
         db_table = 'users'
+
+class Invite(models.Model):
+    inviter = models.IntegerField()
+    invitee = models.IntegerField()
+    gid = models.IntegerField()
+    read = models.IntegerField()
+    class Meta:
+        managed = False
+        db_table = 'invite'

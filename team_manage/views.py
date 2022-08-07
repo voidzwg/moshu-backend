@@ -135,27 +135,61 @@ def get_user(request):
 
 def invite(request):
     if request.method == 'POST':
-        uid = request.POST.get('uid')
+        invitee = request.POST.get('invitee')
+        inviter = request.POST.get('inviter')
         gid = request.POST.get('gid')
         try:
             gid = Groups.objects.get(id=gid)
-            uid = Users.objects.get(id=uid)
+            invitee = Users.objects.get(id=invitee)
+            inviter = Users.objects.get(id=inviter)
         except Exception as e:
             print(e)
             return JsonResponse({'errno': 1003, 'msg': "不存在该用户或团队"})
         try:
-            member = Members.objects.get(gid=gid, uid=uid)
+            member = Members.objects.get(gid=gid, uid=invitee)
         except:
             pass
         else:
             return JsonResponse({'errno': 1004, 'msg': "该用户已在团队中"})
         try:
-            newMember = Members(uid=uid, gid=gid, field_role=0)
-            newMember.save()
+            newInvite = Invite(inviter=inviter,invitee=invitee,gid=gid)
+            newInvite.save()
         except Exception as e:
             print(e)
             return JsonResponse({'errno': 1005, 'msg': "未知错误"})
         else:
-            return JsonResponse({'errno': 0, 'msg': "邀请成功"})
+            return JsonResponse({'errno': 0, 'msg': "已发送邀请，请等待回复"})
     else:
         return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
+
+
+def accept_invition(request):
+    if request.method == 'POST':
+        id = request.POST.get('id')
+        try:
+            invition = Invite.objects.get(id=id)
+        except Exception as e:
+            print(e)
+            return JsonResponse({'errno': 1002, 'msg': "邀请不存在或已被删除"})
+        uid = invition.invitee
+        gid = invition.gid
+        try:
+            user = Users.objects.get(id=uid)
+        except Exception as e:
+            print(e)
+            return JsonResponse({'errno': 1003, 'msg': "用户不存在"})
+        try:
+            group = Groups.objects.get(id=gid)
+        except Exception as e:
+            print(e)
+            return JsonResponse({'errno': 1003, 'msg': "团队不存在或已被删除"})
+        try:
+            newMember = Members(gid=group,uid=user,field_role=2)
+            newMember.save()
+        except:
+            return JsonResponse({'errno': 1004, 'msg': "未知错误"})
+        else:
+            return JsonResponse({'errno': 0, 'msg': "已成功加入团队"+"\'"+group.name+"\'"})
+    else:
+        return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
+

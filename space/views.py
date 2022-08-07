@@ -14,7 +14,7 @@ def get_info(request):
             user = Users.objects.get(id=uid)
         except:
             return JsonResponse({'errno': 2, 'msg': "用户不存在"})
-        return space_serialize(user)
+        return user_serialize(user)
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
 
 

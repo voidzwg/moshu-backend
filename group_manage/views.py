@@ -73,6 +73,7 @@ def get_participated_group(request):
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
 
 
+@csrf_exempt
 def dismiss(request):
     if request.method == 'POST':
         uid = request.POST.get('uid')
@@ -97,3 +98,55 @@ def dismiss(request):
                 return JsonResponse({'errno': 0, 'msg': "解散成功"})
     else:
         return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
+
+
+@csrf_exempt
+def search_users(request):
+    if request.method == 'POST':
+        gid = request.POST.get('gid')
+        try:
+            group = Groups.objects.get(id=gid)
+        except:
+            return JsonResponse({'errno': 4, 'msg': "团队不存在！"})
+
+        members = Members.objects.filter(gid=group)
+        uid_list = []
+        for member in members:
+            uid_list.append(member.uid.id)
+
+        keyword = request.POST.get('keyword')
+        if keyword == '':
+            return JsonResponse({'errno': 5, 'msg': "搜索内容不能为空！"})
+
+        users = Users.objects.all()
+        users.filter(id__in=uid_list).delete()
+        username_list = email_list = name_list = []
+        for user in users:
+            username_list.append(user.username)
+            name_list.append(user.name)
+            email_list.append(user.email)
+        choices_list = [username_list, email_list]
+        list_a = fuzzy_search('void', choices_list)
+        results = []
+        for key in list_a:
+            filters = users.filter(username=key[0])
+            if filters:
+                results.append(filters[0])
+                continue
+
+            filters = users.filter(name=key[0])
+            if filters:
+                for item in filters:
+                    results.append(item)
+                continue
+
+            filters = users.filter(email=key[0])
+            if filters:
+                for item in filters:
+                    results.append(item)
+                continue
+        unique_results = list(set(results))
+        unique_results.sort(key=results.index)
+        return users_serialize(unique_results)
+    return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
+

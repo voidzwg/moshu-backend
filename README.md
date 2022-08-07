@@ -58,6 +58,8 @@
 
 打开文件： /api/project_manage/open_document/  参数： id
 
+模糊搜索项目：/api/project_manage/search_projects/
+
 ### 团队管理页面
 
 新建团队：/api/group_manage/create_group/
@@ -83,4 +85,6 @@
 删除设计图：/api/design/delete/
 
 获取设计图数据：/api/design/get_design/
+
+模糊搜索设计图：/api/design/search_design/
 

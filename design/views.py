@@ -82,3 +82,30 @@ def get_one_design(request):
         return prototype_serialize([prototype])
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
 
+
+@csrf_exempt
+def search_design(request):
+    if request.method == 'POST':
+        pid = request.POST.get('pid')
+        keyword = request.POST.get('keyword')
+        if keyword == '':
+            return JsonResponse({'errno': 5, 'msg': "搜索内容不能为空！"})
+        prototypes = Prototype.objects.filter(pid=pid)
+        name_list = []
+        for prototype in prototypes:
+            name_list.append(prototype.name)
+        choices_list = [name_list]
+        list_results = fuzzy_search(keyword, choices_list)
+        results = []
+        for key in list_results:
+            filters = prototypes.filter(name=key[0])
+            if filters:
+                for item in filters:
+                    results.append(item)
+                continue
+        unique_results = list(set(results))
+        unique_results.sort(key=results.index)
+        return prototype_serialize(unique_results)
+    return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
+
+

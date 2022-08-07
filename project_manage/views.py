@@ -1,7 +1,7 @@
 from django.core import serializers
-from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .models import *
+from com.funcs import *
 
 
 @csrf_exempt
@@ -15,15 +15,15 @@ def get_project(request):
             data = []
             for p in projects:
                 tmp = {
-                    'id':p.id,
-                    'name':p.name,
-                    'available':p.available,
-                    'status':p.status,
-                    'gid':p.gid.id,
-                    'uid':p.uid.id,
-                    'starttime':p.starttime,
-                    'endtime':p.endtime,
-                    'profile':p.profile,
+                    'id': p.id,
+                    'name': p.name,
+                    'available': p.available,
+                    'status': p.status,
+                    'gid': p.gid.id,
+                    'uid': p.uid.id,
+                    'starttime': p.starttime,
+                    'endtime': p.endtime,
+                    'profile': p.profile,
                 }
                 data.append(tmp)
         except Exception as e:
@@ -96,7 +96,7 @@ def to_bin(request):
             print(e)
             return JsonResponse({'errno': 1003, 'msg': "不存在该项目"})
         try:
-            project.available=1
+            project.available = 1
             project.save()
         except Exception as e:
             print(e)
@@ -119,7 +119,7 @@ def out_bin(request):
             print(e)
             return JsonResponse({'errno': 1003, 'msg': "不存在该项目"})
         try:
-            project.available=0
+            project.available = 0
             project.save()
         except Exception as e:
             print(e)
@@ -164,7 +164,7 @@ def close(request):
             print(e)
             return JsonResponse({'errno': 1003, 'msg': "不存在该项目"})
         try:
-            project.status=1
+            project.status = 1
             project.save()
         except Exception as e:
             print(e)
@@ -262,12 +262,12 @@ def get_documents(request):
         data = []
         for i in documents:
             tmp = {
-                'id':i.id,
-                'name':i.name,
-                'pid':i.pid,
+                'id': i.id,
+                'name': i.name,
+                'pid': i.pid,
             }
             data.append(tmp)
-        return JsonResponse(data,safe=False)
+        return JsonResponse(data, safe=False)
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
 
 
@@ -297,3 +297,45 @@ def delete_document(request):
         return JsonResponse({'errno': 0, 'msg': "删除成功"})
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
 
+
+@csrf_exempt
+def search_projects(request):
+    if request.method == 'POST':
+        gid = request.POST.get('gid')
+        try:
+            group = Groups.objects.get(id=gid)
+        except:
+            return JsonResponse({'errno': 4, 'msg': "团队不存在！"})
+
+        keyword = request.POST.get('keyword')
+        if keyword == '':
+            return JsonResponse({'errno': 5, 'msg': "搜索内容不能为空！"})
+
+        projects = Projects.objects.filter(gid=group)
+        profile_list = []
+        name_list = []
+        for project in projects:
+            name_list.append(project.name)
+            if project.profile:
+                profile_list.append(project.profile)
+            else:
+                profile_list.append('')
+        choices_list = [name_list, profile_list]
+        list_a = fuzzy_search(keyword, choices_list)
+        results = []
+        for key in list_a:
+            filters = projects.filter(name=key[0])
+            if filters:
+                for item in filters:
+                    results.append(item)
+                continue
+
+            filters = projects.filter(profile=key[0])
+            if filters:
+                for item in filters:
+                    results.append(item)
+                continue
+        unique_results = list(set(results))
+        unique_results.sort(key=results.index)
+        return project_serialize(unique_results)
+    return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})

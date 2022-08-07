@@ -59,6 +59,7 @@ class Prototype(models.Model):
     name = models.CharField(max_length=100)
     width = models.IntegerField()
     height = models.IntegerField()
+
     class Meta:
         managed = False
         db_table = 'prototype'

@@ -58,6 +58,7 @@ def users_serialize(user_list):
     data = []
     for user in user_list:
         json = {
+            'id': user.id,
             'username': user.username,
             'name': user.name,
             'avatar': str(user.avatar),
@@ -95,9 +96,7 @@ def prototype_serialize(prototype_list):
         json = {
             'picid': prototype.id,
             'data': prototype.data,
-            'name': prototype.name,
-            'width':prototype.width,
-            'height':prototype.height,
+            'name': prototype.name
         }
         data.append(json)
     return JsonResponse(data, safe=False)

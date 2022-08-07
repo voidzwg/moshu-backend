@@ -86,3 +86,5 @@
 
 获取设计图数据：/api/design/get_design/
 
+模糊搜索设计图：/api/design/search_design/
+

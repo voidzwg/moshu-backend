@@ -70,6 +70,8 @@
 
 解散团队： /api/group_manage/dismiss/
 
+模糊搜索用户：api/group_manage/search_users/
+
 ### 原型设计页面
 
 存储设计图数据：/api/design/store/

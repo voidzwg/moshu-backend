@@ -118,7 +118,9 @@ def prototype_serialize(prototype_list):
         json = {
             'picid': prototype.id,
             'data': prototype.data,
-            'name': prototype.name
+            'name': prototype.name,
+            'width': prototype.width,
+            'height': prototype.height
         }
         data.append(json)
     return JsonResponse(data, safe=False)

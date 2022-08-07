@@ -119,7 +119,7 @@ def search_users(request):
             return JsonResponse({'errno': 5, 'msg': "搜索内容不能为空！"})
 
         users = Users.objects.all()
-        users.filter(id__in=uid_list).delete()
+        users.exclude(id__in=uid_list)
         username_list = email_list = name_list = []
         for user in users:
             username_list.append(user.username)

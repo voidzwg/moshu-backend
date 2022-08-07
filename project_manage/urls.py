@@ -16,4 +16,5 @@ urlpatterns = [
     path('get_documents/', get_documents),
     path('open_document/', open_document),
     path('delete_document/', delete_document),
+    path('search_projects/', search_projects)
 ]

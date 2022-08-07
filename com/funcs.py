@@ -58,6 +58,7 @@ def users_serialize(user_list):
     data = []
     for user in user_list:
         json = {
+            'id': user.id,
             'username': user.username,
             'name': user.name,
             'avatar': str(user.avatar),
@@ -84,6 +85,24 @@ def group_serialize(group_list):
             'gid': group.id,
             'name': group.name,
             'unum': group.unum
+        }
+        data.append(json)
+    return JsonResponse(data, safe=False)
+
+
+def project_serialize(project_list):
+    data = []
+    for project in project_list:
+        json = {
+            'id': project.id,
+            'name': project.name,
+            'available' : project.available,
+            'status': project.status,
+            'gid': project.gid.id,
+            'uid': project.uid.id,
+            'starttime': project.starttime,
+            'endtime': project.endtime,
+            'profile': project.profile
         }
         data.append(json)
     return JsonResponse(data, safe=False)

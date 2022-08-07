@@ -1,6 +1,7 @@
 from django.http import JsonResponse
 import re
-from group_manage.models import Members
+from .models import Members, Users
+from fuzzywuzzy import process
 
 DEFAULT_AVATAR = "111"  # 默认头像文件名
 AVATAR_HOME = "../static/avatars/"  # 头像文件存放地址
@@ -83,4 +84,30 @@ def prototype_serialize(prototype_list):
         }
         data.append(json)
     return JsonResponse(data, safe=False)
+
+
+# 将两个有序元组列表合并为一个新的有序元组列表
+# list_a, list_b: 形如 [('name', 40), ('ame', 30)] 等模式的列表（字符串和相似度组成的元组的列表），按相似度降序排列
+def merge_list(list_a, len_a, list_b, len_b):
+    i = j = 0
+    results = []
+    while i < len_a and j < len_b:
+        if list_a[i][1] >= list_b[j][1]:
+            results.append(list_a[i])
+            i += 1
+        else:
+            results.append(list_b[j])
+            j += 1
+    results += list_a[i:] + list_b[j:]
+    return results
+
+
+# 从 choices_list 表中查找模糊匹配键值 key 的元素
+# choices_list: 形如 [['a', 'b', 'c'], ['k', 'p'], ['114', '514']] 等模式的列表（字符串的列表的列表）
+def fuzzy_search_user(key, choices_list):
+    results = []
+    for choices in choices_list:
+        choices_results = process.extract(key, choices, limit=30)
+        results = merge_list(results, len(results), choices_results, len(choices_results))
+    return results
 

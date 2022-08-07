@@ -93,13 +93,17 @@ def group_serialize(group_list):
 def project_serialize(project_list):
     data = []
     for project in project_list:
+        if project.uid:
+            uid = project.uid.id
+        else:
+            uid = None
         json = {
             'id': project.id,
             'name': project.name,
-            'available' : project.available,
+            'available': project.available,
             'status': project.status,
             'gid': project.gid.id,
-            'uid': project.uid.id,
+            'uid': uid,
             'starttime': project.starttime,
             'endtime': project.endtime,
             'profile': project.profile

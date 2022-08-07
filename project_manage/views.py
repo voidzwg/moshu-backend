@@ -292,15 +292,19 @@ def search_projects(request):
         except:
             return JsonResponse({'errno': 4, 'msg': "团队不存在！"})
 
-        keyword = request.POST.get('input')
+        keyword = request.POST.get('keyword')
         if keyword == '':
             return JsonResponse({'errno': 5, 'msg': "搜索内容不能为空！"})
 
         projects = Projects.objects.filter(gid=group)
-        profile_list = name_list = []
+        profile_list = []
+        name_list = []
         for project in projects:
             name_list.append(project.name)
-            profile_list.append(project.name)
+            if project.profile:
+                profile_list.append(project.profile)
+            else:
+                profile_list.append('')
         choices_list = [name_list, profile_list]
         list_a = fuzzy_search(keyword, choices_list)
         results = []

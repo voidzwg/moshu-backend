@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 import re
-from .models import Members, Users
+from group_manage.models import Members
 from fuzzywuzzy import process
 
 DEFAULT_AVATAR = "111"  # 默认头像文件名
@@ -40,7 +40,7 @@ def check_password(password):
     return True
 
 
-def space_serialize(user):
+def user_serialize(user):
     data = []
     p_tmp = {
         'username': user.username,
@@ -51,6 +51,21 @@ def space_serialize(user):
         'profile': user.profile
     }
     data.append(p_tmp)
+    return JsonResponse(data, safe=False)
+
+
+def users_serialize(user_list):
+    data = []
+    for user in user_list:
+        json = {
+            'username': user.username,
+            'name': user.name,
+            'avatar': str(user.avatar),
+            'email': user.email,
+            'gnum': user.gnum,
+            'profile': user.profile
+        }
+        data.append(json)
     return JsonResponse(data, safe=False)
 
 
@@ -104,10 +119,10 @@ def merge_list(list_a, len_a, list_b, len_b):
 
 # 从 choices_list 表中查找模糊匹配键值 key 的元素
 # choices_list: 形如 [['a', 'b', 'c'], ['k', 'p'], ['114', '514']] 等模式的列表（字符串的列表的列表）
-def fuzzy_search_user(key, choices_list):
+def fuzzy_search(key, choices_list):
     results = []
     for choices in choices_list:
-        choices_results = process.extract(key, choices, limit=30)
+        choices_results = process.extract(key, choices, limit=10)
         results = merge_list(results, len(results), choices_results, len(choices_results))
     return results
 

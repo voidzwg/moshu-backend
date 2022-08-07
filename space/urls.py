@@ -7,4 +7,5 @@ urlpatterns = [
     path('update_password/', update_password),
     path('get_group/', get_group),
     path('set_avatar/',set_avatar),
+
 ]

@@ -112,30 +112,3 @@ def set_avatar(request):
             return JsonResponse({'errno': 0, 'msg': "上传成功"})
     else:
         return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
-
-@csrf_exempt
-def get_invition(request):
-    if request.method == 'GET':
-        uid = request.GET.get('uid')
-    if uid is None:
-        return JsonResponse({'errno': 1002, 'msg': "参数为空"})
-    invition  = Invite.objects.filter(invitee=uid)
-    data = []
-    for i in invition:
-        try:
-            group = Groups.objects.get(i.gid)
-        except:
-            name = '该团队已被解散'
-        else:
-            name = group.name
-        tmp = {
-            'id':i.id,
-            'inviter':i.inviter,
-            'invitee':i.invitee,
-            'gid':i.gid,
-            'gname':name,
-        }
-        data.append(tmp)
-        return JsonResponse(data)
-    else:
-        return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})

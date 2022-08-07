@@ -8,12 +8,13 @@
 from django.db import models
 
 
-class Invite(models.Model):
-    inviter = models.IntegerField()
-    invitee = models.IntegerField()
-    gid = models.IntegerField()
-    read = models.IntegerField()
+class Prototype(models.Model):
+    pid = models.IntegerField()
+    data = models.TextField()
+    name = models.CharField(max_length=100)
+    width = models.IntegerField()
+    height = models.IntegerField()
 
     class Meta:
         managed = False
-        db_table = 'invite'
+        db_table = 'prototype'

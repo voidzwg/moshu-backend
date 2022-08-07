@@ -125,8 +125,8 @@ def search_users(request):
             username_list.append(user.username)
             name_list.append(user.name)
             email_list.append(user.email)
-        choices_list = [username_list, email_list]
-        list_a = fuzzy_search('void', choices_list)
+        choices_list = [username_list, name_list, email_list]
+        list_a = fuzzy_search(keyword, choices_list)
         results = []
         for key in list_a:
             filters = users.filter(username=key[0])

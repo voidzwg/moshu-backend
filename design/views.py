@@ -41,7 +41,7 @@ def create(request):
     if request.method == 'POST':
         pid = request.POST.get('picid')
         name = request.POST.get('name')
-        prototype = Prototype(pid=pid, name=name, data='')
+        prototype = Prototype(pid=pid, name=name, data='', width=675, height=1200)
         prototype.save()
         return JsonResponse({'errno': 0, 'msg': "创建成功", 'picid': prototype.id})
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})

@@ -8,4 +8,6 @@ urlpatterns = [
     path('revoke/',revoke),
     path('get_user/',get_user),
     path('invite/',invite),
+    path('get_invitation/', get_invitation),
+    path('accept_invitation/',accept_invitation),
 ]

@@ -90,6 +90,8 @@ def get_group(request):
         return JsonResponse(data, safe=False)
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
 
+
+@csrf_exempt
 def set_avatar(request):
     if request.method == 'POST':
         uid = request.POST.get('uid')

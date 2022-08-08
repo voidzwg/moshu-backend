@@ -52,6 +52,8 @@
 
 结束项目：/api/project_manage/close/
 
+复制项目： /api/project_manage/copy/
+
 保存文件：/api/project_manage/save_document/  参数： pid name file
 
 获取文件： /api/project_manage/get_document/  参数：pid         请求方式：GET

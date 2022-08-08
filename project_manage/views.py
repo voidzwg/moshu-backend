@@ -187,18 +187,29 @@ def copy(request):
             print(e)
             return JsonResponse({'errno': 1003, 'msg': "不存在该项目"})
         num = Projects.objects.filter(name__contains=project.name).count()
+        num = str(num)
         name = project.name+'('+num+')'
         try:
             newProject = Projects(gid= project.gid,uid=user,name=name,available=0,status=0,profile=project.profile)
             newProject.save()
             prototype = Prototype.objects.filter(pid=project.id)
             for p in prototype:
-                num = Prototype.objects.filter(name__contains=p.name).count()
                 name = p.name + '(' + num + ')'
-
+                newPrototype = Prototype(name=name,pid=newProject.id,data=p.data,width=p.width,height=p.height)
+                newPrototype.save()
+            document = Document.objects.filter(pid=project.id)
+            for d in document:
+                name = d.name + '(' + num + ')'
+                newDocument = Document(name=name, pid=newProject.id, data=d.data)
+                newDocument.save()
+            uml = Uml.objects.filter(pid=project.id)
+            for u in uml:
+                name = u.name + '(' + num + ')'
+                newUml = Uml(name=name, pid=newProject.id, data=u.data)
+                newUml.save()
         except Exception as e:
             return JsonResponse({'errno': 1004, 'msg': "未知错误"})
-
+        return JsonResponse({'errno': 0, 'msg': "复制成功"})
     else:
         return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
 #@csrf_exempt

@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.template.defaulttags import url
-from django.urls import path, include
+from django.urls import path, include, re_path
 from django.conf import settings
 from django.views.static import serve
 
@@ -27,7 +27,5 @@ urlpatterns = [
     path('api/group_manage/', include('group_manage.urls')),
     path('api/project_manage/', include('project_manage.urls')),
     path('api/design/', include('design.urls')),
-    # url('media/(?P<path>.*)$', serve, kwargs={'document_root': settings.MEDIA_ROOT}),
-    # url(serve(path=r'media/(?P<path>.*)$', document_root=settings.MEDIA_ROOT)),
-    path(r'api/media/(?P<path>.*)$', serve, kwargs={'document_root': settings.MEDIA_ROOT})
+    re_path('media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
 ]

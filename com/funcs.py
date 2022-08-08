@@ -1,10 +1,16 @@
-from django.http import JsonResponse
+import os
 import re
-from group_manage.models import Members
+import uuid
+from PIL import Image
+from django.http import JsonResponse
 from fuzzywuzzy import process
+from group_manage.models import Members
+from moshu import settings
 
 DEFAULT_AVATAR = "111"  # 默认头像文件名
 AVATAR_HOME = "../file/avatars/"  # 头像文件存放地址
+SERVER_URL = "http://43.138.26.134"
+IMAGE_TAIL = ('.bmp', '.dib', '.png', '.jpg', '.jpeg', '.pbm', '.pgm', '.ppm', '.tif', '.tiff')
 
 
 def check_email(email):
@@ -45,7 +51,7 @@ def user_serialize(user):
     p_tmp = {
         'username': user.username,
         'name': user.name,
-        'avatar': str(user.avatar),
+        'avatar': user.avatar.url,
         'email': user.email,
         'gnum': user.gnum,
         'profile': user.profile

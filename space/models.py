@@ -76,7 +76,7 @@ class Uml(models.Model):
 class Users(models.Model):
     username = models.CharField(max_length=18)
     field_password = models.CharField(db_column='_password', max_length=18)  # Field renamed because it started with '_'.
-    avatar = models.FileField(max_length=255,upload_to='file/avatars')
+    avatar = models.ImageField(upload_to='avatars/', max_length=255)
     name = models.CharField(max_length=18)
     email = models.CharField(max_length=18)
     gnum = models.IntegerField()

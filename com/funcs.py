@@ -51,7 +51,7 @@ def user_serialize(user):
     p_tmp = {
         'username': user.username,
         'name': user.name,
-        'avatar': user.avatar.url,
+        'avatar': settings.MEDIA_URL + 'avatars/' + user.avatar.name,
         'email': user.email,
         'gnum': user.gnum,
         'profile': user.profile

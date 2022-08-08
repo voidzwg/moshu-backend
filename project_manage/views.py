@@ -334,6 +334,28 @@ def delete_document(request):
         return JsonResponse({'errno': 0, 'msg': "删除成功"})
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
 
+def rename_document(request):
+    if request.method == 'POST':
+        id = request.POST.get('id')
+        name = request.POST.get('name')
+        if id is None or name is None:
+            return JsonResponse({'errno': 1002, 'msg': "参数为空"})
+        try:
+            document = Document.objects.get(id=id)
+        except Exception as e:
+            print(e)
+            return JsonResponse({'errno': 1003, 'msg': "文件不存在"})
+        if name == '':
+            return JsonResponse({'errno': 1004, 'msg': "名称不能为空"})
+        try:
+            document.name = name
+            document.save()
+        except Exception as e:
+            print(e)
+            return JsonResponse({'errno': 1005, 'msg': "未知错误"})
+        return JsonResponse({'errno': 0, 'msg': "重命名成功"})
+    else:
+        return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
 
 @csrf_exempt
 def search_projects(request):

@@ -56,17 +56,18 @@ class Projects(models.Model):
 
 class Prototype(models.Model):
     pid = models.IntegerField()
-    url = models.FileField(max_length=255)
+    data = models.TextField()
     name = models.CharField(max_length=100)
+    width = models.IntegerField()
+    height = models.IntegerField()
 
     class Meta:
         managed = False
         db_table = 'prototype'
 
-
 class Uml(models.Model):
     pid = models.IntegerField()
-    url = models.FileField(max_length=255)
+    data = models.TextField()
     name = models.CharField(max_length=100)
 
     class Meta:

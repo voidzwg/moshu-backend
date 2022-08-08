@@ -9,6 +9,7 @@ urlpatterns = [
     path('out_bin/', out_bin),
     path('delete/', delete),
     path('close/', close),
+    path('copy/', copy),
    # path('save_document/', save_document),
    # path('get_document/', get_document),
     path('create_document/', create_document),

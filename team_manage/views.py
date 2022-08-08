@@ -184,7 +184,7 @@ def get_invitation(request):
                 'gname':name,
             }
             data.append(tmp)
-        return JsonResponse(data)
+        return JsonResponse(data,safe=False)
     else:
         return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
 

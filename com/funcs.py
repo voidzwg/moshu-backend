@@ -48,7 +48,7 @@ def check_password(password):
 
 def user_serialize(user):
     data = []
-    avatar_path = SERVER_URL + settings.MEDIA_URL + user.avatar
+    avatar_path = SERVER_URL + settings.MEDIA_URL + str(user.avatar)
     p_tmp = {
         'username': user.username,
         'name': user.name,

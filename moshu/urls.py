@@ -29,5 +29,5 @@ urlpatterns = [
     path('api/design/', include('design.urls')),
     # url('media/(?P<path>.*)$', serve, kwargs={'document_root': settings.MEDIA_ROOT}),
     # url(serve(path=r'media/(?P<path>.*)$', document_root=settings.MEDIA_ROOT)),
-    path(r'media/(?P<path>.*)$', serve, kwargs={'document_root': settings.MEDIA_ROOT})
+    path(r'api/media/(?P<path>.*)$', serve, kwargs={'document_root': settings.MEDIA_ROOT})
 ]

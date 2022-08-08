@@ -1,3 +1,5 @@
+import datetime
+
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from com.funcs import *
@@ -96,20 +98,27 @@ def set_avatar(request):
     if request.method == 'POST':
         uid = request.POST.get('uid')
         avatar = request.FILES.get('avatar')
-        if uid == '':
+        if uid == '' or avatar == '':
             return JsonResponse({'errno': 1002, 'msg': "参数为空"})
-        if avatar is None:
-            return JsonResponse({'errno': 1002, 'msg': "参数为空"})
+        # print(uid, avatar.name)
+        if not avatar.name.lower().endswith(IMAGE_TAIL):
+            print(avatar)
+            return JsonResponse({'errno': 1002, 'msg': "文件格式错误"})
+        pass
         try:
             user = Users.objects.get(id=uid)
         except Exception as e:
             print(e)
             return JsonResponse({'errno': 1003, 'msg': "用户不存在"})
-        cropped_avatar = crop_image(avatar, user.id)
+        avatar_name = datetime.datetime.now().strftime('%Y%m%d%H%M%S%f') + avatar.name
         try:
-            user.avatar = cropped_avatar
+            user.avatar = avatar_name
             user.save()
         except Exception as e:
             return JsonResponse({'errno': 1004, 'msg': "未知错误"})
+        f = open(os.path.join(settings.MEDIA_ROOT, 'avatars', avatar_name), 'wb')
+        for i in avatar.chunks():
+            f.write(i)
+        f.close()
         return JsonResponse({'errno': 0, 'msg': "上传成功"})
     return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})

@@ -4,7 +4,6 @@ import uuid
 from PIL import Image
 from django.http import JsonResponse
 from fuzzywuzzy import process
-
 from group_manage.models import Members
 from moshu import settings
 
@@ -49,11 +48,10 @@ def check_password(password):
 
 def user_serialize(user):
     data = []
-    avatar_path = SERVER_URL + settings.MEDIA_URL + str(user.avatar)
     p_tmp = {
         'username': user.username,
         'name': user.name,
-        'avatar': avatar_path,
+        'avatar': user.avatar.url,
         'email': user.email,
         'gnum': user.gnum,
         'profile': user.profile
@@ -157,18 +155,4 @@ def fuzzy_search(key, choices_list):
         choices_results = process.extract(key, choices, limit=10)
         results = merge_list(results, len(results), choices_results, len(choices_results))
     return results
-
-
-def crop_image(file, uid):
-    # 随机生成新的图片名，自定义路径。
-    ext = file.name.split('.')[-1]
-    file_name = '{}.{}'.format(uuid.uuid4().hex[:10], ext)
-    cropped_avatar = os.path.join(uid, "avatar", file_name)
-    # 相对根目录路径
-    file_path = os.path.join("media", uid, "avatar", file_name)
-    # 裁剪图片,压缩尺寸为200*200。
-    img = Image.open(file)
-    crop_im = img.crop((50, 50, 300, 300)).resize((200, 200), Image.ANTIALIAS)
-    crop_im.save(file_path)
-    return cropped_avatar
 

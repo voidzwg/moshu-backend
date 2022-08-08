@@ -10,7 +10,8 @@ from moshu import settings
 
 DEFAULT_AVATAR = "111"  # 默认头像文件名
 AVATAR_HOME = "../file/avatars/"  # 头像文件存放地址
-SERVER_URL = "http://43.138.26.134/"
+SERVER_URL = "http://43.138.26.134"
+IMAGE_TAIL = ('.bmp', '.dib', '.png', '.jpg', '.jpeg', '.pbm', '.pgm', '.ppm', '.tif', '.tiff')
 
 
 def check_email(email):

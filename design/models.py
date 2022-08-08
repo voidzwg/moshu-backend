@@ -64,6 +64,15 @@ class Prototype(models.Model):
         managed = False
         db_table = 'prototype'
 
+class Template(models.Model):
+    data = models.TextField()
+    name = models.CharField(max_length=100)
+    width = models.IntegerField()
+    height = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'template'
 
 class Uml(models.Model):
     pid = models.IntegerField()

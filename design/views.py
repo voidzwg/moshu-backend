@@ -108,4 +108,37 @@ def search_design(request):
         return prototype_serialize(unique_results)
     return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
 
+def get_templates(request):
+    if request.method == 'GET':
+        templates = Template.objects.all()
+        if templates.count() == 0:
+            return JsonResponse({'errno': 0, 'msg': "无模板"})
+        data = []
+        for t in templates:
+            tmp = {
+                'id':t.id,
+                'name':t.name,
+            }
+            data.append(tmp)
+        return JsonResponse(data,safe=False)
+    else:
+        return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
 
+def open_template(request):
+    if request.method == 'POST':
+        id = request.POST.get('id')
+        if id is None:
+            JsonResponse({'errno': 1002, 'msg': "参数为空"})
+        try:
+            t = Template.objects.get(id=id)
+        except Exception as e:
+            print(e)
+            return JsonResponse({'errno': 1003, 'msg': "模板不存在"})
+        data = {
+            'data':t.data,
+            'width':t.width,
+            'height':t.height,
+        }
+        return JsonResponse(data,safe=False)
+    else:
+        return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})

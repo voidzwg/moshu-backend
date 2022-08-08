@@ -90,6 +90,27 @@ def group_serialize(group_list):
     return JsonResponse(data, safe=False)
 
 
+def project_serialize(project_list):
+    data = []
+    for project in project_list:
+        uid = project.uid
+        if uid:
+            uid = project.uid.id
+        json = {
+            'id': project.id,
+            'name': project.name,
+            'available': project.available,
+            'status': project.status,
+            'gid': project.gid.id,
+            'uid': uid,
+            'starttime': project.starttime,
+            'endtime': project.endtime,
+            'profile': project.profile
+        }
+        data.append(json)
+    return JsonResponse(data, safe=False)
+
+
 def prototype_serialize(prototype_list):
     data = []
     for prototype in prototype_list:

@@ -28,8 +28,7 @@ def get_member(request):
             print(e)
             return JsonResponse({'errno': 1003, 'msg': "未知错误"})
         return JsonResponse(data,safe=False)
-    else:
-        return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
+    return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
 
 
 def appoint(request):
@@ -51,10 +50,8 @@ def appoint(request):
         except Exception as e:
             print(e)
             return JsonResponse({'errno': 1005, 'msg': "未知错误"})
-        else:
-            return JsonResponse({'errno': 0, 'msg': "任命成功！"})
-    else:
-        return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
+        return JsonResponse({'errno': 0, 'msg': "任命成功！"})
+    return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
 
 
 def delete(request):
@@ -75,10 +72,8 @@ def delete(request):
         except Exception as e:
             print(e)
             return JsonResponse({'errno': 1005, 'msg': "未知错误"})
-        else:
-            return JsonResponse({'errno': 0, 'msg': "删除成功！"})
-    else:
-        return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
+        return JsonResponse({'errno': 0, 'msg': "删除成功！"})
+    return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
 
 
 def revoke(request):
@@ -102,10 +97,8 @@ def revoke(request):
         except Exception as e:
             print(e)
             return JsonResponse({'errno': 1005, 'msg': "未知错误"})
-        else:
-            return JsonResponse({'errno': 0, 'msg': "撤销成功！"})
-    else:
-        return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
+        return JsonResponse({'errno': 0, 'msg': "撤销成功！"})
+    return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
 
 
 def get_user(request):
@@ -129,8 +122,7 @@ def get_user(request):
             }
             data.append(p_tmp)
         return JsonResponse(data, safe=False)
-    else:
-        return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
+    return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
 
 
 def invite(request):
@@ -159,8 +151,8 @@ def invite(request):
             return JsonResponse({'errno': 1005, 'msg': "未知错误"})
         else:
             return JsonResponse({'errno': 0, 'msg': "已发送邀请，请等待回复"})
-    else:
-        return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
+    return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
+
 
 def get_invitation(request):
     if request.method == 'POST':
@@ -185,8 +177,8 @@ def get_invitation(request):
             }
             data.append(tmp)
         return JsonResponse(data,safe=False)
-    else:
-        return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
+    return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
+
 
 def accept_invitation(request):
     if request.method == 'POST':
@@ -215,8 +207,6 @@ def accept_invitation(request):
             newMember.save()
         except:
             return JsonResponse({'errno': 1005, 'msg': "未知错误"})
-        else:
-            return JsonResponse({'errno': 0, 'msg': "已成功加入团队"+"\'"+group.name+"\'"})
-    else:
-        return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
+        return JsonResponse({'errno': 0, 'msg': "已成功加入团队"+"\'"+group.name+"\'"})
+    return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
 

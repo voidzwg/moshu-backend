@@ -11,7 +11,7 @@ def create_group(request):
     if request.method == 'POST':
         uid = request.POST.get('uid')
         name = request.POST.get('name')
-        if name is None:
+        if name == '':
             return JsonResponse({'errno': 2, 'msg': "名字不能为空"})
         try:
             user = Users.objects.get(id=uid)
@@ -78,7 +78,7 @@ def dismiss(request):
     if request.method == 'POST':
         uid = request.POST.get('uid')
         gid = request.POST.get('gid')
-        if uid is None or gid is None:
+        if uid == '' or gid == '':
             return JsonResponse({'errno': 1002, 'msg': "uid或gid为空，请检查参数名是否为\'gid\',\'uid\'"})
         try:
             member = Members.objects.get(gid=gid, uid=uid)
@@ -96,8 +96,7 @@ def dismiss(request):
             else:
                 group.delete()
                 return JsonResponse({'errno': 0, 'msg': "解散成功"})
-    else:
-        return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
+    return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
 
 
 @csrf_exempt

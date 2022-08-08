@@ -42,7 +42,7 @@ def create(request):
         pid = request.POST.get('picid')
         name = request.POST.get('name')
         width = request.POST.get('width')
-        height  = request.POST.get('height')
+        height = request.POST.get('height')
         prototype = Prototype(pid=pid, name=name, data='', width=width, height=height)
         prototype.save()
         return JsonResponse({'errno': 0, 'msg': "创建成功", 'picid': prototype.id})

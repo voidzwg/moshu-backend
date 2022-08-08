@@ -8,7 +8,7 @@ from com.funcs import *
 def get_project(request):
     if request.method == 'GET':
         gid = request.GET.get('gid')
-        if gid is None:
+        if gid == '':
             return JsonResponse({'errno': 1002, 'msg': "参数为空，请检查参数名是否为\'gid\'"})
         try:
             projects = Projects.objects.filter(gid=gid)
@@ -54,10 +54,8 @@ def create(request):
         except Exception as e:
             print(e)
             return JsonResponse({'errno': 1004, 'msg': "未知错误"})
-        else:
-            return JsonResponse({'errno': 0, 'msg': "创建成功"})
-    else:
-        return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
+        return JsonResponse({'errno': 0, 'msg': "创建成功"})
+    return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
 
 
 @csrf_exempt
@@ -65,7 +63,7 @@ def rename(request):
     if request.method == 'POST':
         id = request.POST.get('id')
         name = request.POST.get('name')
-        if id is None or name is None:
+        if id == '' or name == '' or name is None:
             return JsonResponse({'errno': 1002, 'msg': "参数为空"})
         try:
             project = Projects.objects.get(id=id)
@@ -78,10 +76,8 @@ def rename(request):
         except Exception as e:
             print(e)
             return JsonResponse({'errno': 1004, 'msg': "未知错误"})
-        else:
-            return JsonResponse({'errno': 0, 'msg': "重命名成功"})
-    else:
-        return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
+        return JsonResponse({'errno': 0, 'msg': "重命名成功"})
+    return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
 
 
 @csrf_exempt
@@ -101,10 +97,8 @@ def to_bin(request):
         except Exception as e:
             print(e)
             return JsonResponse({'errno': 1004, 'msg': "未知错误"})
-        else:
-            return JsonResponse({'errno': 0, 'msg': "已移至回收站"})
-    else:
-        return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
+        return JsonResponse({'errno': 0, 'msg': "已移至回收站"})
+    return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
 
 
 @csrf_exempt
@@ -124,10 +118,8 @@ def out_bin(request):
         except Exception as e:
             print(e)
             return JsonResponse({'errno': 1004, 'msg': "未知错误"})
-        else:
-            return JsonResponse({'errno': 0, 'msg': "已移出回收站"})
-    else:
-        return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
+        return JsonResponse({'errno': 0, 'msg': "已移出回收站"})
+    return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
 
 
 @csrf_exempt
@@ -146,10 +138,8 @@ def delete(request):
         except Exception as e:
             print(e)
             return JsonResponse({'errno': 1004, 'msg': "未知错误"})
-        else:
-            return JsonResponse({'errno': 0, 'msg': "删除成功"})
-    else:
-        return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
+        return JsonResponse({'errno': 0, 'msg': "删除成功"})
+    return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
 
 
 @csrf_exempt
@@ -174,6 +164,7 @@ def close(request):
     else:
         return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
 
+@csrf_exempt
 def copy(request):
     if request.method == 'POST':
         id = request.POST.get('id')
@@ -210,57 +201,7 @@ def copy(request):
         except Exception as e:
             return JsonResponse({'errno': 1004, 'msg': "未知错误"})
         return JsonResponse({'errno': 0, 'msg': "复制成功"})
-    else:
-        return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
-#@csrf_exempt
-#def save_document(request):
-#    if request.method == 'POST':
-#        pid = request.POST.get('pid')
-#        name = request.POST.get('name')
-#        file = request.FILES.get('file')
-#        try:
-#            new_document = Document(pid=pid, name=name, data=file)
-#            new_document.save()
-#        except Exception as e:
-#            print(e)
-#            return JsonResponse({'errno': 1002, 'msg': "未知错误"})
-#        return JsonResponse({'errno': 0, 'msg': "保存成功"})
-#    else:
-#        return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
-#
-#
-#@csrf_exempt
-#def get_document(request):
-#    if request.method == 'GET':
-#        pid = request.GET.get('pid')
-#        if pid is None:
-#            return JsonResponse({'errno': 1002, 'msg': "参数为空"})
-#        docs = Document.objects.filter(pid=pid)
-#        data = []
-#        for d in docs:
-#            tmp = {
-#                'id': d.id,
-#                'name': d.name,
-#            }
-#            data.append(tmp)
-#        return JsonResponse(data,safe=False)
-#    else:
-#        return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
-
-
-# def open_document(request):
-#     if request.method == 'POST':
-#         id = request.POST.get('id')
-#         if id is None:
-#             return JsonResponse({'errno': 1002, 'msg': "参数为空"})
-#         try:
-#             doc = Document.objects.get(id=id)
-#         except Exception as e:
-#             print(e)
-#             return JsonResponse({'errno': 1003, 'msg': "文件不存在"})
-#         return JsonResponse({'errno': 0, 'url': str(doc.url)})
-#     else:
-#         return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
+    return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
 
 
 @csrf_exempt
@@ -312,13 +253,11 @@ def get_documents(request):
 def open_document(request):
     if request.method == 'POST':
         id = request.POST.get('id')
-
         try:
             document = Document.objects.get(id=id)
         except:
             return JsonResponse({'errno': 2, 'msg': "文件不存在"})
         return JsonResponse({'errno': 0, 'data': document.data})
-        #  return prototype_serialize([prototype])
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
 
 
@@ -334,6 +273,7 @@ def delete_document(request):
         return JsonResponse({'errno': 0, 'msg': "删除成功"})
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
 
+@csrf_exempt
 def rename_document(request):
     if request.method == 'POST':
         id = request.POST.get('id')
@@ -356,6 +296,7 @@ def rename_document(request):
         return JsonResponse({'errno': 0, 'msg': "重命名成功"})
     else:
         return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
+
 
 @csrf_exempt
 def search_projects(request):
@@ -398,3 +339,4 @@ def search_projects(request):
         unique_results.sort(key=results.index)
         return project_serialize(unique_results)
     return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
+

@@ -12,7 +12,7 @@ def login(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
 
-        if username is None or password is None:
+        if username == '' or password == '':
             return JsonResponse({'errno': 2, 'msg': "请输入用户名和密码"})
         try:
             user = Users.objects.get(username=username)
@@ -30,7 +30,7 @@ def register(request):
         username = request.POST.get('username')
         password_1 = request.POST.get('password_1')
         password_2 = request.POST.get('password_2')
-        if username is None or password_1 is None:
+        if username == '' or password_1 == '':
             return JsonResponse({'errno': 2, 'msg': "请输入用户名和密码"})
         try:
             test_user = Users.objects.get(username=username)

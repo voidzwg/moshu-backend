@@ -104,7 +104,6 @@ def set_avatar(request):
         if not avatar.name.lower().endswith(IMAGE_TAIL):
             print(avatar)
             return JsonResponse({'errno': 1002, 'msg': "文件格式错误"})
-        pass
         try:
             user = Users.objects.get(id=uid)
         except Exception as e:
@@ -123,3 +122,4 @@ def set_avatar(request):
         f.close()
         return JsonResponse({'errno': 0, 'msg': "上传成功"})
     return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
+

@@ -60,6 +60,8 @@
 
 打开文件： /api/project_manage/open_document/  参数： id
 
+重命名文件：/api/project_manage/rename_document/ 参数： id name
+
 模糊搜索项目：/api/project_manage/search_projects/
 
 ### 团队管理页面

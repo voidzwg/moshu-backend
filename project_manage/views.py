@@ -287,7 +287,7 @@ def create_document(request):
         data = request.POST.get('data')
         document = Document(pid=pid, name=name, data=data)
         document.save()
-        return JsonResponse({'errno': 0, 'msg': "创建成功"})
+        return JsonResponse({'errno': 0, 'msg': "创建成功",'id':document.id})
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
 
 

@@ -92,3 +92,7 @@
 
 模糊搜索设计图：/api/design/search_design/
 
+获取模板信息：/api/design/get_templates/   GET
+
+打开模板： /api/design/open_template/   POST parameters: id
+

@@ -4,7 +4,7 @@ from group_manage.models import Members
 from fuzzywuzzy import process
 
 DEFAULT_AVATAR = "111"  # 默认头像文件名
-AVATAR_HOME = "../static/avatars/"  # 头像文件存放地址
+AVATAR_HOME = "../file/avatars/"  # 头像文件存放地址
 
 
 def check_email(email):

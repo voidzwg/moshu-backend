@@ -174,7 +174,33 @@ def close(request):
     else:
         return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
 
+def copy(request):
+    if request.method == 'POST':
+        id = request.POST.get('id')
+        uid = request.POST.get('uid')
+        if id is None or uid is None:
+            return JsonResponse({'errno': 1002, 'msg': "参数为空"})
+        try:
+            project = Projects.objects.get(id=id)
+            user = Users.objects.get(id=uid)
+        except Exception as e:
+            print(e)
+            return JsonResponse({'errno': 1003, 'msg': "不存在该项目"})
+        num = Projects.objects.filter(name__contains=project.name).count()
+        name = project.name+'('+num+')'
+        try:
+            newProject = Projects(gid= project.gid,uid=user,name=name,available=0,status=0,profile=project.profile)
+            newProject.save()
+            prototype = Prototype.objects.filter(pid=project.id)
+            for p in prototype:
+                num = Prototype.objects.filter(name__contains=p.name).count()
+                name = p.name + '(' + num + ')'
 
+        except Exception as e:
+            return JsonResponse({'errno': 1004, 'msg': "未知错误"})
+
+    else:
+        return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
 #@csrf_exempt
 #def save_document(request):
 #    if request.method == 'POST':

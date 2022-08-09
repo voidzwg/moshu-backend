@@ -11,10 +11,13 @@ from .models import *
 def store(request):
     if request.method == 'POST':
         picid = request.POST.get('picid')
+        file = request.FILES.get('file')
         try:
             prototype = Prototype.objects.get(id=picid)
         except:
             return JsonResponse({'errno': 2, 'msg': "原型设计不存在"})
+        with open(os.path.join(settings.MEDIA_ROOT, 'documents', prototype.data), 'wt') as store_file:
+            store_file.write(file)
         prototype.modify_time = datetime.datetime.now()
         prototype.save()
         return JsonResponse({'errno': 0, 'msg': "修改成功"})
@@ -58,24 +61,20 @@ def create(request):
         now_time = datetime.datetime.now()
         file_name = now_time.strftime('%Y%m%d%H%M%S%f_') + str(pid) + '_' + model_name
         content = ''
-        print("prepare to open file")
         with open(os.path.join(settings.MEDIA_ROOT, 'documents', model_name), 'rt') as model_file:
             while True:
                 msg = model_file.read(READ_LENGTH)
                 if msg == '':
                     break
                 content += msg
-        print("Already open model file", content[:80])
         with open(os.path.join(settings.MEDIA_ROOT, 'documents', file_name), 'at') as new_file:
             while content:
                 msg = content[:READ_LENGTH]
                 new_file.write(msg)
                 content = content[READ_LENGTH:]
-        print("Aready open the goal file", file_name)
         prototype = Prototype(pid=project, uid=user, name=name, data=file_name, width=width, 
                               height=height, create_time=now_time, modify_time=now_time)
         prototype.save()
-        print("Already saved in database", now_time)
         return JsonResponse({'errno': 0, 'msg': "创建成功", 'picid': prototype.id})
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
 

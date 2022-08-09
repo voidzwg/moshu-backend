@@ -184,6 +184,7 @@ def get_invitation(request):
                 'invitee':i.invitee,
                 'gid':i.gid,
                 'gname':gname,
+                'read':i.read,
             }
             data.append(tmp)
         return JsonResponse(data,safe=False)

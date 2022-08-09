@@ -266,10 +266,17 @@ def get_documents(request):
         documents = Document.objects.filter(pid=pid)
         data = []
         for i in documents:
+            if i.uid is None:
+                username = None
+            else:
+                username = i.uid.username
             tmp = {
                 'id': i.id,
                 'name': i.name,
                 'pid': i.pid,
+                'create_time': i.create_time,
+                'modify_time': i.modify_time,
+                'creator_username': username
             }
             data.append(tmp)
         return JsonResponse(data, safe=False)

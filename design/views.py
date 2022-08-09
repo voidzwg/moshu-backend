@@ -99,26 +99,7 @@ def get_design(request):
     if request.method == 'POST':
         pid = request.POST.get('pid')
         prototype_list = Prototype.objects.filter(pid=pid)
-        data = []
-        for prototype in prototype_list:
-            try:
-                user = Users.objects.get(id=prototype.uid.id)
-                name = user.name
-                username = user.username
-            except Exception as e:
-                print(e)
-                name = None
-                username = None
-            json = {
-                'picid': prototype.id,
-                'name': prototype.name,
-                'create_time': prototype.create_time,
-                'modify_time': prototype.modify_time,
-                'creator_username': username,
-                'creator_name': name,
-            }
-            data.append(json)
-        return JsonResponse(data, safe=False)
+        return prototype_serialize(prototype_list)
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
 
 

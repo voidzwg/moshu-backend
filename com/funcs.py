@@ -5,7 +5,7 @@ import datetime
 from PIL import Image
 from django.http import JsonResponse
 from fuzzywuzzy import process
-from group_manage.models import Members
+from group_manage.models import Members, Users
 from moshu import settings
 
 DEFAULT_AVATAR = "default.png"  # 默认头像文件名
@@ -116,6 +116,29 @@ def project_serialize(project_list):
             'starttime': project.starttime,
             'endtime': project.endtime,
             'profile': project.profile
+        }
+        data.append(json)
+    return JsonResponse(data, safe=False)
+
+
+def prototype_serialize(prototype_list):
+    data = []
+    for prototype in prototype_list:
+        try:
+            user = Users.objects.get(id=prototype.uid.id)
+            name = user.name
+            username = user.username
+        except Exception as e:
+            print(e)
+            name = None
+            username = None
+        json = {
+            'picid': prototype.id,
+            'name': prototype.name,
+            'create_time': prototype.create_time,
+            'modify_time': prototype.modify_time,
+            'creator_username': username,
+            'creator_name': name,
         }
         data.append(json)
     return JsonResponse(data, safe=False)

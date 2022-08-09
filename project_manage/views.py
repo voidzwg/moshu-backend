@@ -164,6 +164,7 @@ def close(request):
     else:
         return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
 
+
 @csrf_exempt
 def copy(request):
     if request.method == 'POST':
@@ -220,15 +221,47 @@ def store_document(request):
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
 
 
+# @csrf_exempt
+# def create_document(request):
+#     if request.method == 'POST':
+#         pid = request.POST.get('pid')
+#         name = request.POST.get('name')
+#         data = request.POST.get('data')
+#         document = Document(pid=pid, name=name, data=data)
+#         document.save()
+#         return JsonResponse({'errno': 0, 'msg': "创建成功",'id':document.id})
+#     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
+
+
 @csrf_exempt
 def create_document(request):
     if request.method == 'POST':
         pid = request.POST.get('pid')
         name = request.POST.get('name')
-        data = request.POST.get('data')
-        document = Document(pid=pid, name=name, data=data)
+        model_name = request.POST.get('model_name')
+        if name == '':
+            return JsonResponse({'errno': 2, 'msg': "名字不能为空"})
+        try:
+            project = Projects.objects.get(id=pid)
+        except:
+            return JsonResponse({'errno': 2, 'msg': "项目不存在"})
+        now_time = datetime.datetime.now()
+        file_name = now_time.strftime('%Y%m%d%H%M%S%f_') + str(pid) + '_' + model_name
+        content = ''
+        with open(os.path.join(settings.MEDIA_ROOT, 'documents', model_name), 'rt') as model_file:
+            while True:
+                msg = model_file.read(READ_LENGTH)
+                if msg == '':
+                    break
+                content += msg
+        with open(os.path.join(settings.MEDIA_ROOT, 'documents', file_name), 'at') as new_file:
+            while content:
+                msg = content[:READ_LENGTH]
+                new_file.write(msg)
+                content = content[READ_LENGTH:]
+        document = Document(pid=pid, data=file_name, name=name, create_time=now_time, modify_time=now_time)
         document.save()
-        return JsonResponse({'errno': 0, 'msg': "创建成功",'id':document.id})
+        return JsonResponse({'errno': 0, 'msg': "创建成功", 'docid': document.id})
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
 
 
@@ -272,6 +305,7 @@ def delete_document(request):
         doc.delete()
         return JsonResponse({'errno': 0, 'msg': "删除成功"})
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
+
 
 @csrf_exempt
 def rename_document(request):

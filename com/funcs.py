@@ -126,7 +126,7 @@ def prototype_serialize(prototype_list):
     for prototype in prototype_list:
         json = {
             'picid': prototype.id,
-            'data': DOCUMENTS_URL + prototype.data.name,
+            'data': DOCUMENTS_URL + prototype.data,
             'name': prototype.name,
             'width': prototype.width,
             'height': prototype.height,

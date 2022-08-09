@@ -219,22 +219,35 @@ def copy(request):
 
 @csrf_exempt
 def store_document(request):
+    print("IN STORE_DOCUMENT")
     if request.method == 'POST':
-        doc_id = request.POST.get('id')
-        # print("type of picid", type(picid))
+        print("IN IF")
+        try:
+            doc_id = request.POST.get('id')
+        except Exception as e:
+            print(e)
+            return JsonResponse({'errno': 3333, 'msg': "未知错误"})
+        print("Out of try")
+        print("type of doc_id", type(doc_id))
         file_str = request.FILES.get('file')
-        # print("type of file_str", type(file_str))
+        print("File String", file_str)
+        print("type of file_str", type(file_str))
         try:
             document = Document.objects.get(id=doc_id)
         except:
-            return JsonResponse({'errno': 2, 'msg': "原型设计不存在"})
-        content = b''
-        for ch in file_str.chunks():
-            content += ch
+            return JsonResponse({'errno': 2, 'msg': "文档不存在"})
+        print("Already checked document")
+        # content = b''
         with open(os.path.join(settings.MEDIA_ROOT, 'documents', document.data), 'wt') as store_file:
-            store_file.write(content.decode('utf-8'))
+            for ch in file_str.chunks():
+                # content += ch
+                print(">>>", ch)
+                store_file.write(ch.decode('utf-8'))
+            # store_file.write(content.decode('utf-8'))
+        print("Already stored in file", document.data)
         document.modify_time = datetime.datetime.now()
         document.save()
+        print("Already saved in database")
         return JsonResponse({'errno': 0, 'msg': "修改成功"})
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
 
@@ -320,13 +333,13 @@ def open_document(request):
         try:
             f = open(os.path.join(settings.MEDIA_ROOT, 'documents', document.data), 'r')
         except IOError as e:
+            print(e)
             return JsonResponse({'errno': 2, 'msg': "文件已失效"})
         print("checked file")
         json = {
             'name': document.name,
             'url': settings.MEDIA_URL + "documents/" + document.data
         }
-        print([json])
         return JsonResponse([json], safe=False)
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
 

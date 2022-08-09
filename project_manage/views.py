@@ -14,13 +14,17 @@ def get_project(request):
             projects = Projects.objects.filter(gid=gid)
             data = []
             for p in projects:
+                if p.uid is None:
+                    uid = None
+                else:
+                    uid = p.uid.id
                 tmp = {
                     'id': p.id,
                     'name': p.name,
                     'available': p.available,
                     'status': p.status,
                     'gid': p.gid.id,
-                    'uid': p.uid.id,
+                    'uid': uid,
                     'starttime': p.starttime,
                     'endtime': p.endtime,
                     'profile': p.profile,
@@ -40,16 +44,23 @@ def create(request):
         gid = request.POST.get('gid')
         uid = request.POST.get('uid')
         name = request.POST.get('name')
+        print("1", gid, uid, name)
         if gid == '' or uid == '' or name == '':
             return JsonResponse({'errno': 1002, 'msg': "参数为空"})
         try:
-            gid = Groups.objects.get(id=gid)
-            uid = Users.objects.get(id=uid)
+            group = Groups.objects.get(id=gid)
         except Exception as e:
             print(e)
-            return JsonResponse({'errno': 1003, 'msg': "不存在该用户或团队"})
+            return JsonResponse({'errno': 1003, 'msg': "不存在该团队"})
+        print("2", group)
         try:
-            newProject = Projects(gid=gid, uid=uid, name=name, available=0, status=0)
+            user = Users.objects.get(id=uid)
+        except Exception as e:
+            print(e)
+            return JsonResponse({'errno': 1003, 'msg': "不存在该用户"})
+        print("3", user)
+        try:
+            newProject = Projects(gid=group, name=name, available=0, status=0)
             newProject.save()
         except Exception as e:
             print(e)

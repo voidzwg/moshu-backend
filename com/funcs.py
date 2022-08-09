@@ -8,7 +8,9 @@ from group_manage.models import Members
 from moshu import settings
 
 DEFAULT_AVATAR = "default.png"  # 默认头像文件名
-SERVER_URL = "http://43.138.26.134"
+SERVER_URL = "http://43.138.26.134"  # 服务器URL
+AVATARS_URL = settings.MEDIA_URL + "avatars/"  # 头像路径
+DOCUMENTS_URL = settings.MEDIA_URL + "documents/"  # 文件路径
 IMAGE_TAIL = ('.bmp', '.dib', '.png', '.jpg', '.jpeg', '.pbm', '.pgm', '.ppm', '.tif', '.tiff')
 
 
@@ -50,7 +52,7 @@ def user_serialize(user):
     p_tmp = {
         'username': user.username,
         'name': user.name,
-        'avatar': settings.MEDIA_URL + 'avatars/' + user.avatar.name,
+        'avatar': AVATARS_URL + user.avatar.name,
         'email': user.email,
         'gnum': user.gnum,
         'profile': user.profile
@@ -66,7 +68,7 @@ def users_serialize(user_list):
             'id': user.id,
             'username': user.username,
             'name': user.name,
-            'avatar': str(user.avatar),
+            'avatar': AVATARS_URL + user.avatar.name,
             'email': user.email,
             'gnum': user.gnum,
             'profile': user.profile

@@ -284,7 +284,15 @@ def open_document(request):
             document = Document.objects.get(id=id)
         except:
             return JsonResponse({'errno': 2, 'msg': "文件不存在"})
-        return JsonResponse({'errno': 0, 'data': document.data})
+        try:
+            f = open(os.path.join(settings.MEDIA_ROOT, 'documents', document.data), 'r')
+        except IOError as e:
+            return JsonResponse({'errno': 2, 'msg': "文件已失效"})
+        json = {
+            'name': document.name,
+            'url': document.data
+        }
+        return JsonResponse([json], safe=False)
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
 
 

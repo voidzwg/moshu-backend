@@ -208,29 +208,23 @@ def copy(request):
 @csrf_exempt
 def store_document(request):
     if request.method == 'POST':
-        id = request.POST.get('id')
-        data = request.POST.get('data')
+        doc_id = request.POST.get('id')
+        # print("type of picid", type(picid))
+        file_str = request.FILES.get('file')
+        # print("type of file_str", type(file_str))
         try:
-            document = Document.objects.get(id=id)
+            document = Document.objects.get(id=doc_id)
         except:
-            return JsonResponse({'errno': 2, 'msg': "文件不存在"})
-        else:
-            document.data = data
-            document.save()
-            return JsonResponse({'errno': 0, 'msg': "修改成功"})
+            return JsonResponse({'errno': 2, 'msg': "原型设计不存在"})
+        content = b''
+        for ch in file_str.chunks():
+            content += ch
+        with open(os.path.join(settings.MEDIA_ROOT, 'documents', document.data), 'wt') as store_file:
+            store_file.write(content.decode('utf-8'))
+        document.modify_time = datetime.datetime.now()
+        document.save()
+        return JsonResponse({'errno': 0, 'msg': "修改成功"})
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
-
-
-# @csrf_exempt
-# def create_document(request):
-#     if request.method == 'POST':
-#         pid = request.POST.get('pid')
-#         name = request.POST.get('name')
-#         data = request.POST.get('data')
-#         document = Document(pid=pid, name=name, data=data)
-#         document.save()
-#         return JsonResponse({'errno': 0, 'msg': "创建成功",'id':document.id})
-#     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
 
 
 @csrf_exempt

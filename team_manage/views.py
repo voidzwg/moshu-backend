@@ -164,16 +164,26 @@ def get_invitation(request):
         for i in invitation:
             try:
                 group = Groups.objects.get(id=i.gid)
-                name = group.name
+                gname = group.name
             except Exception as e:
                 print(e)
-                name = '团队已被解散'
+                gname = '团队已被解散'
+            try:
+                user = Users.objects.get(id=i.inviter)
+                uname = user.name
+                username = user.username
+            except Exception as e:
+                print(e)
+                uname = '该用户已不存在'
+                username = '该用户已不存在'
             tmp = {
                 'id':i.id,
-                'inviter':i.inviter,
+                'inviter_id':i.inviter,
+                'inviter_name':uname,
+                'inviter_username':username,
                 'invitee':i.invitee,
                 'gid':i.gid,
-                'gname':name,
+                'gname':gname,
             }
             data.append(tmp)
         return JsonResponse(data,safe=False)

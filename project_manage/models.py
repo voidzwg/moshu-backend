@@ -18,15 +18,28 @@ class Groups(models.Model):
         managed = False
         db_table = '_groups'
 
-
 class Document(models.Model):
-    pid = models.IntegerField()
+    pid = models.ForeignKey('Projects', models.DO_NOTHING, db_column='pid')
     data = models.TextField()
     name = models.CharField(max_length=100)
+    create_time = models.DateTimeField(blank=True, null=True)
+    modify_time = models.DateTimeField(blank=True, null=True)
+    uid = models.ForeignKey('Users', models.DO_NOTHING, db_column='uid', blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'document'
+
+
+class Invite(models.Model):
+    inviter = models.IntegerField()
+    invitee = models.IntegerField()
+    gid = models.IntegerField()
+    read = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'invite'
 
 
 class Members(models.Model):
@@ -45,7 +58,7 @@ class Projects(models.Model):
     status = models.IntegerField()
     gid = models.ForeignKey(Groups, models.DO_NOTHING, db_column='gid')
     uid = models.ForeignKey('Users', models.DO_NOTHING, db_column='uid', blank=True, null=True)
-    starttime = models.DateTimeField(auto_now_add=True)
+    starttime = models.DateTimeField()
     endtime = models.DateTimeField(blank=True, null=True)
     profile = models.TextField(blank=True, null=True)
 
@@ -55,20 +68,36 @@ class Projects(models.Model):
 
 
 class Prototype(models.Model):
-    pid = models.IntegerField()
+    pid = models.ForeignKey(Projects, models.DO_NOTHING, db_column='pid')
     data = models.TextField()
     name = models.CharField(max_length=100)
     width = models.IntegerField()
     height = models.IntegerField()
+    create_time = models.DateTimeField(blank=True, null=True)
+    modify_time = models.DateTimeField(blank=True, null=True)
+    uid = models.ForeignKey('Users', models.DO_NOTHING, db_column='uid', blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'prototype'
 
+class Template(models.Model):
+    name = models.CharField(max_length=100)
+    data = models.TextField()
+    width = models.IntegerField()
+    height = models.TextField()
+
+    class Meta:
+        managed = False
+        db_table = 'template'
+
 class Uml(models.Model):
-    pid = models.IntegerField()
+    pid = models.ForeignKey(Projects, models.DO_NOTHING, db_column='pid')
     data = models.TextField()
     name = models.CharField(max_length=100)
+    uid = models.ForeignKey('Users', models.DO_NOTHING, db_column='uid', blank=True, null=True)
+    create_time = models.DateTimeField(blank=True, null=True)
+    modify_time = models.DateTimeField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -78,7 +107,7 @@ class Uml(models.Model):
 class Users(models.Model):
     username = models.CharField(max_length=18)
     field_password = models.CharField(db_column='_password', max_length=18)  # Field renamed because it started with '_'.
-    avatar = models.FileField(max_length=255)
+    avatar = models.ImageField(upload_to='avatars/', max_length=255)
     name = models.CharField(max_length=18)
     email = models.CharField(max_length=18)
     gnum = models.IntegerField()

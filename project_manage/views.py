@@ -263,7 +263,11 @@ def create_document(request):
 def get_documents(request):
     if request.method == 'POST':
         pid = request.POST.get('pid')
-        documents = Document.objects.filter(pid=pid)
+        try:
+            project = Projects.objects.get(id=pid)
+        except:
+            return JsonResponse({'errno': 2, 'msg': "项目不存在"})
+        documents = Document.objects.filter(pid=project)
         data = []
         for i in documents:
             if i.uid is None:
@@ -273,7 +277,7 @@ def get_documents(request):
             tmp = {
                 'id': i.id,
                 'name': i.name,
-                'pid': i.pid,
+                'pid': i.pid.id,
                 'create_time': i.create_time,
                 'modify_time': i.modify_time,
                 'creator_username': username

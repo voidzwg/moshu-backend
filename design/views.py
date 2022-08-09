@@ -1,3 +1,5 @@
+import os
+
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from com.funcs import *
@@ -10,12 +12,12 @@ from .models import *
 def store(request):
     if request.method == 'POST':
         picid = request.POST.get('picid')
-        data = request.POST.get('data')
+        data = request.FILES.get('data')
         try:
             prototype = Prototype.objects.get(id=picid)
         except:
             return JsonResponse({'errno': 2, 'msg': "原型设计不存在"})
-        prototype.data = data
+        prototype.data = data.name
         prototype.save()
         return JsonResponse({'errno': 0, 'msg': "修改成功"})
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
@@ -43,7 +45,27 @@ def create(request):
         name = request.POST.get('name')
         width = request.POST.get('width')
         height = request.POST.get('height')
-        prototype = Prototype(pid=pid, name=name, data='', width=width, height=height)
+        model_name = request.POST.get('model_name')
+        if name == '':
+            return JsonResponse({'errno': 2, 'msg': "名字不能为空"})
+        now_time = datetime.datetime.now()
+        file_name = now_time.strftime('%Y%m%d%H%M%S%f_') + str(pid) + '_' + name
+        if not model_name:
+            model_name = DEFAULT_PROTOTYPE
+        content = ''
+        with open(os.path.join(settings.MEDIA_ROOT, 'documents', model_name), 'rt') as model_file:
+            while True:
+                msg = model_file.read(READ_LENGTH)
+                if msg == '':
+                    break
+                content += msg
+        with open(os.path.join(settings.MEDIA_ROOT, 'documents', file_name), 'at') as new_file:
+            while content:
+                msg = content[:READ_LENGTH]
+                new_file.write(msg)
+                content = content[READ_LENGTH:]
+        prototype = Prototype(pid=pid, name=name, data=file_name, width=width, height=height,
+                              create_time=now_time, modify_time=now_time)
         prototype.save()
         return JsonResponse({'errno': 0, 'msg': "创建成功", 'picid': prototype.id})
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
@@ -127,6 +149,7 @@ def search_design(request):
         return prototype_serialize(unique_results)
     return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
 
+
 def get_templates(request):
     if request.method == 'GET':
         templates = Template.objects.all()
@@ -142,6 +165,7 @@ def get_templates(request):
         return JsonResponse(data,safe=False)
     else:
         return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
+
 
 def open_template(request):
     if request.method == 'POST':

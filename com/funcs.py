@@ -1,6 +1,7 @@
 import os
 import re
 import uuid
+import datetime
 from PIL import Image
 from django.http import JsonResponse
 from fuzzywuzzy import process
@@ -8,10 +9,12 @@ from group_manage.models import Members
 from moshu import settings
 
 DEFAULT_AVATAR = "default.png"  # 默认头像文件名
+DEFAULT_PROTOTYPE = "default_prototype.json"  # 默认原型设计文件名
 SERVER_URL = "http://43.138.26.134"  # 服务器URL
 AVATARS_URL = settings.MEDIA_URL + "avatars/"  # 头像路径
 DOCUMENTS_URL = settings.MEDIA_URL + "documents/"  # 文件路径
 IMAGE_TAIL = ('.bmp', '.dib', '.png', '.jpg', '.jpeg', '.pbm', '.pgm', '.ppm', '.tif', '.tiff')
+READ_LENGTH = 1024  # 一次读取的字符数量
 
 
 def check_email(email):
@@ -123,10 +126,10 @@ def prototype_serialize(prototype_list):
     for prototype in prototype_list:
         json = {
             'picid': prototype.id,
-            'data': prototype.data,
+            'data': DOCUMENTS_URL + prototype.data.name,
             'name': prototype.name,
-            'width':prototype.width,
-            'height':prototype.height,
+            'width': prototype.width,
+            'height': prototype.height,
         }
         data.append(json)
     return JsonResponse(data, safe=False)

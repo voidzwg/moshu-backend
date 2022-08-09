@@ -121,20 +121,6 @@ def project_serialize(project_list):
     return JsonResponse(data, safe=False)
 
 
-def prototype_serialize(prototype_list):
-    data = []
-    for prototype in prototype_list:
-        json = {
-            'picid': prototype.id,
-            'data': DOCUMENTS_URL + prototype.data,
-            'name': prototype.name,
-            'width': prototype.width,
-            'height': prototype.height,
-        }
-        data.append(json)
-    return JsonResponse(data, safe=False)
-
-
 # 将两个有序元组列表合并为一个新的有序元组列表
 # list_a, list_b: 形如 [('name', 40), ('ame', 30)] 等模式的列表（字符串和相似度组成的元组的列表），按相似度降序排列
 def merge_list(list_a, len_a, list_b, len_b):

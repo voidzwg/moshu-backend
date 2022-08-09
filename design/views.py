@@ -130,7 +130,13 @@ def get_one_design(request):
             prototype = Prototype.objects.get(id=picid)
         except:
             return JsonResponse({'errno': 2, 'msg': "原型设计不存在"})
-        return prototype_serialize([prototype])
+        json = {
+            'url': DOCUMENTS_URL + prototype.data,
+            'name': prototype.name,
+            'width': prototype.width,
+            'height': prototype.height,
+        }
+        return JsonResponse([json], safe=False)
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
 
 

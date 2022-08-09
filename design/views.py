@@ -11,13 +11,19 @@ from .models import *
 def store(request):
     if request.method == 'POST':
         picid = request.POST.get('picid')
-        file = request.FILES.get('file')
+        print("type of picid", type(picid))
+        file_str = request.FILES.get('file')
+        print("type of file_str", type(file_str))
         try:
             prototype = Prototype.objects.get(id=picid)
         except:
             return JsonResponse({'errno': 2, 'msg': "原型设计不存在"})
+        print("file_str.read()", file_str.read().encoding('utf-8'))
+        content = ''
+        for ch in file_str.chunks():
+            content += ch.encoding('utf-8')
         with open(os.path.join(settings.MEDIA_ROOT, 'documents', prototype.data), 'wt') as store_file:
-            store_file.write(file)
+            store_file.write(content)
         prototype.modify_time = datetime.datetime.now()
         prototype.save()
         return JsonResponse({'errno': 0, 'msg': "修改成功"})

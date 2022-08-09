@@ -114,6 +114,10 @@ def get_one_design(request):
             prototype = Prototype.objects.get(id=picid)
         except:
             return JsonResponse({'errno': 2, 'msg': "原型设计不存在"})
+        try:
+            f = open(os.path.join(settings.MEDIA_ROOT, 'documents', prototype.data), 'r')
+        except IOError as e:
+            return JsonResponse({'errno': 2, 'msg': "文件已失效"})
         json = {
             'url': DOCUMENTS_URL + prototype.data,
             'name': prototype.name,

@@ -18,15 +18,6 @@ class Groups(models.Model):
         managed = False
         db_table = '_groups'
 
-class Document(models.Model):
-    pid = models.IntegerField()
-    url = models.FileField(max_length=255)
-    name = models.CharField(max_length=100)
-
-    class Meta:
-        managed = False
-        db_table = 'document'
-
 
 class Members(models.Model):
     gid = models.ForeignKey(Groups, models.DO_NOTHING, db_column='gid')
@@ -85,6 +76,20 @@ class Users(models.Model):
     class Meta:
         managed = False
         db_table = 'users'
+
+
+class Document(models.Model):
+    pid = models.IntegerField()
+    url = models.FileField(max_length=255)
+    name = models.CharField(max_length=100)
+    create_time = models.DateTimeField()
+    modify_time = models.DateTimeField()
+    uid = models.ForeignKey(Users, models.DO_NOTHING, db_column='uid')
+
+    class Meta:
+        managed = False
+        db_table = 'document'
+
 
 class Invite(models.Model):
     inviter = models.IntegerField()

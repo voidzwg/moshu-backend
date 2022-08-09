@@ -221,3 +221,37 @@ def accept_invitation(request):
         return JsonResponse({'errno': 0, 'msg': "已成功加入团队"+"\'"+group.name+"\'"})
     return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
 
+def read_invitation(request):
+    if request.method == 'POST':
+        id = request.POST.get('id')
+        try:
+            invitation = Invite.objects.get(id=id)
+        except Exception as e:
+            print(e)
+            return JsonResponse({'errno': 1002, 'msg': "邀请不存在或已被删除"})
+        if invitation.read == 1:
+            return JsonResponse({'errno': 1003, 'msg': "该消息已读"})
+        try:
+            invitation.read = 1
+            invitation.save()
+        except Exception as e:
+            print(e)
+            return JsonResponse({'errno': 1004, 'msg': "未知错误"})
+        return JsonResponse({'errno': 0, 'msg': "已读"})
+    return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
+
+def delete_invitation(request):
+    if request.method == 'POST':
+        id = request.POST.get('id')
+        try:
+            invitation = Invite.objects.get(id=id)
+        except Exception as e:
+            print(e)
+            return JsonResponse({'errno': 1002, 'msg': "邀请不存在或已被删除"})
+        try:
+            invitation.delete()
+        except Exception as e:
+            print(e)
+            return JsonResponse({'errno': 1004, 'msg': "未知错误"})
+        return JsonResponse({'errno': 0, 'msg': "删除成功"})
+    return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})

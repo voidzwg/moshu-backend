@@ -10,4 +10,6 @@ urlpatterns = [
     path('invite/',invite),
     path('get_invitation/', get_invitation),
     path('accept_invitation/',accept_invitation),
+    path('read_invitation/', read_invitation),
+    path('delete_invitation/', delete_invitation),
 ]

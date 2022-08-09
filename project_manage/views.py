@@ -1,6 +1,6 @@
 from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
-from django.conf import settings
+from moshu import settings
 from .models import *
 from com.funcs import *
 
@@ -324,7 +324,7 @@ def open_document(request):
         print("checked file")
         json = {
             'name': document.name,
-            'url': settings.DOCUMENTS_URL + document.data.name
+            'url': settings.MEDIA_URL + "documents/" + document.data
         }
         print([json])
         return JsonResponse([json], safe=False)

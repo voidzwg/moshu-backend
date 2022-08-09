@@ -11,12 +11,11 @@ from .models import *
 def store(request):
     if request.method == 'POST':
         picid = request.POST.get('picid')
-        data = request.FILES.get('data')
         try:
             prototype = Prototype.objects.get(id=picid)
         except:
             return JsonResponse({'errno': 2, 'msg': "原型设计不存在"})
-        prototype.data = data.name
+        prototype.modify_time = datetime.datetime.now()
         prototype.save()
         return JsonResponse({'errno': 0, 'msg': "修改成功"})
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})

@@ -1,5 +1,4 @@
 import os
-
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from com.funcs import *
@@ -41,32 +40,43 @@ def rename(request):
 @csrf_exempt
 def create(request):
     if request.method == 'POST':
-        pid = request.POST.get('picid')
+        pid = request.POST.get('pid')
+        uid = request.POST.get('uid')
         name = request.POST.get('name')
         width = request.POST.get('width')
         height = request.POST.get('height')
         model_name = request.POST.get('model_name')
         if name == '':
             return JsonResponse({'errno': 2, 'msg': "名字不能为空"})
+        try:
+            project = Projects.objects.get(id=pid)
+        except:
+            return JsonResponse({'errno': 2, 'msg': "项目不存在"})
+        try:
+            user = Users.objects.get(id=uid)
+        except:
+            return JsonResponse({'errno': 2, 'msg': "用户不存在"})
         now_time = datetime.datetime.now()
-        file_name = now_time.strftime('%Y%m%d%H%M%S%f_') + str(pid) + '_' + name
-        if not model_name:
-            model_name = DEFAULT_PROTOTYPE
+        file_name = now_time.strftime('%Y%m%d%H%M%S%f_') + str(pid) + '_' + model_name
         content = ''
+        print("prepare to open file")
         with open(os.path.join(settings.MEDIA_ROOT, 'documents', model_name), 'rt') as model_file:
             while True:
                 msg = model_file.read(READ_LENGTH)
                 if msg == '':
                     break
                 content += msg
+        print("Already open model file", content[:80])
         with open(os.path.join(settings.MEDIA_ROOT, 'documents', file_name), 'at') as new_file:
             while content:
                 msg = content[:READ_LENGTH]
                 new_file.write(msg)
                 content = content[READ_LENGTH:]
-        prototype = Prototype(pid=pid, name=name, data=file_name, width=width, height=height,
-                              create_time=now_time, modify_time=now_time)
+        print("Aready open the goal file", file_name)
+        prototype = Prototype(pid=project, uid=user, name=name, data=file_name, width=width, 
+                              height=height, create_time=now_time, modify_time=now_time)
         prototype.save()
+        print("Already saved in database", now_time)
         return JsonResponse({'errno': 0, 'msg': "创建成功", 'picid': prototype.id})
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
 

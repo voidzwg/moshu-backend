@@ -171,13 +171,16 @@ def get_invitation(request):
             try:
                 user = Users.objects.get(id=i.inviter)
                 uname = user.name
+                username = user.username
             except Exception as e:
                 print(e)
                 uname = '该用户已不存在'
+                username = '该用户已不存在'
             tmp = {
                 'id':i.id,
                 'inviter_id':i.inviter,
                 'inviter_name':uname,
+                'inviter_username':username,
                 'invitee':i.invitee,
                 'gid':i.gid,
                 'gname':gname,

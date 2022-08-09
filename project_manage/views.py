@@ -1,5 +1,6 @@
 from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
 from .models import *
 from com.funcs import *
 
@@ -253,19 +254,27 @@ def create_document(request):
         now_time = datetime.datetime.now()
         file_name = now_time.strftime('%Y%m%d%H%M%S%f_') + str(pid) + '_' + model_name
         content = ''
+        print("prepare to open file")
         with open(os.path.join(settings.MEDIA_ROOT, 'documents', model_name), 'rt') as model_file:
             while True:
                 msg = model_file.read(READ_LENGTH)
                 if msg == '':
                     break
                 content += msg
+        print("Aready read model_file", content[:30])
         with open(os.path.join(settings.MEDIA_ROOT, 'documents', file_name), 'at') as new_file:
             while content:
                 msg = content[:READ_LENGTH]
                 new_file.write(msg)
                 content = content[READ_LENGTH:]
-        document = Document(pid=pid, data=file_name, name=name, create_time=now_time, modify_time=now_time)
-        document.save()
+        print("Already created file named", file_name)
+        try:
+            document = Document(pid=project, data=file_name, name=name, create_time=now_time, modify_time=now_time)
+            document.save()
+        except Exception as e:
+            print(e)
+            return JsonResponse({'errno': 9999, 'msg': "数据库存储出错了"})
+        print("Aready saved in database")
         return JsonResponse({'errno': 0, 'msg': "创建成功", 'docid': document.id})
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
 
@@ -302,18 +311,22 @@ def get_documents(request):
 def open_document(request):
     if request.method == 'POST':
         id = request.POST.get('id')
+        print("begin")
         try:
             document = Document.objects.get(id=id)
         except:
             return JsonResponse({'errno': 2, 'msg': "文件不存在"})
+        print("checked document")
         try:
             f = open(os.path.join(settings.MEDIA_ROOT, 'documents', document.data), 'r')
         except IOError as e:
             return JsonResponse({'errno': 2, 'msg': "文件已失效"})
+        print("checked file")
         json = {
             'name': document.name,
-            'url': document.data
+            'url': settings.DOCUMENTS_URL + document.data.name
         }
+        print([json])
         return JsonResponse([json], safe=False)
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
 

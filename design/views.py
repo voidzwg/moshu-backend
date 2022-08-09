@@ -18,11 +18,12 @@ def store(request):
             prototype = Prototype.objects.get(id=picid)
         except:
             return JsonResponse({'errno': 2, 'msg': "原型设计不存在"})
-        content = b''
-        for ch in file_str.chunks():
-            content += ch
+        # content = b''
         with open(os.path.join(settings.MEDIA_ROOT, 'documents', prototype.data), 'wt') as store_file:
-            store_file.write(content.decode('utf-8'))
+            for ch in file_str.chunks():
+                # content += ch
+                store_file.write(ch.decode('utf-8'))
+            # store_file.write(content.decode('utf-8'))
         prototype.modify_time = datetime.datetime.now()
         prototype.save()
         return JsonResponse({'errno': 0, 'msg': "修改成功"})

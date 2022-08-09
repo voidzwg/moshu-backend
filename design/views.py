@@ -102,7 +102,7 @@ def get_design(request):
         data = []
         for prototype in prototype_list:
             try:
-                user = Users.objects.get(id=prototype.uid)
+                user = Users.objects.get(id=prototype.uid.id)
                 name = user.name
                 username = user.username
             except Exception as e:
@@ -112,13 +112,13 @@ def get_design(request):
             json = {
                 'picid': prototype.id,
                 'name': prototype.name,
-                'create_time':prototype.create_time,
-                'modify_time':prototype.modify_time,
-                'creator_username':username,
-                'creator_name':name,
+                'create_time': prototype.create_time,
+                'modify_time': prototype.modify_time,
+                'creator_username': username,
+                'creator_name': name,
             }
             data.append(json)
-        return JsonResponse(data,safe=False)
+        return JsonResponse(data, safe=False)
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
 
 

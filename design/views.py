@@ -1,3 +1,4 @@
+import base64
 import os
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
@@ -118,6 +119,81 @@ def get_one_design(request):
             'height': prototype.height,
         }
         return JsonResponse([json], safe=False)
+    return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
+
+
+@csrf_exempt
+def upload_prototype(request):
+    if request.method == 'POST':
+        pic_id = request.POST.get('picid')
+        base64_img = request.POST.get('img')
+        try:
+            prototype = Prototype.objects.get(id=pic_id)
+        except Exception as e:
+            print(e)
+            return JsonResponse({'errno': 2, 'msg': "原型设计不存在"})
+        if base64_img is None:
+            return JsonResponse({'errno': 1, 'msg': "参数错误"})
+        img_split = base64_img.split('base64,')
+        img_data = base64.b64decode(img_split[1])
+        img_name = datetime.datetime.now().strftime('%Y%m%d%H%M%S%f_') + str(pic_id) + '.png'
+        if prototype.img:
+            if delete_file(IMAGE_URL + prototype.img):
+                print("Cannot find image named", prototype.img)
+            else:
+                print("Already delete old image", prototype.img)
+        with open(os.path.join(settings.MEDIA_ROOT, 'images', img_name), 'wb') as img:
+            img.write(img_data)
+        print("Already create image named", img_name)
+        prototype.img = img_name
+        prototype.save()
+        print("Already saved in database")
+        return JsonResponse({'errno': 0, 'msg': "上传成功"})
+    return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
+
+
+@csrf_exempt
+def get_prototype_img(request):
+    if request.method == 'POST':
+        pic_id = request.POST.get('picid')
+        try:
+            prototype = Prototype.objects.get(id=pic_id)
+        except Exception as e:
+            print(e)
+            return JsonResponse({'errno': 2, 'msg': "原型设计不存在"})
+        if prototype.img:
+            img_url = IMAGE_URL + prototype.img
+        else:
+            img_url = None
+        return JsonResponse({'errno': 0, 'msg': "返回成功", 'url': img_url})
+    return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
+
+
+@csrf_exempt
+def get_show_status(request):
+    if request.method == 'POST':
+        pid = request.POST.get('pid')
+        try:
+            project = Projects.objects.get(id=pid)
+        except Exception as e:
+            print(e)
+            return JsonResponse({'errno': 2, 'msg': "项目不存在"})
+        return JsonResponse({'errno': 0, 'msg': "获取成功", 'showable': project.showable})
+    return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
+
+
+@csrf_exempt
+def change_show_status(request):
+    if request.method == 'POST':
+        pid = request.POST.get('pid')
+        try:
+            project = Projects.objects.get(id=pid)
+        except Exception as e:
+            print(e)
+            return JsonResponse({'errno': 2, 'msg': "项目不存在"})
+        project.showable = project.showable ^ 1
+        project.save()
+        return JsonResponse({'errno': 0, 'msg': "修改成功"})
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
 
 

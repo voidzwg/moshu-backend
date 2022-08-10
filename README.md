@@ -98,3 +98,11 @@
 
 打开模板： /api/design/open_template/   POST parameters: id
 
+存储原型设计预览图：/api/design/upload_prototype/
+
+获取原型设计预览图：/api/design/get_prototype_img/
+
+查看项目预览状态：/api/design/get_show_status/
+
+改变项目预览状态：/api/design/change_show_status/
+

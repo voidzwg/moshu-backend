@@ -1,9 +1,8 @@
 from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
 from moshu import settings
-from .models import *
 from com.funcs import *
-from documents_center.models import *
+
 
 @csrf_exempt
 def get_project(request):
@@ -58,7 +57,7 @@ def create(request):
             print(e)
             return JsonResponse({'errno': 1003, 'msg': "不存在该用户"})
         try:
-            newProject = Projects(gid=group, name=name, starttime=datetime.datetime.now(), available=0, status=0)
+            newProject = Projects(gid=group,uid=user,name=name, starttime=datetime.datetime.now(), available=0, status=0)
             newProject.save()
             Group_root = Files.objects.get(name=gid)
             Group_Project_root = Group_root.get_children()[0]
@@ -279,18 +278,23 @@ def create_document(request):
         pid = request.POST.get('pid')
         name = request.POST.get('name')
         model_name = request.POST.get('model_name')
+        uid = request.POST.get('uid')
         if name == '':
             return JsonResponse({'errno': 2, 'msg': "名字不能为空"})
         try:
             project = Projects.objects.get(id=pid)
         except:
             return JsonResponse({'errno': 2, 'msg': "项目不存在"})
+        try:
+            user = Users.objects.get(id=uid)
+        except:
+            user = None
         now_time = datetime.datetime.now()
         file_name = now_time.strftime('%Y%m%d%H%M%S%f_') + str(pid) + '_' + model_name
         if copy_file(model_name, file_name):
             return JsonResponse({'errno': 6666, 'msg': "文件创建失败"})
         try:
-            document = Document(pid=project, data=file_name, name=name, create_time=now_time, modify_time=now_time)
+            document = Document(pid=project,uid=user,data=file_name, name=name, create_time=now_time, modify_time=now_time)
             document.save()
             project_root_name = str(project.gid.id) + '_project_' + str(project.id) + '_' + project.name
             project_root = Files.objects.get(name=project_root_name)
@@ -318,15 +322,18 @@ def get_documents(request):
         for i in documents:
             if i.uid is None:
                 username = None
+                creator = None
             else:
                 username = i.uid.username
+                creator = i.uid.name
             tmp = {
                 'id': i.id,
                 'name': i.name,
                 'pid': i.pid.id,
                 'create_time': i.create_time,
                 'modify_time': i.modify_time,
-                'creator_username': username
+                'creator_username': username,
+                'creator':creator,
             }
             data.append(tmp)
         return JsonResponse(data, safe=False)

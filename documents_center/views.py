@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from django.shortcuts import render
-
+from com.funcs import *
 # Create your views here.
 
 def documents_center(request):

@@ -87,13 +87,13 @@ def create_file(request):
             print(e)
             return JsonResponse({'errno': 1003, 'msg': "找不到该目录！"})
         document = None
-        if type == 1:
+        if int(type) == 1:
             model_name = request.POST.get('model_name')
             uid = request.POST.get('uid')
             document = create_document(name, model_name, uid)
         try:
             name = file.name + '_' + name
-            newFile = Files(name=name, parent=file, isfile=type,document=document)
+            newFile = Files(name=name, parent=file, isfile=int(type),document=document)
             newFile.save()
         except Exception as e:
             print(e)

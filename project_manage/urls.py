@@ -3,6 +3,7 @@ from .views import *
 
 urlpatterns = [
     path('get_project/', get_project),
+    path('get_available_project/', get_available_project),
     path('create/', create),
     path('rename/', rename),
     path('to_bin/', to_bin),
@@ -10,8 +11,6 @@ urlpatterns = [
     path('delete/', delete),
     path('close/', close),
     path('copy/', copy),
-   # path('save_document/', save_document),
-   # path('get_document/', get_document),
     path('create_document/', create_document),
     path('store_document/', store_document),
     path('get_documents/', get_documents),

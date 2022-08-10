@@ -39,6 +39,41 @@ def get_project(request):
 
 
 @csrf_exempt
+def get_available_project(request):
+    if request.method == 'GET':
+        gid = request.GET.get('gid')
+        if gid == '':
+            return JsonResponse({'errno': 1002, 'msg': "参数为空，请检查参数名是否为\'gid\'"})
+        try:
+            projects = Projects.objects.filter(gid=gid)
+            data = []
+            for p in projects:
+                if p.uid is None:
+                    uid = None
+                else:
+                    uid = p.uid.id
+                if p.available:
+                    continue
+                tmp = {
+                    'id': p.id,
+                    'name': p.name,
+                    'status': p.status,
+                    'gid': p.gid.id,
+                    'uid': uid,
+                    'starttime': p.starttime,
+                    'endtime': p.endtime,
+                    'profile': p.profile,
+                }
+                data.append(tmp)
+        except Exception as e:
+            print(e)
+            return JsonResponse({'errno': 1003, 'msg': "未知错误"})
+        return JsonResponse(data, safe=False)
+    else:
+        return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
+
+
+@csrf_exempt
 def create(request):
     if request.method == 'POST':
         gid = request.POST.get('gid')

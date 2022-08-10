@@ -289,13 +289,21 @@ def create_document(request):
         except Exception as e:
             print(e)
             return JsonResponse({'errno': 9999, 'msg': "数据库存储出错了"})
-        project_root_name = str(project.gid.id) + '_project_' + str(project.id) + '_' + project.name
-        project_root = Files.objects.get(name=project_root_name)
-        document_name = project_root_name + '_' + str(document.id) + '_' + document.name
-        new_project_root = Files(name=document_name, isfile=1, parent=project_root, document=document)
-        new_project_root.save()
+        try:
+            project_root_name = str(project.gid.id) + '_project_' + str(project.id) + '_' + project.name
+            project_root = Files.objects.get(name=project_root_name)
+        except Exception as e:
+            print(e)
+            return JsonResponse({'errno': 7777, 'msg': "未获取到根目录"})
+        try:
+            document_name = project_root_name + '_' + str(document.id) + '_' + document.name
+            new_project_root = Files(name=document_name, isfile=1, parent=project_root, document=document)
+            new_project_root.save()
+        except Exception as e:
+            print(e)
+            return JsonResponse({'errno': 7777, 'msg': "加入文件系统失败"})
         print("Aready saved in database")
-        return JsonResponse({'errno': 0, 'msg': "创建成功", 'docid': document.id})
+        return JsonResponse({'errno': 0, 'msg': "创建成功并已同步至文档中心", 'docid': document.id})
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
 
 

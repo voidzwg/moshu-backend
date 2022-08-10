@@ -237,7 +237,7 @@ class Users(models.Model):
         db_table = 'users'
 
 class Files(MPTTModel):
-    name = models.CharField(max_length=50, unique=True)
+    name = models.CharField(max_length=255, unique=True)
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
     isfile = models.IntegerField(db_column='isFile')  # Field name made lowercase.
     document = models.ForeignKey(Document, models.DO_NOTHING, db_column='document', blank=True, null=True)

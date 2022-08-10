@@ -290,7 +290,7 @@ def create_document(request):
             print(e)
             return JsonResponse({'errno': 9999, 'msg': "数据库存储出错了"})
         try:
-            project_root_name = str(project.gid.id) + '_project_' + str(project.id) + '_' + project.name
+            project_root_name = str(project.gid.id) + '_Project_' + str(project.id) + '_' + project.name
             project_root = Files.objects.get(name=project_root_name)
         except Exception as e:
             print(e)

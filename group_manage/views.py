@@ -25,10 +25,10 @@ def create_group(request):
         project_root = str(new_groups.id)+'_'+'Project_root'
         new_projectroot = Files(name=project_root,isfile=0,parent=new_root)
         new_projectroot.save()
-        data_root =  str(new_groups.id)+'_'+'Data_root'
+        data_root =  str(new_groups.id)+'_'+'Data'
         new_data_root = Files(name=data_root, isfile=0,parent=new_root)
         new_data_root.save()
-        others_root = str(new_groups.id) + '_' + 'Others_root'
+        others_root = str(new_groups.id) + '_' + 'Others'
         new_others_root = Files(name=others_root, isfile=0,parent=new_root)
         new_others_root.save()
         return JsonResponse({'errno': 0, 'msg': "创建成功"})

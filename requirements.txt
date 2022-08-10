@@ -4,3 +4,4 @@ mysqlclient==2.1.1
 django-cors-headers==3.13.0
 fuzzywuzzy~=0.18.0
 pillow~=9.0.1
+django-mptt~=0.13.4

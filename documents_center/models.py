@@ -136,7 +136,7 @@ class DjangoSession(models.Model):
 
 
 class Document(models.Model):
-    pid = models.ForeignKey('Projects', models.DO_NOTHING, db_column='pid',blank=True, null=True)
+    pid = models.ForeignKey('Projects', models.DO_NOTHING, db_column='pid', blank=True, null=True)
     data = models.TextField()
     name = models.CharField(max_length=100)
     create_time = models.DateTimeField(blank=True, null=True)
@@ -146,6 +146,22 @@ class Document(models.Model):
     class Meta:
         managed = False
         db_table = 'document'
+
+
+class DocumentsCenterFiles(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    name = models.CharField(unique=True, max_length=255)
+    lft = models.PositiveIntegerField()
+    rght = models.PositiveIntegerField()
+    tree_id = models.PositiveIntegerField()
+    level = models.PositiveIntegerField()
+    parent = models.ForeignKey('self', models.DO_NOTHING, blank=True, null=True)
+    isfile = models.IntegerField(db_column='isFile')  # Field name made lowercase.
+    document = models.ForeignKey(Document, models.DO_NOTHING, db_column='document', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'documents_center_files'
 
 
 class Invite(models.Model):
@@ -178,6 +194,7 @@ class Projects(models.Model):
     starttime = models.DateTimeField()
     endtime = models.DateTimeField(blank=True, null=True)
     profile = models.TextField(blank=True, null=True)
+    showable = models.IntegerField()
 
     class Meta:
         managed = False
@@ -193,6 +210,7 @@ class Prototype(models.Model):
     create_time = models.DateTimeField(blank=True, null=True)
     modify_time = models.DateTimeField(blank=True, null=True)
     uid = models.ForeignKey('Users', models.DO_NOTHING, db_column='uid', blank=True, null=True)
+    img = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         managed = False
@@ -236,8 +254,10 @@ class Users(models.Model):
         managed = False
         db_table = 'users'
 
+
 class Files(MPTTModel):
     name = models.CharField(max_length=255, unique=True)
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
     isfile = models.IntegerField(db_column='isFile')  # Field name made lowercase.
     document = models.ForeignKey(Document, models.DO_NOTHING, db_column='document', blank=True, null=True)
+

@@ -434,7 +434,7 @@ def upload_img(request):
             'data': {
                 'url': IMAGE_URL + img_name,
                 'alt': img.name,
-                'href': SERVER_URL + IMAGE_URL + img_name,
+                'href': SERVER_URL + 'api/' + IMAGE_URL + img_name,
             },
         }
         return JsonResponse(json_response)

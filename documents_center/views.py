@@ -25,6 +25,7 @@ def documents_center(request):
                 elif name == 'Others':
                     name = '其他文件夹'
                 tmp = {
+                    'root_id':root.id,
                     'id':node.id,
                     'name':name,
                     'type':node.isfile,
@@ -82,6 +83,7 @@ def create_file(request):
         except Exception as e:
             print(e)
             return JsonResponse({'errno': 1003, 'msg': "找不到该目录！"})
+
         try:
             name = file.name + '_' + name
             newFile = Files(name=name,parent=file,isfile=type)

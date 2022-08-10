@@ -246,7 +246,7 @@ class Users(models.Model):
     field_password = models.CharField(db_column='_password', max_length=18)  # Field renamed because it started with '_'.
     avatar = models.CharField(max_length=255)
     name = models.CharField(max_length=18)
-    email = models.CharField(max_length=18)
+    email = models.CharField(max_length=50)
     gnum = models.IntegerField()
     profile = models.TextField(blank=True, null=True)
 

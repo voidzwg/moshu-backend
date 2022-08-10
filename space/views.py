@@ -33,17 +33,25 @@ def update_info(request):
         try:
             test_user = Users.objects.get(username=username)
         except:
-            user.username = username
-            user.name = name
-            user.email = email
-            user.profile = profile
-            user.save()
+            try:
+                user.username = username
+                user.name = name
+                user.email = email
+                user.profile = profile
+                user.save()
+            except Exception as e:
+                print(e)
+                return JsonResponse({'errno': 555, 'msg': "数据不合法"})
             return JsonResponse({'errno': 0, 'msg': "修改成功！"})
         if user.username == username:
-            user.name = name
-            user.email = email
-            user.profile = profile
-            user.save()
+            try:
+                user.name = name
+                user.email = email
+                user.profile = profile
+                user.save()
+            except Exception as e:
+                print(e)
+                return JsonResponse({'errno': 555, 'msg': "数据不合法"})
             return JsonResponse({'errno': 0, 'msg': "修改成功！"})
         return JsonResponse({'errno': 2, 'msg': "用户名已被占用"})
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})

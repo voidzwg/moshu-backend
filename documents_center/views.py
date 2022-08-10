@@ -97,7 +97,22 @@ def create_file(request):
         except Exception as e:
             print(e)
             return JsonResponse({'errno': 1004, 'msg': "未知错误！"})
-        return JsonResponse({'errno': 0, 'msg': "新建成功"})
+        return JsonResponse({'errno': 0, 'msg': "新建成功",'file_id':id})
+    else:
+        return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
+
+def delete_file(request):
+    if request.method == 'POST':
+        id = request.POST.get('id')
+        if id is None:
+            return JsonResponse({'errno': 1002, 'msg': "参数为空"})
+        try:
+            file = Files.objects.get(id=id)
+        except Exception as e:
+            print(e)
+            return JsonResponse({'errno': 1003, 'msg': "找不到该文件或目录！"})
+        file.delete()
+        return JsonResponse({'errno': 0, 'msg': "删除成功"})
     else:
         return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
 

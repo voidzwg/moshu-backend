@@ -214,7 +214,7 @@ def accept_invitation(request):
         if Members.objects.filter(gid=group,uid=user).exists():
             return JsonResponse({'errno': 1004, 'msg': "你已加入该团队"})
         try:
-            newMember = Members(gid=group,uid=user,field_role=2)
+            newMember = Members(gid=group,uid=user,field_role=0)
             newMember.save()
         except:
             return JsonResponse({'errno': 1005, 'msg': "未知错误"})

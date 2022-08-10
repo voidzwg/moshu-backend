@@ -61,7 +61,7 @@ def create(request):
             return JsonResponse({'errno': 1003, 'msg': "不存在该用户"})
         print("3", user)
         try:
-            newProject = Projects(gid=group, name=name, available=0, status=0)
+            newProject = Projects(gid=group, name=name, starttime=datetime.datetime.now(), available=0, status=0)
             newProject.save()
         except Exception as e:
             print(e)

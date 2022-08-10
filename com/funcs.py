@@ -175,3 +175,50 @@ def fuzzy_search(key, choices_list):
         results = merge_list(results, len(results), choices_results, len(choices_results))
     return results
 
+
+# rename file named 'strftime_pid_filename.xxx'
+def rename_project_file(now_time, pid, old_name):
+    old_name_split = old_name.split('_')
+    old_name_split[0] = now_time.strftime('%Y%m%d%H%M%S%f')
+    old_name_split[1] = str(pid)
+    return '_'.join(old_name_split)
+
+
+# copy file in 'media/documents/'
+# when failed, return True
+def copy_file(src_file_name, desc_file_name):
+    try:
+        content = ''
+        with open(os.path.join(settings.MEDIA_ROOT, 'documents', src_file_name), 'rt') as src:
+            while True:
+                msg = src.read(READ_LENGTH)
+                if msg == '':
+                    break
+                content += msg
+        with open(os.path.join(settings.MEDIA_ROOT, 'documents', desc_file_name), 'at') as desc:
+            while content:
+                msg = content[:READ_LENGTH]
+                desc.write(msg)
+                content = content[READ_LENGTH:]
+    except IOError as e:
+        print(e)
+        return True
+    print("Already created file named", desc_file_name)
+    return False
+
+
+# store file in 'media/documents/'
+# when failed, return True
+def store_file(binary_file_stream, desc_file_name):
+    try:
+        # content = b''
+        with open(os.path.join(settings.MEDIA_ROOT, 'documents', desc_file_name), 'wt') as desc:
+            for ch in binary_file_stream.chunks():
+                # content += ch
+                desc.write(ch.decode('utf-8'))
+            # store_file.write(content.decode('utf-8'))
+    except IOError as e:
+        print(e)
+        return True
+    print("Already stored file named")
+

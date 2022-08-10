@@ -190,28 +190,40 @@ def copy(request):
         except Exception as e:
             print(e)
             return JsonResponse({'errno': 1003, 'msg': "不存在该项目"})
-        num = Projects.objects.filter(name__contains=project.name).count()
-        num = str(num)
-        name = project.name+'('+num+')'
         try:
-            newProject = Projects(gid= project.gid,uid=user,name=name,available=0,status=0,profile=project.profile)
-            newProject.save()
-            prototype = Prototype.objects.filter(pid=project.id)
+            group = Groups.objects.get(id=project.gid)
+        except Exception as e:
+            print(e)
+            return JsonResponse({'errno': 2333, 'msg': "不存在项目所属的团队"})
+        new_project_name = project.name + " - 副本"
+        now_time = datetime.datetime.now()
+        try:
+            new_project = Projects(gid=group, uid=user, name=new_project_name, starttime=now_time,
+                                   endtime=project.endtime, available=0, status=0, profile=project.profile)
+            new_project.save()
+            prototype = Prototype.objects.filter(pid=project)
             for p in prototype:
-                name = p.name + '(' + num + ')'
-                newPrototype = Prototype(name=name,pid=newProject.id,data=p.data,width=p.width,height=p.height)
-                newPrototype.save()
-            document = Document.objects.filter(pid=project.id)
+                new_prototype_name = rename_project_file(now_time, new_project.id, p.name)
+                copy_file(p.name, new_prototype_name)
+                new_prototype = Prototype(name=new_prototype_name, pid=new_project, create_time=now_time,
+                                          modify_time=now_time, data=p.data, width=p.width, height=p.height)
+                new_prototype.save()
+            document = Document.objects.filter(pid=project)
             for d in document:
-                name = d.name + '(' + num + ')'
-                newDocument = Document(name=name, pid=newProject.id, data=d.data)
-                newDocument.save()
+                new_document_name = rename_project_file(now_time, new_project.id, d.name)
+                copy_file(d.name, new_document_name)
+                new_document = Document(name=new_document_name, pid=new_project, uid=user,
+                                        create_time=now_time, modify_time=now_time, data=d.data)
+                new_document.save()
             uml = Uml.objects.filter(pid=project.id)
             for u in uml:
-                name = u.name + '(' + num + ')'
-                newUml = Uml(name=name, pid=newProject.id, data=u.data)
-                newUml.save()
+                new_uml_name = rename_project_file(now_time, new_project.id, u.name)
+                copy_file(u.name, new_uml_name)
+                new_uml = Uml(name=new_uml_name, pid=new_project, uid=user,
+                              create_time=now_time, modify_time=now_time, data=u.data)
+                new_uml.save()
         except Exception as e:
+            print(e)
             return JsonResponse({'errno': 1004, 'msg': "未知错误"})
         return JsonResponse({'errno': 0, 'msg': "复制成功"})
     return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
@@ -237,14 +249,8 @@ def store_document(request):
         except:
             return JsonResponse({'errno': 2, 'msg': "文档不存在"})
         print("Already checked document")
-        # content = b''
-        with open(os.path.join(settings.MEDIA_ROOT, 'documents', document.data), 'wt') as store_file:
-            for ch in file_str.chunks():
-                # content += ch
-                print(">>>", ch)
-                store_file.write(ch.decode('utf-8'))
-            # store_file.write(content.decode('utf-8'))
-        print("Already stored in file", document.data)
+        if store_file(file_str, document.data):
+            return JsonResponse({'errno': 6667, 'msg': "存储失败"})
         document.modify_time = datetime.datetime.now()
         document.save()
         print("Already saved in database")
@@ -266,21 +272,8 @@ def create_document(request):
             return JsonResponse({'errno': 2, 'msg': "项目不存在"})
         now_time = datetime.datetime.now()
         file_name = now_time.strftime('%Y%m%d%H%M%S%f_') + str(pid) + '_' + model_name
-        content = ''
-        print("prepare to open file")
-        with open(os.path.join(settings.MEDIA_ROOT, 'documents', model_name), 'rt') as model_file:
-            while True:
-                msg = model_file.read(READ_LENGTH)
-                if msg == '':
-                    break
-                content += msg
-        print("Aready read model_file", content[:30])
-        with open(os.path.join(settings.MEDIA_ROOT, 'documents', file_name), 'at') as new_file:
-            while content:
-                msg = content[:READ_LENGTH]
-                new_file.write(msg)
-                content = content[READ_LENGTH:]
-        print("Already created file named", file_name)
+        if copy_file(model_name, file_name):
+            return JsonResponse({'errno': 6666, 'msg': "文件创建失败"})
         try:
             document = Document(pid=project, data=file_name, name=name, create_time=now_time, modify_time=now_time)
             document.save()
@@ -423,4 +416,3 @@ def search_projects(request):
         unique_results.sort(key=results.index)
         return project_serialize(unique_results)
     return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
-

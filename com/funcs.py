@@ -61,7 +61,7 @@ def user_serialize(user):
     p_tmp = {
         'username': user.username,
         'name': user.name,
-        'avatar': AVATARS_URL + user.avatar.name,
+        'avatar': AVATARS_URL + user.avatar,
         'email': user.email,
         'gnum': user.gnum,
         'profile': user.profile
@@ -77,7 +77,7 @@ def users_serialize(user_list):
             'id': user.id,
             'username': user.username,
             'name': user.name,
-            'avatar': AVATARS_URL + user.avatar.name,
+            'avatar': AVATARS_URL + user.avatar,
             'email': user.email,
             'gnum': user.gnum,
             'profile': user.profile

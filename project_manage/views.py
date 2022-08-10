@@ -416,7 +416,7 @@ def upload_img(request):
         print("named")
         if not img.name.lower().endswith(IMAGE_TAIL):
             print(img)
-            return JsonResponse({'errno': 1002, 'msg': "文件格式错误"})
+            return JsonResponse({'errno': 3, 'msg': "文件格式错误"})
         try:
             document = Document.objects.get(id=did)
         except Exception as e:
@@ -438,6 +438,7 @@ def upload_img(request):
             },
         }
         return JsonResponse(json_response)
+    return JsonResponse({'errno': 2, 'message': "请求方式错误"})
 
 
 @csrf_exempt

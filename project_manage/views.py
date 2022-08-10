@@ -3,7 +3,7 @@ from django.views.decorators.csrf import csrf_exempt
 from moshu import settings
 from .models import *
 from com.funcs import *
-
+from documents_center.models import *
 
 @csrf_exempt
 def get_project(request):
@@ -45,7 +45,6 @@ def create(request):
         gid = request.POST.get('gid')
         uid = request.POST.get('uid')
         name = request.POST.get('name')
-        print("1", gid, uid, name)
         if gid == '' or uid == '' or name == '':
             return JsonResponse({'errno': 1002, 'msg': "参数为空"})
         try:
@@ -53,16 +52,19 @@ def create(request):
         except Exception as e:
             print(e)
             return JsonResponse({'errno': 1003, 'msg': "不存在该团队"})
-        print("2", group)
         try:
             user = Users.objects.get(id=uid)
         except Exception as e:
             print(e)
             return JsonResponse({'errno': 1003, 'msg': "不存在该用户"})
-        print("3", user)
         try:
             newProject = Projects(gid=group, name=name, starttime=datetime.datetime.now(), available=0, status=0)
             newProject.save()
+            Group_root = Files.objects.get(name=gid)
+            Group_Project_root = Group_root.get_children()[0]
+            project_root = str(group.id)+'_project_'+str(newProject.id)+'_'+newProject.name
+            new_project_root = Files(name=project_root,isfile=0,parent=Group_Project_root)
+            new_project_root.save()
         except Exception as e:
             print(e)
             return JsonResponse({'errno': 1004, 'msg': "未知错误"})
@@ -277,6 +279,11 @@ def create_document(request):
         try:
             document = Document(pid=project, data=file_name, name=name, create_time=now_time, modify_time=now_time)
             document.save()
+            project_root_name = str(project.gid.id) + '_project_' + str(project.id) + '_' + project.name
+            project_root = Files.objects.get(name=project_root_name)
+            document_name = project_root_name + '_' + str(document.id) + '_' + document.name
+            new_project_root = Files(name=document_name, isfile=1, parent=project_root,document=document)
+            new_project_root.save()
         except Exception as e:
             print(e)
             return JsonResponse({'errno': 9999, 'msg': "数据库存储出错了"})

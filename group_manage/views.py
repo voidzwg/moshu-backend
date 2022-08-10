@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from com.funcs import *
 from .models import *
-
+from documents_center.models import *
 
 # Author: zwg
 # Create your views here.
@@ -21,6 +21,17 @@ def create_group(request):
         new_groups.save()
         new_members = Members(gid=new_groups, uid=user, field_role=2)
         new_members.save()
+        new_root = Files(name=new_groups.id,isfile=0)
+        new_root.save()
+        project_root = str(new_groups.id)+'_'+'Project_root'
+        new_projectroot = Files(name=project_root,isfile=0,parent=new_root)
+        new_projectroot.save()
+        data_root =  str(new_groups.id)+'_'+'Data_root'
+        new_data_root = Files(name=data_root, isfile=0,parent=new_root)
+        new_data_root.save()
+        others_root = str(new_groups.id) + '_' + 'Others_root'
+        new_others_root = Files(name=others_root, isfile=0,parent=new_root)
+        new_others_root.save()
         return JsonResponse({'errno': 0, 'msg': "创建成功"})
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
 

@@ -1,13 +1,7 @@
-# This is an auto-generated Django model module.
-# You'll have to do the following manually to clean this up:
-#   * Rearrange models' order
-#   * Make sure each model has one field with primary_key=True
-#   * Make sure each ForeignKey and OneToOneField has `on_delete` set to the desired behavior
-#   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
-# Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 from mptt.fields import TreeForeignKey
 from mptt.models import MPTTModel
+
 
 
 class Groups(models.Model):
@@ -87,3 +81,9 @@ class Users(models.Model):
     class Meta:
         managed = False
         db_table = 'users'
+
+class Files(MPTTModel):
+    name = models.CharField(max_length=50, unique=True)
+    parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
+    isfile = models.IntegerField(db_column='isFile')  # Field name made lowercase.
+    document = models.ForeignKey(Document, models.DO_NOTHING, db_column='document', blank=True, null=True)

@@ -403,6 +403,44 @@ def rename_document(request):
 
 
 @csrf_exempt
+def upload_img(request):
+    if request.method == 'POST':
+        did = request.POST.get('did')
+        img = request.FILES.get('img')
+        if did == '' or did is None:
+            return JsonResponse({'errno': 2, 'message': "文档不存在"})
+        if img == '' or img is None:
+            return JsonResponse({'errno': 2, 'message': "文件流不存在"})
+        print("get img")
+        print(img.name)
+        print("named")
+        if not img.name.lower().endswith(IMAGE_TAIL):
+            print(img)
+            return JsonResponse({'errno': 1002, 'msg': "文件格式错误"})
+        try:
+            document = Document.objects.get(id=did)
+        except Exception as e:
+            print(e)
+            return JsonResponse({'errno': 2, 'message': "文档不存在"})
+        img_name = datetime.datetime.now().strftime('%Y%m%d%H%M%S%f_') + str(did) + '_' + img.name
+        print("name in server:", img_name)
+        f = open(os.path.join(settings.MEDIA_ROOT, 'images', img_name), 'wb')
+        for i in img.chunks():
+            f.write(i)
+        f.close()
+        print("Already uploaded image", img_name)
+        json_response = {
+            'errno': 0,
+            'data': {
+                'url': IMAGE_URL + img_name,
+                'alt': img.name,
+                'href': SERVER_URL + 'api/' + IMAGE_URL + img_name,
+            },
+        }
+        return JsonResponse(json_response)
+
+
+@csrf_exempt
 def search_projects(request):
     if request.method == 'POST':
         gid = request.POST.get('gid')

@@ -199,7 +199,7 @@ def copy_file(src_file_name, desc_file_name):
                 if msg == '':
                     break
                 content += msg
-        with open(os.path.join(settings.MEDIA_ROOT, 'documents', desc_file_name), 'wt') as desc:
+        with open(os.path.join(settings.MEDIA_ROOT, 'documents', desc_file_name), 'at') as desc:
             while content:
                 msg = content[:READ_LENGTH]
                 desc.write(msg)

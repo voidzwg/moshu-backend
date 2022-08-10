@@ -242,7 +242,7 @@ def copy(request):
             new_project.save()
             prototype = Prototype.objects.filter(pid=project)
             for p in prototype:
-                new_prototype_name = rename_project_file(now_time, new_project.id, p.data)
+                new_prototype_name = rename_project_file(datetime.datetime.now(), new_project.id, p.data)
                 print("new_prototype_name", new_prototype_name)
                 copy_file(p.data, new_prototype_name)
                 new_prototype = Prototype(name=p.name, pid=new_project, create_time=now_time, modify_time=now_time, 
@@ -250,14 +250,15 @@ def copy(request):
                 new_prototype.save()
             document = Document.objects.filter(pid=project)
             for d in document:
-                new_document_name = rename_project_file(now_time, new_project.id, d.data)
+                new_document_name = rename_project_file(datetime.datetime.now(), new_project.id, d.data)
+                print("new document name", new_document_name)
                 copy_file(d.data, new_document_name)
                 new_document = Document(name=d.name, pid=new_project, uid=user,
                                         create_time=now_time, modify_time=now_time, data=new_document_name)
                 new_document.save()
             uml = Uml.objects.filter(pid=project.id)
             for u in uml:
-                new_uml_name = rename_project_file(now_time, new_project.id, u.data)
+                new_uml_name = rename_project_file(datetime.datetime.now(), new_project.id, u.data)
                 copy_file(u.data, new_uml_name)
                 new_uml = Uml(name=u.name, pid=new_project, uid=user,
                               create_time=now_time, modify_time=now_time, data=new_uml_name)

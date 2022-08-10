@@ -181,6 +181,8 @@ def fuzzy_search(key, choices_list):
 # rename file named 'strftime_pid_filename.xxx'
 def rename_project_file(now_time, pid, old_name):
     old_name_split = old_name.split('_')
+    print("old_name", old_name)
+    print("old_name_split", old_name_split)
     old_name_split[0] = now_time.strftime('%Y%m%d%H%M%S%f')
     old_name_split[1] = str(pid)
     return '_'.join(old_name_split)
@@ -197,7 +199,7 @@ def copy_file(src_file_name, desc_file_name):
                 if msg == '':
                     break
                 content += msg
-        with open(os.path.join(settings.MEDIA_ROOT, 'documents', desc_file_name), 'at') as desc:
+        with open(os.path.join(settings.MEDIA_ROOT, 'documents', desc_file_name), 'wt') as desc:
             while content:
                 msg = content[:READ_LENGTH]
                 desc.write(msg)

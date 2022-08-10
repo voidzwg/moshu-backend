@@ -195,7 +195,7 @@ def copy(request):
             print(e)
             return JsonResponse({'errno': 1003, 'msg': "不存在该项目"})
         try:
-            group = Groups.objects.get(id=project.gid)
+            group = Groups.objects.get(id=project.gid.id)
         except Exception as e:
             print(e)
             return JsonResponse({'errno': 2333, 'msg': "不存在项目所属的团队"})
@@ -207,24 +207,25 @@ def copy(request):
             new_project.save()
             prototype = Prototype.objects.filter(pid=project)
             for p in prototype:
-                new_prototype_name = rename_project_file(now_time, new_project.id, p.name)
-                copy_file(p.name, new_prototype_name)
-                new_prototype = Prototype(name=new_prototype_name, pid=new_project, create_time=now_time,
-                                          modify_time=now_time, data=p.data, width=p.width, height=p.height)
+                new_prototype_name = rename_project_file(now_time, new_project.id, p.data)
+                print("new_prototype_name", new_prototype_name)
+                copy_file(p.data, new_prototype_name)
+                new_prototype = Prototype(name=p.name, pid=new_project, create_time=now_time, modify_time=now_time, 
+                                        data=new_prototype_name, width=p.width, height=p.height)
                 new_prototype.save()
             document = Document.objects.filter(pid=project)
             for d in document:
-                new_document_name = rename_project_file(now_time, new_project.id, d.name)
-                copy_file(d.name, new_document_name)
-                new_document = Document(name=new_document_name, pid=new_project, uid=user,
-                                        create_time=now_time, modify_time=now_time, data=d.data)
+                new_document_name = rename_project_file(now_time, new_project.id, d.data)
+                copy_file(d.data, new_document_name)
+                new_document = Document(name=d.name, pid=new_project, uid=user,
+                                        create_time=now_time, modify_time=now_time, data=new_document_name)
                 new_document.save()
             uml = Uml.objects.filter(pid=project.id)
             for u in uml:
-                new_uml_name = rename_project_file(now_time, new_project.id, u.name)
-                copy_file(u.name, new_uml_name)
-                new_uml = Uml(name=new_uml_name, pid=new_project, uid=user,
-                              create_time=now_time, modify_time=now_time, data=u.data)
+                new_uml_name = rename_project_file(now_time, new_project.id, u.data)
+                copy_file(u.data, new_uml_name)
+                new_uml = Uml(name=u.name, pid=new_project, uid=user,
+                              create_time=now_time, modify_time=now_time, data=new_uml_name)
                 new_uml.save()
         except Exception as e:
             print(e)

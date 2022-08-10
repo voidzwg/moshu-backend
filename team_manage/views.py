@@ -171,7 +171,7 @@ def get_invitation(request):
                 user = Users.objects.get(id=i.inviter)
                 uname = user.name
                 username = user.username
-                user_avatar = user.avatar
+                user_avatar = AVATARS_URL + user.avatar
             except Exception as e:
                 print(e)
                 uname = '该用户已不存在'

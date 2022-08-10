@@ -89,7 +89,12 @@ def delete(request):
 def get_design(request):
     if request.method == 'POST':
         pid = request.POST.get('pid')
-        prototype_list = Prototype.objects.filter(pid=pid)
+        try:
+            project = Projects.objects.get(id=pid)
+        except Exception as e:
+            print(e)
+            return JsonResponse({'errno': 2, 'msg': "项目不存在"})
+        prototype_list = Prototype.objects.filter(pid=project)
         return prototype_serialize(prototype_list)
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})
 
@@ -120,10 +125,15 @@ def get_one_design(request):
 def search_design(request):
     if request.method == 'POST':
         pid = request.POST.get('pid')
+        try:
+            project = Projects.objects.get(id=pid)
+        except Exception as e:
+            print(e)
+            return JsonResponse({'errno': 2, 'msg': "项目不存在"})
         keyword = request.POST.get('keyword')
         if keyword == '':
             return JsonResponse({'errno': 5, 'msg': "搜索内容不能为空！"})
-        prototypes = Prototype.objects.filter(pid=pid)
+        prototypes = Prototype.objects.filter(pid=project)
         name_list = []
         for prototype in prototypes:
             name_list.append(prototype.name)

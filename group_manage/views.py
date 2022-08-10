@@ -22,7 +22,7 @@ def create_group(request):
         new_members.save()
         new_root = Files(name=new_groups.id,isfile=0)
         new_root.save()
-        project_root = str(new_groups.id)+'_'+'Project_root'
+        project_root = str(new_groups.id)+'_'+'Project'
         new_projectroot = Files(name=project_root,isfile=0,parent=new_root)
         new_projectroot.save()
         data_root =  str(new_groups.id)+'_'+'Data'

@@ -86,13 +86,14 @@ def create_file(request):
         except Exception as e:
             print(e)
             return JsonResponse({'errno': 1003, 'msg': "找不到该目录！"})
+        document = None
         if type == 1:
             model_name = request.POST.get('model_name')
             uid = request.POST.get('uid')
-            create_document(name, model_name, uid)
+            document = create_document(name, model_name, uid)
         try:
             name = file.name + '_' + name
-            newFile = Files(name=name, parent=file, isfile=type)
+            newFile = Files(name=name, parent=file, isfile=type,document=document)
             newFile.save()
         except Exception as e:
             print(e)
@@ -128,7 +129,11 @@ def rename_file(request):
         except Exception as e:
             print(e)
             return JsonResponse({'errno': 1003, 'msg': "找不到该文件或目录！"})
-        name
+        parent = file.get_ancestors()[0]
+        name = parent.name+'_'+name
+        file.name = name
+        file.save()
+        return JsonResponse({'errno': 0, 'msg': "重命名成功"})
     else:
         return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
 
@@ -170,5 +175,6 @@ def create_document(name, model_name, uid):
         print(e)
         return JsonResponse({'errno': 9999, 'msg': "数据库存储出错了"})
     print("Aready saved in database")
-    return JsonResponse({'errno': 0, 'msg': "创建成功", 'docid': document.id})
+    return document
+
 

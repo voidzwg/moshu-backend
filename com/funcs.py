@@ -232,3 +232,20 @@ def delete_file(desc_file_path):
         return True
     return False
 
+
+def delete_project_file(project):
+    try:
+        prototype = Prototype.objects.filter(pid=project)
+        for p in prototype:
+            delete_file(DOCUMENTS_URL + p.data)
+        document = Document.objects.filter(pid=project)
+        for d in document:
+            delete_file(DOCUMENTS_URL + d.data)
+        uml = Uml.objects.filter(pid=project)
+        for u in uml:
+            delete_file(DOCUMENTS_URL + u.data)
+    except Exception as e:
+        print(e)
+        return True
+    return False
+

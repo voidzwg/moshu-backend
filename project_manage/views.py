@@ -146,19 +146,9 @@ def delete(request):
         except Exception as e:
             print(e)
             return JsonResponse({'errno': 1003, 'msg': "不存在该项目"})
-        try:
-            prototype = Prototype.objects.filter(pid=project)
-            for p in prototype:
-                delete_file(DOCUMENTS_URL + p.data)
-            document = Document.objects.filter(pid=project)
-            for d in document:
-                delete_file(DOCUMENTS_URL + d.data)
-            uml = Uml.objects.filter(pid=project)
-            for u in uml:
-                delete_file(DOCUMENTS_URL + u.data)
-        except Exception as e:
-            print(e)
-            return JsonResponse({'errno': 1005, 'msg': "删除错误"})
+        if delete_project_file(project):
+            print("cannot delete project files")
+            return JsonResponse({'errno': 1005, 'msg': "未知错误"})
         try:
             project.delete()
         except Exception as e:

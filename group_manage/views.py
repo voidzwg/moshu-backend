@@ -94,6 +94,11 @@ def dismiss(request):
                 print(e)
                 return JsonResponse({'errno': 1003, 'msg': "不存在或未知错误"})
             else:
+                project = Projects.objects.filter(gid=group)
+                for p in project:
+                    if delete_project_file(p):
+                        print("cannot delete files in", p.id)
+                        return JsonResponse({'errno': 1005, 'msg': "未知错误"})
                 group.delete()
                 return JsonResponse({'errno': 0, 'msg': "解散成功"})
     return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})

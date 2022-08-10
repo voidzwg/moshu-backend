@@ -4,8 +4,8 @@ from com.funcs import *
 # Create your views here.
 from project_manage.views import open_document
 def documents_center(request):
-    if request.method == 'GET':
-        gid = request.GET.get('gid')
+    if request.method == 'POST':
+        gid = request.POST.get('gid')
         if gid is None:
             return JsonResponse({'errno': 1002, 'msg': "参数为空"})
         try:
@@ -83,7 +83,6 @@ def create_file(request):
         except Exception as e:
             print(e)
             return JsonResponse({'errno': 1003, 'msg': "找不到该目录！"})
-
         try:
             name = file.name + '_' + name
             newFile = Files(name=name,parent=file,isfile=type)
@@ -94,3 +93,33 @@ def create_file(request):
         return JsonResponse({'errno': 0, 'msg': "新建成功"})
     else:
         return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
+
+def create_document(request):
+    if request.method == 'POST':
+        pid = request.POST.get('pid')
+        name = request.POST.get('name')
+        model_name = request.POST.get('model_name')
+        uid = request.POST.get('uid')
+        if name == '':
+            return JsonResponse({'errno': 2, 'msg': "名字不能为空"})
+        try:
+            project = Projects.objects.get(id=pid)
+        except:
+            return JsonResponse({'errno': 2, 'msg': "项目不存在"})
+        try:
+            user = Users.objects.get(id=uid)
+        except:
+            user = None
+        now_time = datetime.datetime.now()
+        file_name = now_time.strftime('%Y%m%d%H%M%S%f_') + str(pid) + '_' + model_name
+        if copy_file(model_name, file_name):
+            return JsonResponse({'errno': 6666, 'msg': "文件创建失败"})
+        try:
+            document = Document(pid=project,uid=user,data=file_name, name=name, create_time=now_time, modify_time=now_time)
+            document.save()
+        except Exception as e:
+            print(e)
+            return JsonResponse({'errno': 9999, 'msg': "数据库存储出错了"})
+        print("Aready saved in database")
+        return JsonResponse({'errno': 0, 'msg': "创建成功", 'docid': document.id})
+    return JsonResponse({'errno': 1, 'msg': "请求方式错误"})

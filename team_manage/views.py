@@ -1,7 +1,6 @@
 from django.http import JsonResponse
 from django.core import serializers
-from .models import *
-
+from com.funcs import *
 
 def get_member(request):
     if request.method == 'POST':

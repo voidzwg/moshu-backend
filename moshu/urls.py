@@ -29,4 +29,5 @@ urlpatterns = [
     path('api/project_manage/', include('project_manage.urls')),
     path('api/design/', include('design.urls')),
     re_path('media/(?P<path>.*)', serve, {'document_root': settings.MEDIA_ROOT}),
+    path('api/documents_center/',include('documents_center.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

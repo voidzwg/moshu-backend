@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'group_manage',
     'project_manage',
     'design',
+    'documents_center',
 ]
 
 MIDDLEWARE = [

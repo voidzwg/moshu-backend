@@ -5,7 +5,7 @@ import datetime
 from PIL import Image
 from django.http import JsonResponse
 from fuzzywuzzy import process
-from group_manage.models import Members, Users
+from documents_center.models import *
 from moshu import settings
 
 DEFAULT_AVATAR = "default.png"  # 默认头像文件名

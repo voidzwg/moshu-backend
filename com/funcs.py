@@ -221,4 +221,14 @@ def store_file(binary_file_stream, desc_file_name):
         print(e)
         return True
     print("Already stored file named")
+    return False
+
+
+def delete_file(desc_file_path):
+    try:
+        os.remove(desc_file_path)
+    except FileNotFoundError as e:
+        print(e)
+        return True
+    return False
 

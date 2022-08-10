@@ -79,6 +79,8 @@ def delete(request):
             prototype = Prototype.objects.get(id=picid)
         except:
             return JsonResponse({'errno': 2, 'msg': "原型设计不存在"})
+        if delete_file(DOCUMENTS_URL + prototype.data):
+            return JsonResponse({'errno': 6668, 'msg': "文件不存在"})
         prototype.delete()
         return JsonResponse({'errno': 0, 'msg': "删除成功"})
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})

@@ -240,6 +240,11 @@ def copy(request):
             new_project = Projects(gid=group, uid=user, name=new_project_name, starttime=now_time,
                                    endtime=project.endtime, available=0, status=0, profile=project.profile)
             new_project.save()
+            Group_root = Files.objects.get(name=group.id)
+            Group_Project_root = Group_root.get_children()[0]
+            project_root = str(group.id)+'_project_'+str(new_project.id)+'_'+new_project.name
+            new_project_root = Files(name=project_root,isfile=0,parent=Group_Project_root)
+            new_project_root.save()
             prototype = Prototype.objects.filter(pid=project)
             for p in prototype:
                 new_prototype_name = rename_project_file(datetime.datetime.now(), new_project.id, p.data)

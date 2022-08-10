@@ -136,7 +136,7 @@ class DjangoSession(models.Model):
 
 
 class Document(models.Model):
-    pid = models.ForeignKey('Projects', models.DO_NOTHING, db_column='pid')
+    pid = models.ForeignKey('Projects', models.DO_NOTHING, db_column='pid',blank=True, null=True)
     data = models.TextField()
     name = models.CharField(max_length=100)
     create_time = models.DateTimeField(blank=True, null=True)

@@ -62,7 +62,11 @@ def open_file(request):
                 if file.name.split('_')[1] == 'Project':
                     name = node.name.split('_')[2 * node.level - 1]
                 else:
-                    name = node.name.split('_')[node.level]
+                    name_split = node.name.split('_')
+                    print(name_split)
+                    print("node.level:", node.level)
+                    name = name_split[node.level]
+                    print("OK name = name_split[node.level]")
                 tmp = {
                     'id': node.id,
                     'name': name,
@@ -94,13 +98,18 @@ def create_file(request):
             model_name = request.POST.get('model_name')
             uid = request.POST.get('uid')
             document = create_document(name, model_name, uid)
+        name = file.name + '_' + name
+        childrens = file.get_children()
+        for children in childrens:
+            if children.name == name:
+                return JsonResponse({'errno': 1003, 'msg': "名字重复！"})
         try:
-            name = file.name + '_' + name
             newFile = Files(name=name, parent=file, isfile=int(type),document=document)
             newFile.save()
         except Exception as e:
             print(e)
-            return JsonResponse({'errno': 1004, 'msg': "未知错误！"})
+            return JsonResponse({'errno': 1004, 'msg': "数据库出错了"})
+        print("newFile level", newFile.level)
         return JsonResponse({'errno': 0, 'msg': "新建成功",'file_id':newFile.id})
     else:
         return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
@@ -132,10 +141,19 @@ def rename_file(request):
         except Exception as e:
             print(e)
             return JsonResponse({'errno': 1003, 'msg': "找不到该文件或目录！"})
-        parent = file.get_ancestors()[0]
+        print("old level", file.level)
+        parents = file.get_ancestors()
+        parent = None
+        for p in parents:
+            parent = p
         name = parent.name+'_'+name
+        childrens = parent.get_children()
+        for children in childrens:
+            if children.name == name:
+                return JsonResponse({'errno': 1003, 'msg': "名字重复！"})
         file.name = name
         file.save()
+        print(file.name, "level", file.level)
         return JsonResponse({'errno': 0, 'msg': "重命名成功"})
     else:
         return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})

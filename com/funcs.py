@@ -12,11 +12,13 @@ DEFAULT_AVATAR = "default.png"  # 默认头像文件名
 
 DEFAULT_PROTOTYPE = "default_prototype.json"  # 默认原型设计文件名
 
-SERVER_URL = "http://43.138.26.134"  # 服务器URL
+SERVER_URL = "http://43.138.26.134/"  # 服务器URL
 
 AVATARS_URL = settings.MEDIA_URL + "avatars/"  # 头像路径
 
 DOCUMENTS_URL = settings.MEDIA_URL + "documents/"  # 文件路径
+
+IMAGE_URL = settings.MEDIA_URL + 'images/'  # 图片路径
 
 IMAGE_TAIL = ('.bmp', '.dib', '.png', '.jpg', '.jpeg', '.pbm', '.pgm', '.ppm', '.tif', '.tiff')
 

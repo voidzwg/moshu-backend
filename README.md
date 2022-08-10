@@ -62,6 +62,8 @@
 
 重命名文件：/api/project_manage/rename_document/ 参数： id name
 
+文档上传图片：/api/project_manage/upload_img/   参数：did  img  formData打包
+
 模糊搜索项目：/api/project_manage/search_projects/
 
 ### 团队管理页面

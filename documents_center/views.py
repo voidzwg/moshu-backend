@@ -151,7 +151,8 @@ def open_document(id):
     print("checked file")
     json = {
         'name': document.name,
-        'url': DOCUMENTS_URL + document.data
+        'url': DOCUMENTS_URL + document.data,
+        'docid': document.id,
     }
     return JsonResponse([json], safe=False)
 

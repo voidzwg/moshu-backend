@@ -27,7 +27,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.qq.com'  # 腾讯QQ邮箱 SMTP 服务器地址
+EMAIL_PORT = 25  # SMTP服务的端口号
+EMAIL_HOST_USER = '1481304174@qq.com'  # 你的qq邮箱，邮件发送者的邮箱
+EMAIL_HOST_PASSWORD = 'oaqbvggcqcwzfjaa'  # 你申请的授权码（略）
+EMAIL_USE_TLS = False
+EMAIL_FROM = '墨书<1481304174@qq.com>'
 # Application definition
 
 INSTALLED_APPS = [

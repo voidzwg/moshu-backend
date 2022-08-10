@@ -1,4 +1,5 @@
-from django.http import JsonResponse
+from django.core.mail import send_mail
+from django.http import JsonResponse, HttpResponse
 from django.core import serializers
 from com.funcs import *
 
@@ -145,11 +146,12 @@ def invite(request):
         try:
             newInvite = Invite(inviter=inviter.id,invitee=invitee.id,gid=gid.id,read=0)
             newInvite.save()
+            send_alone_email(invitee.id,inviter.name,inviter.username,gid.name)
         except Exception as e:
             print(e)
             return JsonResponse({'errno': 1005, 'msg': "未知错误"})
         else:
-            return JsonResponse({'errno': 0, 'msg': "已发送邀请，请等待回复"})
+            return JsonResponse({'errno': 0, 'msg': "已发送邀请并以邮件提醒对方，请耐心等待回复"})
     return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
 
 
@@ -257,3 +259,24 @@ def delete_invitation(request):
             return JsonResponse({'errno': 1004, 'msg': "未知错误"})
         return JsonResponse({'errno': 0, 'msg': "删除成功"})
     return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
+
+from moshu.settings import *
+def send_alone_email(uid,uname,username,gname):
+    user = Users.objects.get(id=uid)
+    email = user.email
+    subject = '邀请提醒'  # 主题
+    from_email = EMAIL_FROM  # 发件人，在settings.py中已经配置
+    to_email = [email]  # 邮件接收者列表
+    # 发送的消息
+    if uname is None:
+        inviter_name = username
+    else:
+        inviter_name = uname
+    if user.name is None:
+        invitee_name = user.username
+    else:
+        invitee_name = user.name
+    message = '尊敬的 \''+invitee_name+' \'用户,您好！\n'+'墨书提醒您：用户 \''+inviter_name+'\' 邀请您加入团队 \''+gname+'\' \n点此登录接受邀请:\n http://43.138.26.134/login&register'  # 发送普通的消息使用的时候message
+    # meg_html = '<a href="http://localhost:8000/">点击跳转</a>'  # 发送的是一个html消息 需要指定
+    send_mail(subject=subject, message=message, from_email=from_email, recipient_list=to_email)
+    return HttpResponse('OK,邮件已经发送成功!')

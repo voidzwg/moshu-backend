@@ -422,7 +422,7 @@ def upload_img(request):
         except Exception as e:
             print(e)
             return JsonResponse({'errno': 2, 'message': "文档不存在"})
-        img_name = datetime.datetime.now().strftime('%Y%m%d%H%M%S%f_') + img.name
+        img_name = datetime.datetime.now().strftime('%Y%m%d%H%M%S%f_') + str(did) + '_' + img.name
         print("name in server:", img_name)
         f = open(os.path.join(settings.MEDIA_ROOT, 'images', img_name), 'wb')
         for i in img.chunks():

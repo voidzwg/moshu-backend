@@ -51,7 +51,7 @@ def open_file(request):
             print(e)
             return JsonResponse({'errno': 1003, 'msg': "找不到该文件或目录！"})
         if file.isfile:
-            return open_document(file.document)
+            return open_document(file.document.id)
         try:
             next_list = file.get_children()
             data = []
@@ -97,7 +97,7 @@ def create_file(request):
         except Exception as e:
             print(e)
             return JsonResponse({'errno': 1004, 'msg': "未知错误！"})
-        return JsonResponse({'errno': 0, 'msg': "新建成功",'file_id':id})
+        return JsonResponse({'errno': 0, 'msg': "新建成功",'file_id':newFile.id})
     else:
         return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
 
@@ -117,8 +117,27 @@ def delete_file(request):
         return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
 
 
-def open_document(object):
-    document = object
+def rename_file(request):
+    if request.method == 'POST':
+        id = request.POST.get('id')
+        name = request.POST.get('name')
+        if id is None:
+            return JsonResponse({'errno': 1002, 'msg': "参数为空"})
+        try:
+            file = Files.objects.get(id=id)
+        except Exception as e:
+            print(e)
+            return JsonResponse({'errno': 1003, 'msg': "找不到该文件或目录！"})
+        name
+    else:
+        return JsonResponse({'errno': 1001, 'msg': "请求方式错误"})
+
+def open_document(id):
+    try:
+        document = Document.objects.get(id=id)
+    except:
+        return JsonResponse({'errno': 2, 'msg': "文件不存在"})
+    print("checked document")
     try:
         f = open(os.path.join(settings.MEDIA_ROOT, 'documents', document.data), 'r')
     except IOError as e:

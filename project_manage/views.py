@@ -296,14 +296,14 @@ def create_document(request):
         try:
             document = Document(pid=project,uid=user,data=file_name, name=name, create_time=now_time, modify_time=now_time)
             document.save()
-            project_root_name = str(project.gid.id) + '_project_' + str(project.id) + '_' + project.name
-            project_root = Files.objects.get(name=project_root_name)
-            document_name = project_root_name + '_' + str(document.id) + '_' + document.name
-            new_project_root = Files(name=document_name, isfile=1, parent=project_root,document=document)
-            new_project_root.save()
         except Exception as e:
             print(e)
             return JsonResponse({'errno': 9999, 'msg': "数据库存储出错了"})
+        project_root_name = str(project.gid.id) + '_project_' + str(project.id) + '_' + project.name
+        project_root = Files.objects.get(name=project_root_name)
+        document_name = project_root_name + '_' + str(document.id) + '_' + document.name
+        new_project_root = Files(name=document_name, isfile=1, parent=project_root, document=document)
+        new_project_root.save()
         print("Aready saved in database")
         return JsonResponse({'errno': 0, 'msg': "创建成功", 'docid': document.id})
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})

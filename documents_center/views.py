@@ -45,12 +45,15 @@ def open_file(request):
         id = request.POST.get('id')
         if id is None:
             return JsonResponse({'errno': 1002, 'msg': "参数为空"})
+        print("checked id in open_file")
         try:
             file = Files.objects.get(id=id)
         except Exception as e:
             print(e)
             return JsonResponse({'errno': 1003, 'msg': "找不到该文件或目录！"})
-        if file.isfile:
+        print("checked file!")
+        if file.isfile == 1:
+            print("Prepare to go to open_document")
             return open_document(file.document.id)
         try:
             next_list = file.get_children()

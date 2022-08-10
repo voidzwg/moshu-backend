@@ -45,6 +45,7 @@ def open_file(request):
         id = request.POST.get('id')
         if id is None:
             return JsonResponse({'errno': 1002, 'msg': "参数为空"})
+        print("ID in open_file():", id)
         print("checked id in open_file")
         try:
             file = Files.objects.get(id=id)
@@ -88,6 +89,7 @@ def create_file(request):
         type = request.POST.get('type')
         if id is None:
             return JsonResponse({'errno': 1002, 'msg': "参数为空"})
+        print("ID in create_file():", id)
         try:
             file = Files.objects.get(id=id)
         except Exception as e:
@@ -119,6 +121,7 @@ def delete_file(request):
         id = request.POST.get('id')
         if id is None:
             return JsonResponse({'errno': 1002, 'msg': "参数为空"})
+        print("ID in delete_file():", id)
         try:
             file = Files.objects.get(id=id)
         except Exception as e:
@@ -136,6 +139,7 @@ def rename_file(request):
         name = request.POST.get('name')
         if id is None:
             return JsonResponse({'errno': 1002, 'msg': "参数为空"})
+        print("ID in rename_file():", id)
         try:
             file = Files.objects.get(id=id)
         except Exception as e:

@@ -194,7 +194,7 @@ class Projects(models.Model):
     starttime = models.DateTimeField()
     endtime = models.DateTimeField(blank=True, null=True)
     profile = models.TextField(blank=True, null=True)
-    showable = models.IntegerField()
+    showable = models.IntegerField(default=0)
 
     class Meta:
         managed = False

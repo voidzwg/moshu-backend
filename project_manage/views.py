@@ -331,7 +331,7 @@ def open_document(request):
         print("checked file")
         json = {
             'name': document.name,
-            'url': settings.MEDIA_URL + "documents/" + document.data
+            'url': DOCUMENTS_URL + document.data
         }
         return JsonResponse([json], safe=False)
     return JsonResponse({'errno': 1, 'msg': "请求方式错误"})

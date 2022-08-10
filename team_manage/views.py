@@ -171,19 +171,22 @@ def get_invitation(request):
                 user = Users.objects.get(id=i.inviter)
                 uname = user.name
                 username = user.username
+                user_avatar = user.avatar
             except Exception as e:
                 print(e)
                 uname = '该用户已不存在'
                 username = '该用户已不存在'
+                user_avatar = None
             tmp = {
                 'id':i.id,
-                'inviter_id':i.inviter,
-                'inviter_name':uname,
-                'inviter_username':username,
-                'invitee':i.invitee,
-                'gid':i.gid,
-                'gname':gname,
-                'read':i.read,
+                'inviter_id': i.inviter,
+                'inviter_name': uname,
+                'inviter_username': username,
+                'inviter_avatar': user_avatar,
+                'invitee': i.invitee,
+                'gid': i.gid,
+                'gname': gname,
+                'read': i.read,
             }
             data.append(tmp)
         return JsonResponse(data,safe=False)
